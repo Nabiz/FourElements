@@ -13,6 +13,7 @@ radius = 16.0
 height = 64.0
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("marker_point", "sprites", "blank_sprite", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
+z_index = -2
 script = ExtResource("1_kyqiw")
 marker_point = NodePath("Marker2D")
 sprites = NodePath("Sprites")

@@ -24,7 +24,7 @@ static var instance
 func _enter_tree() -> void:
 	instance = self
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fire"):
 		spawn_fire_bullet()
 		spawn_earth_block()

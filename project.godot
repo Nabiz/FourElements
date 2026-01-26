@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="FourElements"
-run/main_scene="uid://bagpvo1aak85w"
+run/main_scene="uid://dmfbkxe52mhcn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -19,11 +19,13 @@ config/icon="res://icon.svg"
 
 MaskManagerAutoload="*res://Scenes/Autoloads/MaskManagerAutoload.tscn"
 WaterPathManagerAutoload="*res://Scenes/Autoloads/WaterPathManagerAutoload.tscn"
+LevelManagerAutoload="*res://Scenes/Autoloads/LevelManagerAutoload.tscn"
 
 [display]
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/stretch/mode="canvas_items"
 
 [file_customization]
 

@@ -8,6 +8,10 @@ static var instance: WaterPathManager
 func _enter_tree() -> void:
 	instance = self
 
+static func reset_manager():
+	water_paths.clear()
+	disable_all_water_paths()
+
 static func append_water_path(wp: WaterPath):
 	water_paths.append(wp)
 

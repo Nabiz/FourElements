@@ -1,22 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbp66xbtvbism"]
+[gd_scene load_steps=11 format=3 uid="uid://bbp66xbtvbism"]
 
 [ext_resource type="Script" uid="uid://vbqwe6d4j85m" path="res://Scripts/MaskPickup.gd" id="1_oqyrf"]
 [ext_resource type="Texture2D" uid="uid://cv1lidemdkuh4" path="res://Assets/Mask/fire_mask.png" id="2_oqyrf"]
 [ext_resource type="Texture2D" uid="uid://ddmx88k0p2djh" path="res://Assets/Mask/water_mask.png" id="3_gdd82"]
+[ext_resource type="AudioStream" uid="uid://cwrfxcm3qy0gs" path="res://Assets/SFX/water.wav" id="3_h7wb0"]
 [ext_resource type="Texture2D" uid="uid://bxy410ibkswes" path="res://Assets/Mask/earth_mask.png" id="4_2dg8h"]
+[ext_resource type="AudioStream" uid="uid://tt86win0mkfr" path="res://Assets/SFX/earth.ogg" id="4_8akiv"]
+[ext_resource type="AudioStream" uid="uid://cn10lsltil7wj" path="res://Assets/SFX/air.wav" id="4_spqju"]
 [ext_resource type="Texture2D" uid="uid://dmh1gro0f25j4" path="res://Assets/Mask/air_mask.png" id="5_swy00"]
+[ext_resource type="AudioStream" uid="uid://jk2eres5osan" path="res://Assets/SFX/fire.ogg" id="6_swy00"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oqyrf"]
 radius = 16.0
 
-[node name="MaskPickup" type="Area2D" node_paths=PackedStringArray("collision", "sprties", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
+[node name="MaskPickup" type="Area2D" node_paths=PackedStringArray("collision", "audio_player", "sprties", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
 script = ExtResource("1_oqyrf")
 collision = NodePath("CollisionShape2D")
+audio_player = NodePath("AudioStreamPlayer")
 sprties = NodePath("Sprites")
 fire_sprite = NodePath("Sprites/FireSprite")
 water_sprite = NodePath("Sprites/WaterSprite")
 earth_sprite = NodePath("Sprites/EarthSprite")
 air_sprite = NodePath("Sprites/AirSprite")
+fire_sound = ExtResource("6_swy00")
+water_sound = ExtResource("3_h7wb0")
+earth_sound = ExtResource("4_8akiv")
+air_sound = ExtResource("4_spqju")
 
 [node name="Sprites" type="Node2D" parent="."]
 
@@ -42,6 +51,9 @@ texture = ExtResource("5_swy00")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_oqyrf")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_swy00")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

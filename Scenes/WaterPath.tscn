@@ -1,12 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://cduv0gbami34p"]
+[gd_scene load_steps=6 format=3 uid="uid://cduv0gbami34p"]
 
 [ext_resource type="Script" uid="uid://b3j1cc3eiy5ab" path="res://Scripts/WaterPath.gd" id="1_xywqn"]
+[ext_resource type="Shader" uid="uid://ctujh70mc0yvo" path="res://Resources/Shaders/WaterPath.gdshader" id="2_vx7nm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx7nm"]
 size = Vector2(250, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rjgjh"]
 size = Vector2(300, 64)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rjgjh"]
+shader = ExtResource("2_vx7nm")
+shader_parameter/progress = 0.5
+shader_parameter/deep_color = Color(0, 0.345098, 0.694118, 1)
+shader_parameter/surface_color = Color(0.4, 0.8, 1, 0.9)
+shader_parameter/wave_amplitude = 0.05
+shader_parameter/wave_frequency = 10.0
+shader_parameter/wave_speed = 1.5
+shader_parameter/surface_thickness = 0.065
+shader_parameter/surface_intensity = 1.0
 
 [node name="WaterPath" type="Node2D" node_paths=PackedStringArray("static_body")]
 script = ExtResource("1_xywqn")
@@ -22,23 +34,26 @@ shape = SubResource("RectangleShape2D_vx7nm")
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_rjgjh")
 
 [node name="ColorRect" type="ColorRect" parent="StaticBody2D"]
-custom_minimum_size = Vector2(300, 64)
+z_index = -1
+material = SubResource("ShaderMaterial_rjgjh")
+custom_minimum_size = Vector2(300, 128)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -150.0
-offset_top = -32.0
-offset_right = 150.0
-offset_bottom = 32.0
+offset_left = -151.0
+offset_top = -95.0
+offset_right = 149.0
+offset_bottom = 33.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-color = Color(0, 0, 1, 1)
+color = Color(1, 1, 1, 0)
 
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

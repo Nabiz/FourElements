@@ -5,7 +5,7 @@ extends Node2D
 
 func _ready() -> void:
 	disable_static_body()
-	WaterPathManager.instance.append_water_path(self)
+	WaterPathManager.append_water_path(self)
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player and MaskManager.current_element == MaskManager.Element.WATER:

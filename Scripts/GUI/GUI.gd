@@ -30,3 +30,9 @@ func change_element(element: MaskManager.Element) -> void:
 			
 func update_ammo(value: int):
 	ammo_label.text = str(value)
+
+func _on_reset_button_pressed() -> void:
+	LevelManagerAutoload.restart_level()
+
+func _on_menu_button_pressed() -> void:
+	LevelManagerAutoload.load_menu()

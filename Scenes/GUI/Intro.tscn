@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://c074qn4q1gars"]
+
+[ext_resource type="Script" uid="uid://b7bwttejo6ga1" path="res://Scripts/GUI/Intro.gd" id="1_w7sfs"]
+
+[node name="Intro" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w7sfs")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="PlayButton" type="Button" parent="MarginContainer"]
+layout_mode = 2
+text = "To ja zostanę Królem Szamanów!!!"
+
+[connection signal="pressed" from="MarginContainer/PlayButton" to="." method="_on_play_button_pressed"]

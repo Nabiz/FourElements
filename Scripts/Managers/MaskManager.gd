@@ -7,6 +7,11 @@ static var current_element: Element = Element.BLANK
 static var ammo: int = 0
 
 
+static func reset_manager():
+	picked_masks.clear()
+	current_element = Element.BLANK
+	ammo = 0
+
 static func on_mask_picked(mask: MaskPickup):
 	if mask.element != current_element:
 		for picekd_mask in picked_masks:
@@ -25,15 +30,15 @@ static func change_element(new_element: Element):
 	Player.instance.change_element(current_element)
 	GUI.instance.change_element(current_element)
 	if current_element != Element.WATER:
-		WaterPathManager.instance.disable_all_water_paths()
+		WaterPathManager.disable_all_water_paths()
 	else:
-		WaterPathManager.instance.enable_all_water_paths()
+		WaterPathManager.enable_all_water_paths()
 
 static func use_ammo():
 	ammo -= 1
 	GUI.instance.update_ammo(ammo)
 	if ammo == 0:
-		WaterPathManager.instance.disable_all_water_paths()
+		WaterPathManager.disable_all_water_paths()
 		change_element(Element.BLANK)
 		for picekd_mask in picked_masks:
 			picekd_mask.enable_mask()
