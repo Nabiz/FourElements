@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://d1ouvpi4u5u6y"]
+
+[ext_resource type="Script" uid="uid://7jg3vhsj6k5r" path="res://Scenes/Player.gd" id="1_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://Assets/Player/player_blank.png" id="2_kyqiw"]
+[ext_resource type="Texture2D" uid="uid://d1j8dv7fbpf0b" path="res://Assets/Player/player_fire.png" id="3_gntrk"]
+[ext_resource type="Texture2D" uid="uid://bwannb5fs8gts" path="res://Assets/Player/player_water.png" id="4_nn08x"]
+[ext_resource type="Texture2D" uid="uid://yr6yhtuxr4ht" path="res://Assets/Player/player_earth.png" id="5_52ee3"]
+[ext_resource type="Texture2D" uid="uid://bsmdmypxvbyrf" path="res://Assets/Player/player_air.png" id="6_bhhdu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dewec"]
+radius = 16.0
+height = 64.0
+
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("blank_sprite", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
+script = ExtResource("1_kyqiw")
+blank_sprite = NodePath("Sprites/BlankSprite")
+fire_sprite = NodePath("Sprites/FireSprite")
+water_sprite = NodePath("Sprites/WaterSprite")
+earth_sprite = NodePath("Sprites/EarthSprite")
+air_sprite = NodePath("Sprites/AirSprite")
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="BlankSprite" type="Sprite2D" parent="Sprites"]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_kyqiw")
+
+[node name="FireSprite" type="Sprite2D" parent="Sprites"]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_gntrk")
+
+[node name="WaterSprite" type="Sprite2D" parent="Sprites"]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("4_nn08x")
+
+[node name="EarthSprite" type="Sprite2D" parent="Sprites"]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_52ee3")
+
+[node name="AirSprite" type="Sprite2D" parent="Sprites"]
+visible = false
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("6_bhhdu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_dewec")

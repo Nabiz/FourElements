@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bh3fe55qsy8cn"]
+
+[ext_resource type="Script" uid="uid://bxv6vcemvfo2q" path="res://Scripts/Managers/MaskManager.gd" id="1_blxqk"]
+
+[node name="MaskManagerAutoload" type="Node"]
+script = ExtResource("1_blxqk")

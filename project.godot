@@ -1,0 +1,28 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="FourElements"
+run/main_scene="uid://bagpvo1aak85w"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[autoload]
+
+MaskManagerAutoload="*res://Scenes/Autoloads/MaskManagerAutoload.tscn"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "pink",
+"res://Scenes/": "green",
+"res://Scripts/": "blue"
+}
