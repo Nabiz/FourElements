@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 MaskManagerAutoload="*res://Scenes/Autoloads/MaskManagerAutoload.tscn"
+WaterPathManagerAutoload="*res://Scenes/Autoloads/WaterPathManagerAutoload.tscn"
 
 [display]
 
@@ -28,6 +29,8 @@ window/size/viewport_height=720
 
 folder_colors={
 "res://Assets/": "pink",
+"res://Levels/": "yellow",
+"res://Resources/": "purple",
 "res://Scenes/": "green",
 "res://Scripts/": "blue"
 }

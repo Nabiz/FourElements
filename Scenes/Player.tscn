@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1ouvpi4u5u6y"]
+[gd_scene load_steps=9 format=3 uid="uid://d1ouvpi4u5u6y"]
 
 [ext_resource type="Script" uid="uid://7jg3vhsj6k5r" path="res://Scenes/Player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://Assets/Player/player_blank.png" id="2_kyqiw"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bwannb5fs8gts" path="res://Assets/Player/player_water.png" id="4_nn08x"]
 [ext_resource type="Texture2D" uid="uid://yr6yhtuxr4ht" path="res://Assets/Player/player_earth.png" id="5_52ee3"]
 [ext_resource type="Texture2D" uid="uid://bsmdmypxvbyrf" path="res://Assets/Player/player_air.png" id="6_bhhdu"]
+[ext_resource type="PackedScene" uid="uid://d1g0ts06yy5jx" path="res://Scenes/GUI/GUI.tscn" id="7_52ee3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dewec"]
 radius = 16.0
@@ -52,3 +53,8 @@ shape = SubResource("CapsuleShape2D_dewec")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(48, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_bottom = 720
+
+[node name="GUI" parent="." instance=ExtResource("7_52ee3")]

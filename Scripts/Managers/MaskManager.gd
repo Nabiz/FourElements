@@ -24,11 +24,16 @@ static func change_element(new_element: Element):
 	current_element = new_element
 	Player.instance.change_element(current_element)
 	GUI.instance.change_element(current_element)
+	if current_element != Element.WATER:
+		WaterPathManager.instance.disable_all_water_paths()
+	else:
+		WaterPathManager.instance.enable_all_water_paths()
 
 static func use_ammo():
 	ammo -= 1
 	GUI.instance.update_ammo(ammo)
 	if ammo == 0:
+		WaterPathManager.instance.disable_all_water_paths()
 		change_element(Element.BLANK)
 		for picekd_mask in picked_masks:
 			picekd_mask.enable_mask()
