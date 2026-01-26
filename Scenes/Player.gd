@@ -18,6 +18,8 @@ func _enter_tree() -> void:
 	instance = self
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_select"):
+		double_jump()
 	basic_movement(delta)
 
 func basic_movement(delta: float) -> void:
@@ -54,3 +56,9 @@ func change_sprite(element: MaskManager.Element):
 			air_sprite.show()
 		_:
 			blank_sprite.show()
+
+func double_jump():
+	if MaskManager.current_element == MaskManager.Element.AIR:
+		if !is_on_floor():
+			MaskManager.use_ammo()
+			velocity.y = 1.2 * JUMP_VELOCITY

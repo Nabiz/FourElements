@@ -22,17 +22,23 @@ func _ready() -> void:
 		MaskManager.Element.AIR:
 			air_sprite.show()
 
+func _process(delta: float) -> void:
+	if MaskManager.current_element == MaskManager.Element.BLANK:
+		enable_mask()
+
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
-		disable_mask()
 		MaskManager.on_mask_picked(self)
-		
+
+func _on_body_exited(body: Node2D) -> void:
+	if body is Player:
+		disable_mask()
 
 func enable_mask():
-	set_deferred("disable_mode", false)
+	collision.set_deferred("disabled", false)
 	sprties.modulate = Color(1,1,1,1)
 
 func disable_mask():
-	set_deferred("disable_mode", true)
-	sprties.modulate = Color(1,1,1,0.1)
+	collision.set_deferred("disabled", true)
+	sprties.modulate = Color(1,1,1,0.2)
 	

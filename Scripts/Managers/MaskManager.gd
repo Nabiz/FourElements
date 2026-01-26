@@ -14,9 +14,21 @@ static func on_mask_picked(mask: MaskPickup):
 		picked_masks.clear()
 		picked_masks.append(mask)
 		change_element(mask.element)
+		ammo = 1
 	else:
+		ammo += 1
 		picked_masks.append(mask)
+	GUI.instance.update_ammo(ammo)
 
 static func change_element(new_element: Element):
 	current_element = new_element
 	Player.instance.change_element(current_element)
+	GUI.instance.change_element(current_element)
+
+static func use_ammo():
+	ammo -= 1
+	GUI.instance.update_ammo(ammo)
+	if ammo == 0:
+		change_element(Element.BLANK)
+		for picekd_mask in picked_masks:
+			picekd_mask.enable_mask()

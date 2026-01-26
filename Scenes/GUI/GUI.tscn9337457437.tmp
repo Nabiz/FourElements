@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1g0ts06yy5jx"]
+
+[ext_resource type="Script" uid="uid://cwuxef0wfmjfq" path="res://Scripts/GUI/GUI.gd" id="1_17j7b"]
+[ext_resource type="Texture2D" uid="uid://bh5g48w1u1mdy" path="res://Assets/Elements/air.png" id="1_linlh"]
+[ext_resource type="Texture2D" uid="uid://b6ml2ofd7iwi8" path="res://Assets/Elements/fire.png" id="2_pu3jy"]
+[ext_resource type="Texture2D" uid="uid://cnu1e2ti2ywos" path="res://Assets/Elements/water.png" id="3_fexrg"]
+[ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://Assets/Elements/earth.png" id="4_wf68y"]
+
+[node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_17j7b")
+fire_texture = ExtResource("2_pu3jy")
+water_texture = ExtResource("3_fexrg")
+earth_texture = ExtResource("4_wf68y")
+air_texture = ExtResource("1_linlh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_linlh")
+stretch_mode = 3
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "0"
