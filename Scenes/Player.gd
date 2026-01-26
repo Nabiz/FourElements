@@ -2,11 +2,12 @@ class_name Player
 extends CharacterBody2D
 
 
-const SPEED = 200.0
+const SPEED = 250.0
 const JUMP_VELOCITY = -400.0
 
 var face_direction = Vector2.RIGHT
 
+@export var marker_point: Marker2D
 @export var sprites: Node
 
 @export_category("ElementSprites")
@@ -17,6 +18,7 @@ var face_direction = Vector2.RIGHT
 @export var air_sprite: Sprite2D
 
 var fire_bullet_scene: PackedScene = preload("res://Scenes/FireBullet.tscn")
+var earth_block_scene: PackedScene = preload("res://Scenes/EarthBlock.tscn")
 
 static var instance
 func _enter_tree() -> void:
@@ -25,6 +27,7 @@ func _enter_tree() -> void:
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fire"):
 		spawn_fire_bullet()
+		spawn_earth_block()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
@@ -81,10 +84,19 @@ func spawn_fire_bullet():
 		bullet.position = position
 		get_parent().add_child(bullet)
 
+func spawn_earth_block():
+	if MaskManager.current_element == MaskManager.Element.EARTH:
+		MaskManager.use_ammo()
+		var block: EarthBlock = earth_block_scene.instantiate()
+		block.global_position = marker_point.global_position
+		get_parent().add_child(block)
+
 func _set_face_direction(direction):
 		if direction < -0.05:
 			sprites.scale.x = -1
 			face_direction = Vector2.LEFT
+			marker_point.position.x = -48
 		elif direction > 0.05:
 			sprites.scale.x = 1
 			face_direction = Vector2.RIGHT
+			marker_point.position.x = 48

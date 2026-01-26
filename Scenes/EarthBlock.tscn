@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cy55rh68t6vhq"]
+
+[ext_resource type="Texture2D" uid="uid://47gyut2y5yen" path="res://icon.svg" id="1_f31hp"]
+[ext_resource type="Script" uid="uid://fchn5auwuabt" path="res://Scripts/EarthBlock.gd" id="1_unpfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7lsk"]
+size = Vector2(64, 64)
+
+[node name="EarthBlock" type="StaticBody2D"]
+script = ExtResource("1_unpfy")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_f31hp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_v7lsk")

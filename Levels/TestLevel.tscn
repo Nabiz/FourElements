@@ -39,7 +39,7 @@ element = 4
 
 [node name="MaskPickup5" parent="." instance=ExtResource("2_iqcmb")]
 position = Vector2(228, 539)
-element = 4
+element = 3
 
 [node name="Gui" parent="." instance=ExtResource("3_y1yrn")]
 

@@ -1,0 +1,2 @@
+class_name EarthBlock
+extends StaticBody2D
