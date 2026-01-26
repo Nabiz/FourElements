@@ -22,7 +22,7 @@ func _ready() -> void:
 		MaskManager.Element.AIR:
 			air_sprite.show()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if MaskManager.current_element == MaskManager.Element.BLANK:
 		enable_mask()
 

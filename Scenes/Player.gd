@@ -2,8 +2,12 @@ class_name Player
 extends CharacterBody2D
 
 
-const SPEED = 300.0
+const SPEED = 200.0
 const JUMP_VELOCITY = -400.0
+
+var face_direction = Vector2.RIGHT
+
+@export var sprites: Node
 
 @export_category("ElementSprites")
 @export var blank_sprite: Sprite2D
@@ -12,10 +16,15 @@ const JUMP_VELOCITY = -400.0
 @export var earth_sprite: Sprite2D
 @export var air_sprite: Sprite2D
 
-static var instance
+var fire_bullet_scene: PackedScene = preload("res://Scenes/FireBullet.tscn")
 
+static var instance
 func _enter_tree() -> void:
 	instance = self
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("ui_fire"):
+		spawn_fire_bullet()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
@@ -30,6 +39,7 @@ func basic_movement(delta: float) -> void:
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
+		_set_face_direction(direction)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
@@ -62,3 +72,19 @@ func double_jump():
 		if !is_on_floor():
 			MaskManager.use_ammo()
 			velocity.y = 1.2 * JUMP_VELOCITY
+
+func spawn_fire_bullet():
+	if MaskManager.current_element == MaskManager.Element.FIRE:
+		MaskManager.use_ammo()
+		var bullet: FireBullet = fire_bullet_scene.instantiate()
+		bullet.direction = face_direction
+		bullet.position = position
+		get_parent().add_child(bullet)
+
+func _set_face_direction(direction):
+		if direction < -0.05:
+			sprites.scale.x = -1
+			face_direction = Vector2.LEFT
+		elif direction > 0.05:
+			sprites.scale.x = 1
+			face_direction = Vector2.RIGHT

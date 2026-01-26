@@ -11,8 +11,9 @@
 radius = 16.0
 height = 64.0
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("blank_sprite", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("sprites", "blank_sprite", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
 script = ExtResource("1_kyqiw")
+sprites = NodePath("Sprites")
 blank_sprite = NodePath("Sprites/BlankSprite")
 fire_sprite = NodePath("Sprites/FireSprite")
 water_sprite = NodePath("Sprites/WaterSprite")
