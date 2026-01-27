@@ -1,7 +1,7 @@
 class_name FireBullet
 extends Area2D
 
-var speed = 100
+var speed = 500
 var direction = Vector2.RIGHT
 
 func _physics_process(delta: float) -> void:

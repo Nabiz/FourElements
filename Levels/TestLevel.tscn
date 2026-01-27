@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://bagpvo1aak85w"]
+[gd_scene load_steps=8 format=4 uid="uid://bagpvo1aak85w"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://Scenes/Player.tscn" id="1_uib4f"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://Scenes/MaskPickup.tscn" id="2_iqcmb"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://Scenes/WaterPath.tscn" id="5_2yvdw"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://Scenes/FinishArea.tscn" id="5_voj1p"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://Scenes/GUI/EndLevelPopup.tscn" id="6_voj1p"]
+[ext_resource type="PackedScene" uid="uid://bn85t4sjvtkks" path="res://Scenes/WoodBox.tscn" id="7_kxr0u"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -20,6 +21,9 @@ position = Vector2(332, 602)
 element = 2
 
 [node name="MaskPickup3" parent="." instance=ExtResource("2_iqcmb")]
+position = Vector2(184, 589)
+
+[node name="MaskPickup6" parent="." instance=ExtResource("2_iqcmb")]
 position = Vector2(1070, 584)
 element = 2
 
@@ -28,7 +32,7 @@ position = Vector2(922, 480)
 element = 4
 
 [node name="MaskPickup5" parent="." instance=ExtResource("2_iqcmb")]
-position = Vector2(228, 584)
+position = Vector2(408, 460)
 element = 2
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -49,3 +53,6 @@ position = Vector2(907, 577)
 end_level_popup = NodePath("../EndLevelPopup")
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("6_voj1p")]
+
+[node name="WoodBox" parent="." instance=ExtResource("7_kxr0u")]
+position = Vector2(278, 602)

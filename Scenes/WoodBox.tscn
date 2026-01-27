@@ -1,0 +1,82 @@
+[gd_scene load_steps=12 format=3 uid="uid://bn85t4sjvtkks"]
+
+[ext_resource type="Texture2D" uid="uid://cdhc1ip822np6" path="res://Assets/Props/wood_box.png" id="1_f23en"]
+[ext_resource type="Shader" uid="uid://ldfdw86cp5iq" path="res://Resources/Shaders/WoodBox.gdshader" id="1_ky0k4"]
+[ext_resource type="Script" uid="uid://daw6h7cxq31rh" path="res://Scripts/WoodBox.gd" id="1_s4g4q"]
+
+[sub_resource type="Gradient" id="Gradient_ky0k4"]
+offsets = PackedFloat32Array(0, 0.273267, 0.663366, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.811765, 0, 0, 1, 1, 0.524399, 0.152181, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_s4g4q"]
+gradient = SubResource("Gradient_ky0k4")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ky0k4"]
+noise_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kc8y0"]
+noise = SubResource("FastNoiseLite_ky0k4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_s4g4q"]
+shader = ExtResource("1_ky0k4")
+shader_parameter/is_active = false
+shader_parameter/progress = 0.0
+shader_parameter/width = 0.2
+shader_parameter/noise = SubResource("NoiseTexture2D_kc8y0")
+shader_parameter/colorCurve = SubResource("GradientTexture1D_s4g4q")
+shader_parameter/timed = true
+shader_parameter/speed = 0.5
+shader_parameter/angle = 0.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ky0k4"]
+size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_s4g4q"]
+resource_name = "destroy"
+length = 2.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"active_burn_shader"
+}, {
+"args": [],
+"method": &"destroy"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kc8y0"]
+_data = {
+&"destroy": SubResource("Animation_s4g4q")
+}
+
+[node name="WoodBox" type="StaticBody2D" node_paths=PackedStringArray("sprite", "animation")]
+script = ExtResource("1_s4g4q")
+sprite = NodePath("Sprite2D")
+animation = NodePath("AnimationPlayer")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_s4g4q")
+texture = ExtResource("1_f23en")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ky0k4")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_kc8y0")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ky0k4")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
