@@ -7,7 +7,7 @@ extends Control
 
 @export var show_element_index = 0
 @export var elements: Array[Texture]
-@onready var elements_texts: Array[String] = ["Ogień!", "Woda!", "Ziemia", "Powietrze"]
+@onready var elements_texts: Array[String] = ["Ogień!", "Woda!", "Ziemia!", "Powietrze!"]
 @onready var colors: Array[Color] = [Color.DARK_RED, Color.ROYAL_BLUE, Color.SADDLE_BROWN, Color.SKY_BLUE]
 
 @export_multiline var full_text: String

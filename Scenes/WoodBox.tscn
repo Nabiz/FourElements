@@ -65,7 +65,24 @@ animation = NodePath("AnimationPlayer")
 material = SubResource("ShaderMaterial_s4g4q")
 texture = ExtResource("1_f23en")
 
+[node name="SpriteOutlined" type="ColorRect" parent="Sprite2D"]
+unique_name_in_owner = true
+z_index = -1
+custom_minimum_size = Vector2(68, 68)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.5
+offset_top = -64.5
+offset_right = 0.5
+offset_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("RectangleShape2D_ky0k4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -76,6 +93,7 @@ libraries = {
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+visible = false
 shape = SubResource("RectangleShape2D_ky0k4")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

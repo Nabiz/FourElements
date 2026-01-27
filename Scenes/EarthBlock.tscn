@@ -1,17 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://cy55rh68t6vhq"]
+[gd_scene load_steps=6 format=3 uid="uid://cy55rh68t6vhq"]
 
-[ext_resource type="Texture2D" uid="uid://47gyut2y5yen" path="res://icon.svg" id="1_f31hp"]
 [ext_resource type="Script" uid="uid://fchn5auwuabt" path="res://Scripts/EarthBlock.gd" id="1_unpfy"]
+[ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://Assets/Elements/earth.png" id="2_unpfy"]
+[ext_resource type="Shader" uid="uid://t2nbmw718ejo" path="res://Resources/Shaders/Outline.gdshader" id="2_w52ox"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60iae"]
+shader = ExtResource("2_w52ox")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/width = 5.0
+shader_parameter/smoothness = 1.0
+shader_parameter/animated = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7lsk"]
-size = Vector2(64, 64)
+size = Vector2(80, 64)
 
 [node name="EarthBlock" type="CharacterBody2D"]
 script = ExtResource("1_unpfy")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_f31hp")
+material = SubResource("ShaderMaterial_60iae")
+position = Vector2(0, -4)
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_unpfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_v7lsk")

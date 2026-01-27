@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmfbkxe52mhcn"]
+[gd_scene load_steps=7 format=3 uid="uid://dmfbkxe52mhcn"]
 
 [ext_resource type="Script" uid="uid://bv7kh2ofiih3t" path="res://Scripts/GUI/MainMenu.gd" id="1_ocgay"]
 [ext_resource type="Texture2D" uid="uid://d4f62p6edq0ld" path="res://Assets/title.png" id="2_6d82g"]
+[ext_resource type="Texture2D" uid="uid://b6ml2ofd7iwi8" path="res://Assets/Elements/fire.png" id="3_dkd36"]
+[ext_resource type="Texture2D" uid="uid://cnu1e2ti2ywos" path="res://Assets/Elements/water.png" id="4_ha2rd"]
+[ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://Assets/Elements/earth.png" id="5_wdeli"]
+[ext_resource type="Texture2D" uid="uid://bh5g48w1u1mdy" path="res://Assets/Elements/air.png" id="6_wyv1s"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("main_container", "level_select_container", "back_button")]
 layout_mode = 3
@@ -101,6 +105,25 @@ visible = false
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 text = "Wróć"
+
+[node name="Sprites" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprites"]
+position = Vector2(421, 540)
+texture = ExtResource("3_dkd36")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprites"]
+position = Vector2(893, 525)
+texture = ExtResource("4_ha2rd")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Sprites"]
+position = Vector2(189, 336)
+texture = ExtResource("5_wdeli")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Sprites"]
+position = Vector2(1142, 333)
+texture = ExtResource("6_wyv1s")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsButton" to="." method="_on_levels_button_pressed"]

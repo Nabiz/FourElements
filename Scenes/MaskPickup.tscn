@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bbp66xbtvbism"]
+[gd_scene load_steps=13 format=3 uid="uid://bbp66xbtvbism"]
 
 [ext_resource type="Script" uid="uid://vbqwe6d4j85m" path="res://Scripts/MaskPickup.gd" id="1_oqyrf"]
 [ext_resource type="Texture2D" uid="uid://cv1lidemdkuh4" path="res://Assets/Mask/fire_mask.png" id="2_oqyrf"]
@@ -8,7 +8,15 @@
 [ext_resource type="AudioStream" uid="uid://tt86win0mkfr" path="res://Assets/SFX/earth.ogg" id="4_8akiv"]
 [ext_resource type="AudioStream" uid="uid://cn10lsltil7wj" path="res://Assets/SFX/air.wav" id="4_spqju"]
 [ext_resource type="Texture2D" uid="uid://dmh1gro0f25j4" path="res://Assets/Mask/air_mask.png" id="5_swy00"]
+[ext_resource type="Shader" uid="uid://t2nbmw718ejo" path="res://Resources/Shaders/Outline.gdshader" id="6_8akiv"]
 [ext_resource type="AudioStream" uid="uid://jk2eres5osan" path="res://Assets/SFX/fire.ogg" id="6_swy00"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8akiv"]
+shader = ExtResource("6_8akiv")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/width = 4.0
+shader_parameter/smoothness = 0.5
+shader_parameter/animated = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_oqyrf"]
 radius = 16.0
@@ -31,21 +39,25 @@ air_sound = ExtResource("4_spqju")
 
 [node name="FireSprite" type="Sprite2D" parent="Sprites"]
 visible = false
+material = SubResource("ShaderMaterial_8akiv")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_oqyrf")
 
 [node name="WaterSprite" type="Sprite2D" parent="Sprites"]
 visible = false
+material = SubResource("ShaderMaterial_8akiv")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_gdd82")
 
 [node name="EarthSprite" type="Sprite2D" parent="Sprites"]
 visible = false
+material = SubResource("ShaderMaterial_8akiv")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("4_2dg8h")
 
 [node name="AirSprite" type="Sprite2D" parent="Sprites"]
 visible = false
+material = SubResource("ShaderMaterial_8akiv")
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("5_swy00")
 

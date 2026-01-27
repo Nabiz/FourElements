@@ -22,6 +22,7 @@ func _on_play_button_pressed() -> void:
 	LevelManagerAutoload.play_intro()
 
 func _on_levels_button_pressed() -> void:
+	%Sprites.hide()
 	main_container.hide()
 	level_select_container.show()
 	back_button.show()
@@ -30,6 +31,7 @@ func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
 func _on_back_button_pressed() -> void:
+	%Sprites.show()
 	main_container.show()
 	level_select_container.hide()
 	back_button.hide()

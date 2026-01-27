@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	
 
 func play_destroy_animation():
+	%SpriteOutlined.visible = false
 	animation.play("destroy")
 
 func active_burn_shader():
