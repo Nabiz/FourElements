@@ -10,7 +10,22 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dewec"]
 radius = 16.0
-height = 64.0
+height = 96.0
+
+[sub_resource type="Animation" id="Animation_yoq75"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/BlankSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_52ee3"]
 resource_name = "idle"
@@ -26,6 +41,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_megsn"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprites/BlankSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
 }
 
 [sub_resource type="Animation" id="Animation_bhhdu"]
@@ -45,36 +75,6 @@ tracks/0/keys = {
 "values": [3, 4]
 }
 
-[sub_resource type="Animation" id="Animation_megsn"]
-resource_name = "jump"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/BlankSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-
-[sub_resource type="Animation" id="Animation_yoq75"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprites/BlankSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ksbbd"]
 _data = {
 &"RESET": SubResource("Animation_yoq75"),
@@ -84,7 +84,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("marker_point", "sprites", "animation", "blank_sprite")]
-z_index = -2
+z_index = 1
 script = ExtResource("1_kyqiw")
 marker_point = NodePath("Marker2D")
 sprites = NodePath("Sprites")
@@ -106,7 +106,7 @@ hframes = 3
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 8)
+position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_dewec")
 
 [node name="Marker2D" type="Marker2D" parent="."]
