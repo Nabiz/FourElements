@@ -22,7 +22,15 @@ extends Node
 @export var outro_sound: AudioStream
 
 func play_sound(sound: AudioStream):
-	pass
+	if !sfx_audio1.playing:
+		sfx_audio1.stream = sound
+		sfx_audio1.play()
+	if !sfx_audio2.playing:
+		sfx_audio2.stream = sound
+		sfx_audio2.play()
+	if sfx_audio3.playing:
+		sfx_audio3.stream = sound
+		sfx_audio3.play()
 
 func play_music(music):
 	music_audio.stop()

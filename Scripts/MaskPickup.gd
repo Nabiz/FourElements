@@ -47,10 +47,12 @@ func _on_body_exited(body: Node2D) -> void:
 		disable_mask()
 
 func enable_mask():
+	%Outline.show()
 	collision.set_deferred("disabled", false)
 	sprties.modulate = Color(1,1,1,1)
 
 func disable_mask():
+	%Outline.hide()
 	collision.set_deferred("disabled", true)
 	sprties.modulate = Color(1,1,1,0.2)
 	

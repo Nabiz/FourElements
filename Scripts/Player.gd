@@ -9,13 +9,15 @@ var face_direction = Vector2.RIGHT
 
 @export var marker_point: Marker2D
 @export var sprites: Node
+@export var animation: AnimationPlayer
 
 @export_category("ElementSprites")
 @export var blank_sprite: Sprite2D
-@export var fire_sprite: Sprite2D
-@export var water_sprite: Sprite2D
-@export var earth_sprite: Sprite2D
-@export var air_sprite: Sprite2D
+@export var blank_sprite_texture: Texture
+@export var fire_sprite: Texture
+@export var water_sprite: Texture
+@export var earth_sprite: Texture
+@export var air_sprite: Texture
 
 var fire_bullet_scene: PackedScene = preload("res://Scenes/FireBullet.tscn")
 var earth_block_scene: PackedScene = preload("res://Scenes/EarthBlock.tscn")
@@ -28,6 +30,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fire"):
 		spawn_fire_bullet()
 		spawn_earth_block()
+	play_animation()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):
@@ -47,26 +50,29 @@ func basic_movement(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
+func play_animation():
+	if !is_on_floor():
+		animation.play("jump")
+	elif abs(velocity.x) > 0.1:
+		animation.play("run")
+	else:
+		animation.play("idle")
+
 func change_element(element: MaskManager.Element) -> void:
 	change_sprite(element)
 
 func change_sprite(element: MaskManager.Element):
-	blank_sprite.hide()
-	fire_sprite.hide()
-	water_sprite.hide()
-	earth_sprite.hide()
-	air_sprite.hide()
 	match element:
 		MaskManager.Element.BLANK:
-			blank_sprite.show()
+			blank_sprite.texture = blank_sprite_texture
 		MaskManager.Element.FIRE:
-			fire_sprite.show()
+			blank_sprite.texture = fire_sprite
 		MaskManager.Element.WATER:
-			water_sprite.show()
+			blank_sprite.texture = water_sprite
 		MaskManager.Element.EARTH:
-			earth_sprite.show()
+			blank_sprite.texture = earth_sprite
 		MaskManager.Element.AIR:
-			air_sprite.show()
+			blank_sprite.texture = air_sprite
 		_:
 			blank_sprite.show()
 
