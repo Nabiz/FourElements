@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dmfbkxe52mhcn"]
+[gd_scene load_steps=3 format=3 uid="uid://dmfbkxe52mhcn"]
 
 [ext_resource type="Script" uid="uid://bv7kh2ofiih3t" path="res://Scripts/GUI/MainMenu.gd" id="1_ocgay"]
+[ext_resource type="Texture2D" uid="uid://d4f62p6edq0ld" path="res://Assets/title.png" id="2_6d82g"]
 
 [node name="MainMenu" type="Control" node_paths=PackedStringArray("main_container", "level_select_container", "back_button")]
 layout_mode = 3
@@ -21,14 +22,28 @@ custom_minimum_size = Vector2(1280, 720)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+color = Color(0.615582, 0.354781, 0.0703993, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -549.5
+offset_top = 30.0
+offset_right = 557.5
+offset_bottom = 199.0
+grow_horizontal = 2
+texture = ExtResource("2_6d82g")
+expand_mode = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
+anchors_preset = -1
+anchor_left = 0.444531
+anchor_top = 0.368056
+anchor_right = 0.555469
+anchor_bottom = 0.729167
 offset_left = -4.0
 offset_top = -10.0
 offset_right = 4.0
@@ -36,6 +51,7 @@ offset_bottom = 10.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 80)
@@ -55,18 +71,19 @@ text = "Wyjdź"
 [node name="LevelSelectContainer" type="GridContainer" parent="."]
 visible = false
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.55
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.55
 offset_left = -20.0
 offset_top = -20.0
 offset_right = 20.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
-columns = 3
+columns = 4
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

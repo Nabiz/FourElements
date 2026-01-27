@@ -7,6 +7,7 @@ var level_button_scene: PackedScene = preload("res://Scenes/GUI/LevelButton.tscn
 
 func _ready() -> void:
 	update_unlocked_levels()
+	SoundManagerAutoload.play_music(SoundManagerAutoload.menu_music)
 
 func update_unlocked_levels():
 	var level_buttons = level_select_container.get_children()

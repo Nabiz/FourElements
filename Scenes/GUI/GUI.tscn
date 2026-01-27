@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1g0ts06yy5jx"]
+[gd_scene load_steps=11 format=3 uid="uid://d1g0ts06yy5jx"]
 
 [ext_resource type="Script" uid="uid://cwuxef0wfmjfq" path="res://Scripts/GUI/GUI.gd" id="1_17j7b"]
 [ext_resource type="Texture2D" uid="uid://bh5g48w1u1mdy" path="res://Assets/Elements/air.png" id="1_linlh"]
@@ -6,9 +6,13 @@
 [ext_resource type="Texture2D" uid="uid://b6ml2ofd7iwi8" path="res://Assets/Elements/fire.png" id="2_pu3jy"]
 [ext_resource type="Texture2D" uid="uid://cnu1e2ti2ywos" path="res://Assets/Elements/water.png" id="3_fexrg"]
 [ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://Assets/Elements/earth.png" id="4_wf68y"]
+[ext_resource type="Texture2D" uid="uid://canibehu25q6c" path="res://Assets/Background/farBackground.png" id="7_7fy40"]
 [ext_resource type="Texture2D" uid="uid://bnluu0vc205a0" path="res://Assets/Props/key.png" id="7_wf68y"]
+[ext_resource type="Texture2D" uid="uid://ohk43tmr6l5i" path="res://Assets/Background/cloudMidBackground.png" id="8_e1ed1"]
+[ext_resource type="Texture2D" uid="uid://bwvy31kw8ydjq" path="res://Assets/Background/closeBackground.png" id="9_234st"]
 
 [node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("element_texture_rect", "ammo_label", "key_label")]
+process_mode = 3
 script = ExtResource("1_17j7b")
 element_texture_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
 ammo_label = NodePath("MarginContainer/HBoxContainer/Label")
@@ -18,6 +22,35 @@ fire_texture = ExtResource("2_pu3jy")
 water_texture = ExtResource("3_fexrg")
 earth_texture = ExtResource("4_wf68y")
 air_texture = ExtResource("1_linlh")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Far" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("7_7fy40")
+centered = false
+
+[node name="CloudLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+unique_name_in_owner = true
+motion_scale = Vector2(0.2, 0.2)
+motion_mirroring = Vector2(2560, 0)
+
+[node name="Far" type="Sprite2D" parent="ParallaxBackground/CloudLayer"]
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("8_e1ed1")
+centered = false
+
+[node name="RocksLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(3840, 0)
+
+[node name="Rocks" type="Sprite2D" parent="ParallaxBackground/RocksLayer"]
+scale = Vector2(0.667, 0.667)
+texture = ExtResource("9_234st")
+centered = false
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 offset_right = 40.0
@@ -53,12 +86,14 @@ layout_mode = 2
 theme_override_constants/separation = 20
 
 [node name="ResetButton" type="Button" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 80)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "RESETUJ
 POZIOM"
 
 [node name="MenuButton" type="Button" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(100, 80)
 layout_mode = 2
 size_flags_horizontal = 8
 text = "Wyjdź do

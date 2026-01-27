@@ -38,9 +38,13 @@ theme_override_constants/separation = 20
 
 [node name="Label" type="Label" parent="Panel/VBoxContainer"]
 layout_mode = 2
+theme_override_font_sizes/font_size = 32
 text = "Brawo Szamanie!"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 2
 text = "Następny poziom"
 

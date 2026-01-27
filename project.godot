@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MaskManagerAutoload="*res://Scenes/Autoloads/MaskManagerAutoload.tscn"
 WaterPathManagerAutoload="*res://Scenes/Autoloads/WaterPathManagerAutoload.tscn"
 LevelManagerAutoload="*res://Scenes/Autoloads/LevelManagerAutoload.tscn"
+SoundManagerAutoload="*res://Scenes/Autoloads/SoundManagerAutoload.tscn"
 
 [display]
 
@@ -36,6 +37,10 @@ folder_colors={
 "res://Scenes/": "green",
 "res://Scripts/": "blue"
 }
+
+[gui]
+
+theme/custom="uid://b5cjnydq4hbi5"
 
 [input]
 

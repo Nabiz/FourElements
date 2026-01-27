@@ -1,0 +1,43 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b5cjnydq4hbi5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ho8mu"]
+bg_color = Color(0.419608, 0.219608, 0.0941176, 0.588235)
+border_color = Color(0.34902, 0.180392, 0.0705882, 0.588235)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vh5h"]
+bg_color = Color(0.419608, 0.219608, 0.0941176, 1)
+border_width_bottom = 15
+border_color = Color(0.349567, 0.178797, 0.0715238, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_luv3h"]
+bg_color = Color(0.419608, 0.219608, 0.0941176, 1)
+border_width_top = 15
+border_color = Color(0.34902, 0.180392, 0.0705882, 0)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="Gradient" id="Gradient_1vh5h"]
+colors = PackedColorArray(0.615686, 0.352941, 0.0705882, 1, 0.615686, 0.352941, 0.0705882, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ho8mu"]
+gradient = SubResource("Gradient_1vh5h")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_luv3h"]
+texture = SubResource("GradientTexture1D_ho8mu")
+
+[resource]
+Button/styles/disabled = SubResource("StyleBoxFlat_ho8mu")
+Button/styles/hover = SubResource("StyleBoxFlat_1vh5h")
+Button/styles/normal = SubResource("StyleBoxFlat_1vh5h")
+Button/styles/pressed = SubResource("StyleBoxFlat_luv3h")
+Panel/styles/panel = SubResource("StyleBoxTexture_luv3h")

@@ -12,41 +12,43 @@
 [node name="NewTestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_kq6ib")]
-position = Vector2(-183, 66)
+position = Vector2(133, 635)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(286, 549)
 scale = Vector2(0.5, 0.5)
 tile_map_data = PackedByteArray("AAD3/wAAAQAAAAAAAAD3/wEAAQAAAAAAAAD3/wIAAQAAAAAAAAD3/wMAAQAAAAAAAAD3/wQAAQAAAAAAAAD4/wQAAQAAAAAAAAD5/wQAAQAAAAAAAAD6/wQAAQAAAAAAAAD7/wQAAQAAAAAAAAD8/wQAAQAAAAAAAAD9/wQAAQAAAAAAAAD+/wQAAQAAAAAAAAD//wQAAQAAAAAAAAAAAAQAAQAAAAAAAAABAAQAAQAAAAAAAAACAAQAAQAAAAAAAAADAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAAQAAQAAAAAAAAAIAAQAAQAAAAAAAAAJAAQAAQAAAAAAAAAKAAQAAQAAAAAAAAALAAQAAQAAAAAAAAAMAAQAAQAAAAAAAAANAAQAAQAAAAAAAAAOAAQAAQAAAAAAAAAPAAQAAQAAAAAAAAAQAAQAAQAAAAAAAAARAAQAAQAAAAAAAAD3////AQAAAAAAAAD3//7/AQAAAAAAAAD3//3/AQAAAAAAAAD3//z/AQAAAAAAAAD3//v/AQAAAAAAAAAVAAQAAQAAAAAAAAAUAAQAAQAAAAAAAAATAAQAAQAAAAAAAAASAAQAAQAAAAAAAAABAAMAAQAAAAAAAAABAAIAAQAAAAAAAAACAAIAAQAAAAAAAAACAAMAAQAAAAAAAAAJAAMAAQAAAAAAAAAJAAIAAQAAAAAAAAAKAAIAAQAAAAAAAAAKAAMAAQAAAAAAAAAKAAEAAQAAAAAAAAAJAAEAAQAAAAAAAAAJAAAAAQAAAAAAAAAKAAAAAQAAAAAAAAAWAAQAAQAAAAAAAAAXAAQAAQAAAAAAAAAYAAQAAQAAAAAAAAAZAAQAAQAAAAAAAAAjAAQAAQAAAAAAAAAkAAQAAQAAAAAAAAAlAAQAAQAAAAAAAAAmAAQAAQAAAAAAAAAnAAQAAQAAAAAAAAAoAAQAAQAAAAAAAAAUAAMAAQAAAAAAAAAUAAIAAQAAAAAAAAAUAAEAAQAAAAAAAAAUAAAAAQAAAAAAAAAVAAAAAQAAAAAAAAAVAAEAAQAAAAAAAAAVAAIAAQAAAAAAAAAVAAMAAQAAAAAAAAAiAAQAAQAAAAAAAAAxAAQAAQAAAAAAAAAyAAQAAQAAAAAAAAAzAAQAAQAAAAAAAAA0AAQAAQAAAAAAAAA1AAQAAQAAAAAAAAA2AAQAAQAAAAAAAAA3AAQAAQAAAAAAAAA4AAQAAQAAAAAAAAA5AAQAAQAAAAAAAAA6AAQAAQAAAAAAAAA7AAQAAQAAAAAAAAA8AAQAAQAAAAAAAAA9AAQAAQAAAAAAAAA+AAQAAQAAAAAAAAA/AAQAAQAAAAAAAAA/AAMAAQAAAAAAAAA/AAIAAQAAAAAAAAA/AAEAAQAAAAAAAAA/AAAAAQAAAAAAAAA/AP//AQAAAAAAAAA/AP7/AQAAAAAAAAA/AP3/AQAAAAAAAAA/APz/AQAAAAAAAAA/APv/AQAAAAAAAAA=")
 tile_set = ExtResource("2_y27ds")
 
 [node name="WaterPath" parent="." instance=ExtResource("3_vvmau")]
-position = Vector2(1050, 170)
+position = Vector2(1336, 719)
 scale = Vector2(0.925, 1)
 
 [node name="WaterPath2" parent="." instance=ExtResource("3_vvmau")]
-position = Vector2(1574, 170)
+position = Vector2(1860, 719)
 scale = Vector2(0.925, 1)
 
 [node name="Masks" type="Node2D" parent="."]
+position = Vector2(286, 549)
 
-[node name="MaskPickup" parent="." instance=ExtResource("4_ubmvv")]
+[node name="MaskPickup" parent="Masks" instance=ExtResource("4_ubmvv")]
 position = Vector2(246, 84)
 element = 4
 
-[node name="MaskPickup2" parent="." instance=ExtResource("4_ubmvv")]
+[node name="MaskPickup2" parent="Masks" instance=ExtResource("4_ubmvv")]
 position = Vector2(592, 84)
 element = 3
 
-[node name="MaskPickup3" parent="." instance=ExtResource("4_ubmvv")]
+[node name="MaskPickup3" parent="Masks" instance=ExtResource("4_ubmvv")]
 position = Vector2(845, 84)
 element = 2
 
-[node name="MaskPickup4" parent="." instance=ExtResource("4_ubmvv")]
+[node name="MaskPickup4" parent="Masks" instance=ExtResource("4_ubmvv")]
 position = Vector2(1392, 104)
 element = 4
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("5_vvmau")]
-position = Vector2(1856, 75)
+position = Vector2(2145, 651)
 end_level_popup = NodePath("../EndLevelPopup")
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("6_ubmvv")]
@@ -56,4 +58,4 @@ keys = 1
 finish_area = NodePath("../FinishArea")
 
 [node name="Key" parent="." instance=ExtResource("8_8d1as")]
-position = Vector2(2059, 66)
+position = Vector2(2347, 662)

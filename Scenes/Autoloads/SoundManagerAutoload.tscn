@@ -1,0 +1,37 @@
+[gd_scene load_steps=10 format=3 uid="uid://ctrkbuppq7nbs"]
+
+[ext_resource type="Script" uid="uid://bjbcjhbx4ktqw" path="res://Scripts/Managers/SoundManager.gd" id="1_o3t63"]
+[ext_resource type="AudioStream" uid="uid://jk2eres5osan" path="res://Assets/SFX/fire.ogg" id="2_11ih6"]
+[ext_resource type="AudioStream" uid="uid://cwrfxcm3qy0gs" path="res://Assets/SFX/water.wav" id="3_gnq2m"]
+[ext_resource type="AudioStream" uid="uid://tt86win0mkfr" path="res://Assets/SFX/earth.ogg" id="4_rkghj"]
+[ext_resource type="AudioStream" uid="uid://cn10lsltil7wj" path="res://Assets/SFX/air.wav" id="5_wxvyw"]
+[ext_resource type="AudioStream" uid="uid://do6qc0t5xy5y2" path="res://Assets/Soundtrack/tad_-_unexplored_-_expanded_1_by_bo_jingles.mp3" id="6_rkghj"]
+[ext_resource type="AudioStream" uid="uid://cmg7bff48gtt2" path="res://Assets/Soundtrack/a_newcomer_full.wav" id="7_wxvyw"]
+[ext_resource type="AudioStream" uid="uid://y3ampefo8alo" path="res://Assets/SFX/intro.mp3" id="8_ip3dx"]
+[ext_resource type="AudioStream" uid="uid://ckcowsv5he3tf" path="res://Assets/SFX/outro.mp3" id="9_jy21v"]
+
+[node name="SoundManagerAutoload" type="Node" node_paths=PackedStringArray("sfx_audio1", "sfx_audio2", "sfx_audio3", "music_audio")]
+process_mode = 3
+script = ExtResource("1_o3t63")
+sfx_audio1 = NodePath("SFXAudio")
+sfx_audio2 = NodePath("SFXAudio2")
+sfx_audio3 = NodePath("SFXAudio3")
+music_audio = NodePath("MusicPlayer")
+fire_sound = ExtResource("2_11ih6")
+water_sound = ExtResource("3_gnq2m")
+earth_sound = ExtResource("4_rkghj")
+air_sound = ExtResource("5_wxvyw")
+menu_music = ExtResource("6_rkghj")
+level_music = ExtResource("7_wxvyw")
+intro_sound = ExtResource("8_ip3dx")
+outro_sound = ExtResource("9_jy21v")
+
+[node name="SFXAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXAudio2" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXAudio3" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0

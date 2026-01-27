@@ -16,17 +16,18 @@ position = Vector2(111, 584)
 
 [node name="MaskPickup" parent="." instance=ExtResource("2_iqcmb")]
 position = Vector2(691, 435)
+element = 4
 
 [node name="MaskPickup2" parent="." instance=ExtResource("2_iqcmb")]
 position = Vector2(332, 602)
-element = 2
+element = 4
 
 [node name="MaskPickup3" parent="." instance=ExtResource("2_iqcmb")]
 position = Vector2(184, 589)
 
 [node name="MaskPickup6" parent="." instance=ExtResource("2_iqcmb")]
 position = Vector2(1070, 584)
-element = 2
+element = 4
 
 [node name="MaskPickup4" parent="." instance=ExtResource("2_iqcmb")]
 position = Vector2(922, 480)
@@ -50,7 +51,7 @@ position = Vector2(1131, 672)
 scale = Vector2(1.2, 1)
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("5_voj1p")]
-position = Vector2(907, 577)
+position = Vector2(1082, 193)
 end_level_popup = NodePath("../EndLevelPopup")
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("6_voj1p")]

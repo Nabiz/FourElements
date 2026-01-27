@@ -17,6 +17,9 @@ static var instance: GUI
 func _enter_tree() -> void:
 	instance = self
 
+func _process(delta: float) -> void:
+	%CloudLayer.motion_offset.x -= 25 * delta
+
 func change_element(element: MaskManager.Element) -> void:
 	match element:
 		MaskManager.Element.FIRE:
@@ -40,4 +43,5 @@ func _on_reset_button_pressed() -> void:
 	LevelManagerAutoload.restart_level()
 
 func _on_menu_button_pressed() -> void:
+	get_tree().paused = false
 	LevelManagerAutoload.load_menu()

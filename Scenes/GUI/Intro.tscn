@@ -1,8 +1,127 @@
-[gd_scene load_steps=2 format=3 uid="uid://c074qn4q1gars"]
+[gd_scene load_steps=10 format=3 uid="uid://c074qn4q1gars"]
 
 [ext_resource type="Script" uid="uid://b7bwttejo6ga1" path="res://Scripts/GUI/Intro.gd" id="1_w7sfs"]
+[ext_resource type="Texture2D" uid="uid://b6ml2ofd7iwi8" path="res://Assets/Elements/fire.png" id="2_ug5lx"]
+[ext_resource type="Texture2D" uid="uid://cnu1e2ti2ywos" path="res://Assets/Elements/water.png" id="3_xkxkw"]
+[ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://Assets/Elements/earth.png" id="4_an2ni"]
+[ext_resource type="Texture2D" uid="uid://bh5g48w1u1mdy" path="res://Assets/Elements/air.png" id="5_p87ff"]
+[ext_resource type="Theme" uid="uid://b5cjnydq4hbi5" path="res://Resources/theme.tres" id="6_an2ni"]
 
-[node name="Intro" type="Control"]
+[sub_resource type="Animation" id="Animation_xkxkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ElementContainer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:show_element_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ElementContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_w7sfs"]
+resource_name = "intro"
+length = 32.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 2.43333, 4.43333, 6.76667, 10.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_intro_sound"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"play_typewriter_intro"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ElementContainer:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.566667, 0.766667, 1.8, 2, 2.73333, 2.93333, 3.76667, 4, 4.66667, 4.86667, 6.1, 6.33333, 7.13333, 7.33333, 8.76667, 9, 10),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.0217391), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.00120771), Color(1, 1, 1, 0.00120771), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.00120771), Color(1, 1, 1, 0.00120771), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.00120771), Color(1, 1, 1, 0.00120771), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0.00120771), Color(1, 1, 1, 0.00120771)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:show_element_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2.26667, 4.3, 6.66667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ElementContainer:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ug5lx"]
+_data = {
+&"RESET": SubResource("Animation_xkxkw"),
+&"intro": SubResource("Animation_w7sfs")
+}
+
+[node name="Intro" type="Control" node_paths=PackedStringArray("animation", "textureRect", "element_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +129,20 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_w7sfs")
+animation = NodePath("AnimationPlayer")
+textureRect = NodePath("ElementContainer/TextureRect")
+element_label = NodePath("ElementContainer/Label")
+elements = Array[Texture]([ExtResource("2_ug5lx"), ExtResource("3_xkxkw"), ExtResource("4_an2ni"), ExtResource("5_p87ff")])
+full_text = "Ogień, Woda, Ziemia, Powietrze!
+Tylko ten, kto opanuje moc masek,
+zostanie mistrzem czterech żywiołów
+i zyska miano KRÓLA SZAMANÓW!!!"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.615582, 0.354781, 0.0703993, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -26,7 +159,62 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="PlayButton" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
-text = "To ja zostanę Królem Szamanów!!!"
+theme = ExtResource("6_an2ni")
+theme_override_font_sizes/font_size = 24
+text = "To ja zostanę
+Królem Szamanów!!!"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ug5lx")
+}
+
+[node name="ElementContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="ElementContainer"]
+layout_mode = 2
+texture = ExtResource("2_ug5lx")
+expand_mode = 4
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="ElementContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 72
+text = "OGIEŃ!"
+
+[node name="IntroLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="MarginContainer/PlayButton" to="." method="_on_play_button_pressed"]
