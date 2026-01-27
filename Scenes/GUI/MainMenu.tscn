@@ -45,6 +45,28 @@ text = "Poziomy"
 layout_mode = 2
 text = "Wyjdź"
 
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+columns = 4
+
+[node name="LevelButton" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="LevelButton2" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "1"
+
+[node name="LevelButton3" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "2"
+
+[node name="LevelButton4" type="Button" parent="GridContainer"]
+layout_mode = 2
+text = "3"
+
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsButton" to="." method="_on_levels_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
