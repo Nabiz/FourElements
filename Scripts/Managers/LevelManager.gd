@@ -27,8 +27,8 @@ func play_intro():
 	get_tree().change_scene_to_packed(intro_scene)
 
 func load_menu():
+	unlocked_level = load_level()
 	get_tree().change_scene_to_packed(menu_scene)
-
 
 func save_level(level_number: int):
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
