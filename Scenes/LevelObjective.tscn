@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d2tgpxhdjihoc"]
+
+[ext_resource type="Script" uid="uid://nxhav17dbsgc" path="res://Scripts/LevelObjective.gd" id="1_c6sgw"]
+
+[node name="LevelObjective" type="Node"]
+script = ExtResource("1_c6sgw")

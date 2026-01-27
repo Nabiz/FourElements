@@ -14,7 +14,7 @@ func _ready() -> void:
 	unlocked_level = load_level()
 
 func change_level(level_index):
-	MaskManagerAutoload.reset_manager()
+	MaskManager.reset_manager()
 	WaterPathManager.reset_manager()
 	current_level_index = level_index
 	current_level = level_scenes[current_level_index]

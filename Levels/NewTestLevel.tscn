@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://c41i5qfwmu241"]
+[gd_scene load_steps=9 format=4 uid="uid://c41i5qfwmu241"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://Scenes/Player.tscn" id="1_kq6ib"]
 [ext_resource type="TileSet" uid="uid://cee27724cpfuw" path="res://Resources/TestLevel.tres" id="2_y27ds"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://Scenes/MaskPickup.tscn" id="4_ubmvv"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://Scenes/FinishArea.tscn" id="5_vvmau"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://Scenes/GUI/EndLevelPopup.tscn" id="6_ubmvv"]
+[ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://Scenes/LevelObjective.tscn" id="7_5y52m"]
+[ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://Scenes/Key.tscn" id="8_8d1as"]
 
 [node name="NewTestLevel" type="Node2D"]
 
@@ -48,3 +50,10 @@ position = Vector2(1856, 75)
 end_level_popup = NodePath("../EndLevelPopup")
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("6_ubmvv")]
+
+[node name="LevelObjective" parent="." node_paths=PackedStringArray("finish_area") instance=ExtResource("7_5y52m")]
+keys = 1
+finish_area = NodePath("../FinishArea")
+
+[node name="Key" parent="." instance=ExtResource("8_8d1as")]
+position = Vector2(2059, 66)
