@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://dk1i41y4p0goh"]
+
+[ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://Assets/Enemy/Enemy.png" id="1_m1htj"]
+[ext_resource type="Script" uid="uid://bjuek33fuw47u" path="res://Scripts/Enemy.gd" id="1_wovta"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wovta"]
+atlas = ExtResource("1_m1htj")
+region = Rect2(0, 0, 256, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xeo28"]
+atlas = ExtResource("1_m1htj")
+region = Rect2(256, 0, 256, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kpr8r"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wovta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xeo28")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1htj"]
+size = Vector2(64, 127)
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+script = ExtResource("1_wovta")
+sprite = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 13)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_kpr8r")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_m1htj")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 12.5)
+shape = SubResource("RectangleShape2D_m1htj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

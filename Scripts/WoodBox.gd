@@ -22,10 +22,11 @@ func play_destroy_animation():
 func active_burn_shader():
 	sprite.material.set_shader_parameter("is_active", true)
 
-
 func destroy():
 	queue_free()
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area is FireBullet:
+		progress = 0
+		%CoverSprite.hide()
 		play_destroy_animation()

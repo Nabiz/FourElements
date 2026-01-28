@@ -110,7 +110,7 @@ position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_dewec")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(48, 0)
+position = Vector2(48, -8)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_bottom = 720
