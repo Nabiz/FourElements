@@ -87,22 +87,27 @@ func spawn_fire_bullet():
 		MaskManager.use_ammo()
 		var bullet: FireBullet = fire_bullet_scene.instantiate()
 		bullet.direction = face_direction
-		bullet.position = position
+		bullet.position = position + Vector2(0, -16)
 		get_parent().add_child(bullet)
+
+func check_earth_block_space():
+	var x = %EarhtBlockSpace.get_overlapping_bodies()
+	return x.size() == 0
 
 func spawn_earth_block():
 	if MaskManager.current_element == MaskManager.Element.EARTH:
-		MaskManager.use_ammo()
-		var block: EarthBlock = earth_block_scene.instantiate()
-		block.global_position = marker_point.global_position
-		get_parent().add_child(block)
+		if check_earth_block_space():
+			MaskManager.use_ammo()
+			var block: EarthBlock = earth_block_scene.instantiate()
+			block.global_position = marker_point.global_position
+			get_parent().add_child(block)
 
 func _set_face_direction(direction):
 		if direction < -0.05:
 			sprites.scale.x = -1
 			face_direction = Vector2.LEFT
-			marker_point.position.x = -48
+			marker_point.position.x = -64.0
 		elif direction > 0.05:
 			sprites.scale.x = 1
 			face_direction = Vector2.RIGHT
-			marker_point.position.x = 48
+			marker_point.position.x = 64.0

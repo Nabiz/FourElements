@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bn85t4sjvtkks"]
+[gd_scene load_steps=13 format=3 uid="uid://bn85t4sjvtkks"]
 
 [ext_resource type="Texture2D" uid="uid://cdhc1ip822np6" path="res://Assets/Props/wood_box.png" id="1_f23en"]
 [ext_resource type="Shader" uid="uid://ldfdw86cp5iq" path="res://Resources/Shaders/WoodBox.gdshader" id="1_ky0k4"]
@@ -28,8 +28,8 @@ shader_parameter/timed = false
 shader_parameter/speed = 0.5
 shader_parameter/angle = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ky0k4"]
-size = Vector2(128, 128)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4g4q"]
+size = Vector2(120, 120)
 
 [sub_resource type="Animation" id="Animation_s4g4q"]
 resource_name = "destroy"
@@ -55,6 +55,9 @@ tracks/0/keys = {
 _data = {
 &"destroy": SubResource("Animation_s4g4q")
 }
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kc8y0"]
+size = Vector2(128, 128)
 
 [node name="WoodBox" type="StaticBody2D" node_paths=PackedStringArray("sprite", "animation")]
 script = ExtResource("1_s4g4q")
@@ -89,7 +92,7 @@ texture = ExtResource("1_f23en")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-shape = SubResource("RectangleShape2D_ky0k4")
+shape = SubResource("RectangleShape2D_s4g4q")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -100,6 +103,6 @@ libraries = {
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 visible = false
-shape = SubResource("RectangleShape2D_ky0k4")
+shape = SubResource("RectangleShape2D_kc8y0")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

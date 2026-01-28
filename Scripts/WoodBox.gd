@@ -30,3 +30,4 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		progress = 0
 		%CoverSprite.hide()
 		play_destroy_animation()
+		area.queue_free()

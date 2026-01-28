@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=4 uid="uid://dpcs3bm8io6xn"]
+
+[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://Scenes/Player.tscn" id="1_nbmlc"]
+[ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://Scenes/FinishArea.tscn" id="2_35hm5"]
+[ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://Scenes/GUI/EndLevelPopup.tscn" id="3_fjv5s"]
+[ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://Scenes/LevelObjective.tscn" id="4_i70kl"]
+[ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://Resources/Tileset.tres" id="5_0lgjm"]
+[ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://Scenes/MaskPickup.tscn" id="6_efa5n"]
+[ext_resource type="PackedScene" uid="uid://bn85t4sjvtkks" path="res://Scenes/WoodBox.tscn" id="7_7y63g"]
+[ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://Scenes/Key.tscn" id="8_35hm5"]
+
+[node name="EarthLevel2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_nbmlc")]
+position = Vector2(248, 211)
+
+[node name="Camera2D" parent="Player" index="3"]
+limit_left = 0
+limit_top = -304
+limit_right = 1280
+
+[node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_35hm5")]
+position = Vector2(127, 9)
+end_level_popup = NodePath("../EndLevelPopup")
+
+[node name="EndLevelPopup" parent="." instance=ExtResource("3_fjv5s")]
+
+[node name="LevelObjective" parent="." node_paths=PackedStringArray("finish_area") instance=ExtResource("4_i70kl")]
+finish_area = NodePath("../FinishArea")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAAAAAgAAQABAAAAAAAAAAkAAQABAAAAAAAAAAoAAQAAAAAAAAABAAoAAQAAAAAAAAACAAoAAQAAAAAAAAADAAoAAQAAAAAAAAAAAAQAAQAAAAAAAAAAAAUAAQABAAAAAAAAAAYAAQABAAAAAAAAAAcAAQABAAAAAAAEAAoAAQAAAAAAAAAFAAoAAQAAAAAAAAAGAAoAAQAAAAAAAAAHAAoAAQAAAAAAAAAIAAoAAQAAAAAAAAAJAAoAAQAAAAAAAAAKAAoAAQAAAAAAAAALAAoAAQAAAAAAAAASAAoAAQAAAAAAAAATAAoAAQABAAAAAAARAAoAAQAAAAAAAAATAAkAAQABAAAAAAATAAgAAQABAAAAAAATAAcAAQABAAAAAAAAAAMAAQABAAAAAAAAAAIAAQABAAAAAAAAAAEAAQAAAAAAAAAAAAAAAQABAAAAAAAAAP//AQABAAAAAAAAAP7/AQABAAAAAAAAAP3/AQABAAAAAAAAAPz/AQABAAAAAAABAAQAAQAAAAAAAAACAAQAAQAAAAAAAAADAAQAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAAQAAQAAAAAAAAAFAAUAAQAAAAAAAAAFAAYAAQAAAAAAAAAGAAYAAQAAAAAAAAAHAAYAAQAAAAAAAAAHAAcAAQAAAAAAAAAIAAcAAQAAAAAAAAAJAAcAAQAAAAAAAAAKAAcAAQAAAAAAAAABAAEAAQAAAAAAAAACAAEAAQAAAAAAAAAMAAoAAQAAAAAAAAANAAoAAQAAAAAAAAAOAAoAAQAAAAAAAAAPAAoAAQAAAAAAAAAQAAoAAQAAAAAAAAATAAYAAQABAAAAAAATAAUAAQABAAAAAAATAAQAAQABAAAAAAATAAMAAQABAAAAAAATAAIAAQABAAAAAAATAAEAAQABAAAAAAATAAAAAQABAAAAAAATAP//AQABAAAAAAATAP7/AQABAAAAAAATAP3/AQABAAAAAAATAPz/AQABAAAAAAATAPv/AQAAAAAAAAAAAPv/AQAAAAAAAAABAPv/AQAAAAAAAAACAPv/AQAAAAAAAAADAPv/AQAAAAAAAAAEAPv/AQAAAAAAAAAFAPv/AQAAAAAAAAAGAPv/AQAAAAAAAAAHAPv/AQAAAAAAAAAIAPv/AQAAAAAAAAAJAPv/AQAAAAAAAAAKAPv/AQAAAAAAAAALAPv/AQAAAAAAAAAMAPv/AQAAAAAAAAANAPv/AQAAAAAAAAAOAPv/AQAAAAAAAAAPAPv/AQAAAAAAAAAQAPv/AQAAAAAAAAARAPv/AQAAAAAAAAASAPv/AQAAAAAAAAA=")
+tile_set = ExtResource("5_0lgjm")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="MaskPickup" parent="Node2D" instance=ExtResource("6_efa5n")]
+position = Vector2(1139, 585)
+element = 3
+
+[node name="MaskPickup4" parent="Node2D" instance=ExtResource("6_efa5n")]
+position = Vector2(1136, 488)
+element = 3
+
+[node name="MaskPickup5" parent="Node2D" instance=ExtResource("6_efa5n")]
+position = Vector2(1047, 585)
+element = 3
+
+[node name="MaskPickup6" parent="Node2D" instance=ExtResource("6_efa5n")]
+position = Vector2(1044, 495)
+element = 3
+
+[node name="MaskPickup2" parent="Node2D" instance=ExtResource("6_efa5n")]
+position = Vector2(330, 110)
+
+[node name="MaskPickup3" parent="Node2D" instance=ExtResource("6_efa5n")]
+position = Vector2(137, 218)
+element = 4
+
+[node name="WoodBox" parent="." instance=ExtResource("7_7y63g")]
+position = Vector2(599, 591)
+
+[node name="Key" parent="." instance=ExtResource("8_35hm5")]
+position = Vector2(219, 577)
+
+[editable path="Player"]
