@@ -5,6 +5,7 @@ var current_level
 var current_level_index = 0
 var unlocked_level = 0
 var intro_scene: PackedScene = preload("res://Scenes/GUI/Intro.tscn")
+var outro_scene: PackedScene = preload("res://Scenes/GUI/Outro.tscn")
 var menu_scene: PackedScene = preload("res://Scenes/GUI/MainMenu.tscn")
 @export var level_scenes: Array[PackedScene]
 
@@ -30,6 +31,10 @@ func play_intro():
 func load_menu():
 	unlocked_level = load_level()
 	get_tree().change_scene_to_packed(menu_scene)
+	
+func play_outro():
+	SoundManagerAutoload.play_music(SoundManagerAutoload.menu_music)
+	get_tree().change_scene_to_packed(outro_scene)
 
 func save_level(level_number: int):
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)

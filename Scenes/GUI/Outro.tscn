@@ -1,0 +1,160 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqyfju7safsrg"]
+
+[ext_resource type="Script" uid="uid://ifr5jmqyupem" path="res://Scripts/GUI/Outro.gd" id="1_yruvl"]
+[ext_resource type="Theme" uid="uid://b5cjnydq4hbi5" path="res://Resources/theme.tres" id="6_dyhxn"]
+
+[sub_resource type="Animation" id="Animation_xkxkw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:show_element_index")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_w7sfs"]
+resource_name = "intro"
+length = 32.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.533333, 2.43333, 4.43333, 6.76667, 10.0333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"values": [{
+"args": [],
+"method": &"play_intro_sound"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"present_element"
+}, {
+"args": [],
+"method": &"play_typewriter_intro"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:show_element_index")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.26667, 4.3, 6.66667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_taq0s"]
+resource_name = "outro"
+length = 12.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0001),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"play_outro_sound"
+}, {
+"args": [],
+"method": &"play_typewriter_intro"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ug5lx"]
+_data = {
+&"RESET": SubResource("Animation_xkxkw"),
+&"intro": SubResource("Animation_w7sfs"),
+&"outro": SubResource("Animation_taq0s")
+}
+
+[node name="Outro" type="Control" node_paths=PackedStringArray("animation")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yruvl")
+animation = NodePath("AnimationPlayer")
+full_text = "Opanowałeś wszystkie
+moce masek żywiołów.
+Możesz dumnie nosić miano
+KRÓLA SZAMANÓW!"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.615582, 0.354781, 0.0703993, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="MenuButton" type="Button" parent="MarginContainer"]
+custom_minimum_size = Vector2(300, 100)
+layout_mode = 2
+theme = ExtResource("6_dyhxn")
+theme_override_font_sizes/font_size = 24
+text = "Jestem
+KRÓLEM SZAMANÓW"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ug5lx")
+}
+
+[node name="OutroLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/MenuButton" to="." method="_on_menu_button_pressed"]

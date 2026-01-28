@@ -41,3 +41,8 @@ func play_intro():
 	sfx_audio3.stop()
 	sfx_audio3.stream = intro_sound
 	sfx_audio3.play()
+
+func play_outro():
+	sfx_audio3.stop()
+	sfx_audio3.stream = outro_sound
+	sfx_audio3.play()
