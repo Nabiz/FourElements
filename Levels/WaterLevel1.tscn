@@ -12,7 +12,7 @@
 [node name="TestLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_qomj6")]
-position = Vector2(119, 532)
+position = Vector2(523, 530)
 
 [node name="Camera2D" parent="Player" index="3"]
 limit_left = 0

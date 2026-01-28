@@ -31,6 +31,8 @@ func _process(_delta: float) -> void:
 		spawn_fire_bullet()
 		spawn_earth_block()
 	play_animation()
+	if global_position.y > 1000:
+		LevelManagerAutoload.restart_level()
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("ui_select"):

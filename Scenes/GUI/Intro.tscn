@@ -140,6 +140,7 @@ i zyska miano KRÓLA SZAMANÓW!!!"
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(1280, 720)
+layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 color = Color(0.615582, 0.354781, 0.0703993, 1)
@@ -159,6 +160,7 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="PlayButton" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 theme = ExtResource("6_an2ni")

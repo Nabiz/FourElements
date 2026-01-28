@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dk1i41y4p0goh"]
+[gd_scene load_steps=9 format=3 uid="uid://dk1i41y4p0goh"]
 
 [ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://Assets/Enemy/Enemy.png" id="1_m1htj"]
 [ext_resource type="Script" uid="uid://bjuek33fuw47u" path="res://Scripts/Enemy.gd" id="1_wovta"]
@@ -31,6 +31,9 @@ size = Vector2(55, 113)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wovta"]
 size = Vector2(70, 127)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xeo28"]
+size = Vector2(61, 28)
+
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_wovta")
 sprite = NodePath("AnimatedSprite2D")
@@ -51,5 +54,14 @@ shape = SubResource("RectangleShape2D_m1htj")
 position = Vector2(0, 12.5)
 shape = SubResource("RectangleShape2D_wovta")
 
+[node name="BlockKillArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BlockKillArea"]
+position = Vector2(1.5, -42)
+shape = SubResource("RectangleShape2D_xeo28")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="BlockKillArea" to="." method="_on_block_kill_area_area_entered"]

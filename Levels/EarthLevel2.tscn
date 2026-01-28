@@ -26,6 +26,7 @@ end_level_popup = NodePath("../EndLevelPopup")
 [node name="EndLevelPopup" parent="." instance=ExtResource("3_fjv5s")]
 
 [node name="LevelObjective" parent="." node_paths=PackedStringArray("finish_area") instance=ExtResource("4_i70kl")]
+keys = 1
 finish_area = NodePath("../FinishArea")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]

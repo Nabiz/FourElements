@@ -14,6 +14,7 @@ extends Control
 
 func _ready() -> void:
 	play_intro()
+	%PlayButton.grab_focus()
 
 func _on_play_button_pressed() -> void:
 	LevelManagerAutoload.change_level(0)

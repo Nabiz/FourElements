@@ -17,11 +17,13 @@ func _ready() -> void:
 func on_pick_key():
 	keys -= 1
 	GUI.instance.update_key(keys)
+	SoundManagerAutoload.play_sound(SoundManagerAutoload.key)
 	check_finish()
 
 func on_kill_enemy():
 	enemies -= 1
 	GUI.instance.update_enemies(enemies)
+	SoundManagerAutoload.play_sound(SoundManagerAutoload.death)
 	check_finish()
 
 func active_finish():

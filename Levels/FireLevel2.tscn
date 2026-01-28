@@ -77,26 +77,6 @@ element = 4
 [node name="MaskPickup3" parent="Node2D" instance=ExtResource("6_gm61x")]
 position = Vector2(875, -8)
 
-[node name="LabelHandler" type="Node2D" parent="."]
-position = Vector2(465, 484)
-
-[node name="Label" type="Label" parent="LabelHandler"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -38.0
-offset_top = -66.0
-offset_right = 58.0
-offset_bottom = 22.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 10
-theme_override_font_sizes/font_size = 64
-text = "\"X\""
-
 [node name="Enemy2" parent="." instance=ExtResource("8_x1xt4")]
 position = Vector2(145, 580)
 move_duration = 0.2

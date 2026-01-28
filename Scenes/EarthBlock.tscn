@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy55rh68t6vhq"]
+[gd_scene load_steps=7 format=3 uid="uid://cy55rh68t6vhq"]
 
 [ext_resource type="Script" uid="uid://fchn5auwuabt" path="res://Scripts/EarthBlock.gd" id="1_unpfy"]
 [ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://Assets/Elements/earth.png" id="2_unpfy"]
@@ -14,6 +14,9 @@ shader_parameter/animated = false
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7lsk"]
 size = Vector2(80, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w52ox"]
+size = Vector2(54, 20)
+
 [node name="EarthBlock" type="CharacterBody2D"]
 script = ExtResource("1_unpfy")
 
@@ -26,3 +29,11 @@ texture = ExtResource("2_unpfy")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_v7lsk")
+
+[node name="KillEnemyArea" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillEnemyArea"]
+position = Vector2(-1, 29)
+shape = SubResource("RectangleShape2D_w52ox")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ctrkbuppq7nbs"]
+[gd_scene load_steps=12 format=3 uid="uid://ctrkbuppq7nbs"]
 
 [ext_resource type="Script" uid="uid://bjbcjhbx4ktqw" path="res://Scripts/Managers/SoundManager.gd" id="1_o3t63"]
 [ext_resource type="AudioStream" uid="uid://jk2eres5osan" path="res://Assets/SFX/fire.ogg" id="2_11ih6"]
@@ -9,6 +9,8 @@
 [ext_resource type="AudioStream" uid="uid://cmg7bff48gtt2" path="res://Assets/Soundtrack/a_newcomer_full.wav" id="7_wxvyw"]
 [ext_resource type="AudioStream" uid="uid://y3ampefo8alo" path="res://Assets/SFX/intro.mp3" id="8_ip3dx"]
 [ext_resource type="AudioStream" uid="uid://ckcowsv5he3tf" path="res://Assets/SFX/outro.mp3" id="9_jy21v"]
+[ext_resource type="AudioStream" uid="uid://q6whh5qlilpo" path="res://Assets/SFX/death.mp3" id="10_jy21v"]
+[ext_resource type="AudioStream" uid="uid://fb1lv7g187i7" path="res://Assets/SFX/coin.wav" id="11_0gd4e"]
 
 [node name="SoundManagerAutoload" type="Node" node_paths=PackedStringArray("sfx_audio1", "sfx_audio2", "sfx_audio3", "music_audio")]
 process_mode = 3
@@ -25,6 +27,8 @@ menu_music = ExtResource("6_rkghj")
 level_music = ExtResource("7_wxvyw")
 intro_sound = ExtResource("8_ip3dx")
 outro_sound = ExtResource("9_jy21v")
+death = ExtResource("10_jy21v")
+key = ExtResource("11_0gd4e")
 
 [node name="SFXAudio" type="AudioStreamPlayer" parent="."]
 

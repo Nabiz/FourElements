@@ -1,0 +1,75 @@
+[gd_scene load_steps=9 format=4 uid="uid://by3pogtl6r5ai"]
+
+[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://Scenes/Player.tscn" id="1_pnsri"]
+[ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://Scenes/FinishArea.tscn" id="2_54ec6"]
+[ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://Scenes/GUI/EndLevelPopup.tscn" id="3_qrakl"]
+[ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://Scenes/LevelObjective.tscn" id="4_stqx0"]
+[ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://Resources/Tileset.tres" id="5_hho1r"]
+[ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://Scenes/MaskPickup.tscn" id="7_u37go"]
+[ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://Scenes/Key.tscn" id="8_54ec6"]
+[ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://Scenes/Enemy.tscn" id="8_qrakl"]
+
+[node name="FireLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_pnsri")]
+position = Vector2(138, 530)
+
+[node name="Camera2D" parent="Player" index="3"]
+limit_left = 0
+limit_top = -48
+limit_right = 1792
+
+[node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_54ec6")]
+position = Vector2(1420, 584)
+end_level_popup = NodePath("../EndLevelPopup")
+
+[node name="EndLevelPopup" parent="." instance=ExtResource("3_qrakl")]
+
+[node name="LevelObjective" parent="." node_paths=PackedStringArray("finish_area") instance=ExtResource("4_stqx0")]
+keys = 1
+enemies = 1
+finish_area = NodePath("../FinishArea")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAAAAAgAAQABAAEAAAAAAAkAAQABAAEAAAAAAAoAAQAAAAEAAAABAAoAAQAAAAEAAAACAAoAAQAAAAEAAAADAAoAAQAAAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAEAAoAAQAAAAEAAAAFAAoAAQAAAAEAAAAGAAoAAQAAAAEAAAAHAAoAAQAAAAEAAAAIAAoAAQAAAAEAAAAJAAoAAQAAAAEAAAAKAAoAAQAAAAEAAAALAAoAAQAAAAEAAAASAAoAAQAAAAEAAAATAAoAAQAAAAEAAAAUAAoAAQAAAAEAAAAVAAoAAQAAAAEAAAAWAAoAAQAAAAEAAAAXAAoAAQAAAAEAAAAYAAoAAQAAAAEAAAAZAAoAAQAAAAEAAAAaAAoAAQAAAAEAAAARAAoAAQAAAAEAAAAbAP//AQABAAEAAAAAAAMAAQABAAEAAAAAAAIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAMAAoAAQAAAAEAAAANAAoAAQAAAAEAAAAOAAoAAQAAAAEAAAAPAAoAAQAAAAEAAAAQAAoAAQAAAAEAAAAbAAAAAQABAAEAAAAbAAEAAQABAAEAAAAbAAIAAQABAAEAAAAbAAMAAQABAAEAAAAbAAQAAQABAAEAAAAbAAUAAQABAAEAAAAbAAYAAQABAAEAAAAbAAcAAQABAAEAAAAbAAgAAQABAAEAAAAbAAkAAQABAAEAAAAbAAoAAQABAAEAAAANAAkAAQABAAEAAAANAAgAAQABAAEAAAANAAcAAQABAAEAAAANAAYAAQAAAAEAAAAOAAYAAQAAAAEAAAAOAAcAAQABAAEAAAAOAAgAAQAAAAEAAAAOAAkAAQABAAEAAAAPAAcAAQAAAAEAAAAQAAcAAQAAAAEAAAAQAAgAAQABAAEAAAAPAAgAAQABAAEAAAAPAAkAAQABAAEAAAAQAAkAAQABAAEAAAARAAkAAQABAAEAAAASAAkAAQABAAEAAAARAAgAAQAAAAEAAAATAAkAAQAAAAEAAAASAAgAAQAAAAEAAAAUAAkAAQAAAAEAAAAJAAkAAQABAAEAAAAIAAkAAQABAAEAAAAJAAgAAQABAAEAAAAIAAgAAQAAAAEAAAAJAAcAAQABAAEAAAAIAAcAAQABAAEAAAAJAAYAAQAAAAEAAAAIAAYAAQAAAAEAAAAHAAkAAQABAAEAAAAGAAkAAQABAAEAAAAHAAgAAQABAAEAAAAHAAcAAQAAAAEAAAAGAAcAAQAAAAEAAAAGAAgAAQABAAEAAAAFAAkAAQABAAEAAAAEAAkAAQABAAEAAAAFAAgAAQAAAAEAAAAEAAgAAQAAAAEAAAADAAkAAQAAAAEAAAACAAkAAQAAAAEAAAABAAkAAQAAAAEAAAABAP//AQABAAEAAAACAP//AQABAAEAAAADAP//AQABAAEAAAAEAP//AQABAAEAAAAFAP//AQABAAEAAAAGAP//AQABAAEAAAAHAP//AQABAAEAAAAIAP//AQABAAEAAAAJAP//AQABAAEAAAAKAP//AQABAAEAAAALAP//AQABAAEAAAAMAP//AQABAAEAAAANAP//AQABAAEAAAAOAP//AQABAAEAAAAPAP//AQABAAEAAAAQAP//AQABAAEAAAARAP//AQABAAEAAAASAP//AQABAAEAAAATAP//AQABAAEAAAAUAP//AQABAAEAAAAVAP//AQABAAEAAAAWAP//AQABAAEAAAAXAP//AQABAAEAAAAYAP//AQABAAEAAAAZAP//AQABAAEAAAAaAP//AQABAAEAAAAaAAkAAQABAAEAAAAZAAkAAQABAAEAAAAZAAgAAQABAAEAAAAaAAgAAQABAAEAAAA=")
+tile_set = ExtResource("5_hho1r")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="MaskPickup" parent="Node2D" instance=ExtResource("7_u37go")]
+position = Vector2(580, 349)
+element = 3
+
+[node name="MaskPickup2" parent="Node2D" instance=ExtResource("7_u37go")]
+position = Vector2(899, 349)
+element = 3
+
+[node name="LabelHandler" type="Node2D" parent="."]
+position = Vector2(728, 283)
+
+[node name="Label" type="Label" parent="LabelHandler"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -38.0
+offset_top = -66.0
+offset_right = 58.0
+offset_bottom = 22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "\"X\""
+
+[node name="Enemy" parent="." instance=ExtResource("8_qrakl")]
+position = Vector2(794, 580)
+move_duration = 0.3
+
+[node name="Key" parent="." instance=ExtResource("8_54ec6")]
+position = Vector2(1666, 481)
+
+[editable path="Player"]

@@ -127,6 +127,7 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="MenuButton" type="Button" parent="MarginContainer"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 theme = ExtResource("6_dyhxn")

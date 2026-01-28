@@ -8,6 +8,7 @@ var level_button_scene: PackedScene = preload("res://Scenes/GUI/LevelButton.tscn
 func _ready() -> void:
 	update_unlocked_levels()
 	SoundManagerAutoload.play_music(SoundManagerAutoload.menu_music)
+	%PlayButton.grab_focus()
 
 func update_unlocked_levels():
 	var level_buttons = level_select_container.get_children()
@@ -26,6 +27,7 @@ func _on_levels_button_pressed() -> void:
 	main_container.hide()
 	level_select_container.show()
 	back_button.show()
+	back_button.grab_focus()
 
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
@@ -35,6 +37,7 @@ func _on_back_button_pressed() -> void:
 	main_container.show()
 	level_select_container.hide()
 	back_button.hide()
+	%PlayButton.grab_focus()
 
 
 func _on_fullscreen_button_pressed() -> void:

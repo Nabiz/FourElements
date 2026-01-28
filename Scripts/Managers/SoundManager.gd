@@ -21,6 +21,12 @@ extends Node
 @export var intro_sound: AudioStream
 @export var outro_sound: AudioStream
 
+@export_subgroup("Objectives")
+@export var death: AudioStream
+@export var key: AudioStream
+@export var doors: AudioStream
+
+
 func play_sound(sound: AudioStream):
 	if !sfx_audio1.playing:
 		sfx_audio1.stream = sound
@@ -33,9 +39,10 @@ func play_sound(sound: AudioStream):
 		sfx_audio3.play()
 
 func play_music(music):
-	music_audio.stop()
-	music_audio.stream = music
-	music_audio.play()
+	if music_audio.stream != music:
+		music_audio.stop()
+		music_audio.stream = music
+		music_audio.play()
 
 func play_intro():
 	sfx_audio3.stop()

@@ -20,6 +20,9 @@ func _enter_tree() -> void:
 
 func _process(delta: float) -> void:
 	%CloudLayer.motion_offset.x -= 25 * delta
+	if Input.is_action_just_pressed("ui_menu"):
+		get_tree().paused = false
+		LevelManagerAutoload.load_menu()
 
 func change_element(element: MaskManager.Element) -> void:
 	match element:

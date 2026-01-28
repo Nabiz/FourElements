@@ -29,12 +29,14 @@ static_body = NodePath("StaticBody2D")
 position = Vector2(0, -32)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_vx7nm")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
 position = Vector2(0, 5)
 shape = SubResource("RectangleShape2D_rjgjh")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://oj7dpdbij0gw"]
+[gd_scene load_steps=12 format=3 uid="uid://oj7dpdbij0gw"]
 
 [ext_resource type="Script" uid="uid://co0ok0wyes8vn" path="res://Scripts/Managers/LevelManager.gd" id="1_6rk87"]
 [ext_resource type="PackedScene" uid="uid://b2rsgl8f8nuf4" path="res://Levels/AirLevel1.tscn" id="2_jukwi"]
@@ -6,9 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://c0xy337xtxbla" path="res://Levels/AirLevel2.tscn" id="3_sktq0"]
 [ext_resource type="PackedScene" uid="uid://cui2s07xcisyk" path="res://Levels/WaterLevel1.tscn" id="4_bn7id"]
 [ext_resource type="PackedScene" uid="uid://bwbm6jsan0am8" path="res://Levels/WaterLevel2.tscn" id="5_bn7id"]
+[ext_resource type="PackedScene" uid="uid://by3pogtl6r5ai" path="res://Levels/EarthLevel1.tscn" id="6_yhjk2"]
 [ext_resource type="PackedScene" uid="uid://84m6i3ilcqf1" path="res://Levels/FireLevel2.tscn" id="7_of0c7"]
 [ext_resource type="PackedScene" uid="uid://dpcs3bm8io6xn" path="res://Levels/EarthLevel2.tscn" id="7_y8wxm"]
+[ext_resource type="PackedScene" uid="uid://cectcv6g74itv" path="res://Levels/AirLevel3.tscn" id="9_y6n6c"]
+[ext_resource type="PackedScene" uid="uid://be0pf3wehnkhr" path="res://Levels/AllLevel2.tscn" id="10_ogw4q"]
 
 [node name="LevelManagerAutoload" type="Node"]
 script = ExtResource("1_6rk87")
-level_scenes = Array[PackedScene]([ExtResource("2_jukwi"), ExtResource("3_sktq0"), ExtResource("4_bn7id"), ExtResource("3_p1qnx"), ExtResource("5_bn7id"), ExtResource("7_y8wxm"), ExtResource("7_of0c7")])
+level_scenes = Array[PackedScene]([ExtResource("2_jukwi"), ExtResource("4_bn7id"), ExtResource("3_sktq0"), ExtResource("3_p1qnx"), ExtResource("6_yhjk2"), ExtResource("5_bn7id"), ExtResource("7_y8wxm"), ExtResource("9_y6n6c"), ExtResource("7_of0c7"), ExtResource("10_ogw4q")])

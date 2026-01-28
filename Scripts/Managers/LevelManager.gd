@@ -11,6 +11,10 @@ var menu_scene: PackedScene = preload("res://Scenes/GUI/MainMenu.tscn")
 
 const SAVE_PATH = "user://four_elements.dat"
 
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("ui_reset"):
+		restart_level()
+
 func _ready() -> void:
 	unlocked_level = load_level()
 

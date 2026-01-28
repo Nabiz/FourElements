@@ -8,6 +8,7 @@ extends Control
 
 func _ready() -> void:
 	play_outro()
+	%MenuButton.grab_focus()
 
 func play_outro():
 	animation.play("outro")
