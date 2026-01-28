@@ -5,6 +5,7 @@ extends CanvasLayer
 @export var ammo_label: Label
 
 @export var key_label: Label
+@export var enemy_label: Label
 
 @export_subgroup("Elements")
 @export var blank_texture: CompressedTexture2D
@@ -38,6 +39,9 @@ func update_ammo(value: int):
 
 func update_key(value: int):
 	key_label.text = str(value)
+
+func update_enemies(value: int):
+	enemy_label.text = str(value)
 
 func _on_reset_button_pressed() -> void:
 	LevelManagerAutoload.restart_level()

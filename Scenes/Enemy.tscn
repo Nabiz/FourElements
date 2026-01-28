@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dk1i41y4p0goh"]
+[gd_scene load_steps=8 format=3 uid="uid://dk1i41y4p0goh"]
 
 [ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://Assets/Enemy/Enemy.png" id="1_m1htj"]
 [ext_resource type="Script" uid="uid://bjuek33fuw47u" path="res://Scripts/Enemy.gd" id="1_wovta"]
@@ -26,7 +26,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1htj"]
-size = Vector2(64, 127)
+size = Vector2(55, 113)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wovta"]
+size = Vector2(70, 127)
 
 [node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_wovta")
@@ -39,14 +42,14 @@ sprite_frames = SubResource("SpriteFrames_kpr8r")
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 12.5)
+position = Vector2(0, 19.5)
 shape = SubResource("RectangleShape2D_m1htj")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 12.5)
-shape = SubResource("RectangleShape2D_m1htj")
+shape = SubResource("RectangleShape2D_wovta")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

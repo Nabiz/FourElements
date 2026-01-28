@@ -12,6 +12,7 @@ func _enter_tree() -> void:
 func _ready() -> void:
 	check_finish()
 	GUI.instance.update_key(keys)
+	GUI.instance.update_enemies(enemies)
 
 func on_pick_key():
 	keys -= 1
@@ -20,6 +21,7 @@ func on_pick_key():
 
 func on_kill_enemy():
 	enemies -= 1
+	GUI.instance.update_enemies(enemies)
 	check_finish()
 
 func active_finish():

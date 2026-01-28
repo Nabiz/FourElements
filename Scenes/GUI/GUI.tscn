@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d1g0ts06yy5jx"]
+[gd_scene load_steps=13 format=3 uid="uid://d1g0ts06yy5jx"]
 
 [ext_resource type="Script" uid="uid://cwuxef0wfmjfq" path="res://Scripts/GUI/GUI.gd" id="1_17j7b"]
 [ext_resource type="Texture2D" uid="uid://bh5g48w1u1mdy" path="res://Assets/Elements/air.png" id="1_linlh"]
@@ -10,13 +10,17 @@
 [ext_resource type="Texture2D" uid="uid://bnluu0vc205a0" path="res://Assets/Props/key.png" id="7_wf68y"]
 [ext_resource type="Texture2D" uid="uid://ohk43tmr6l5i" path="res://Assets/Background/cloudMidBackground.png" id="8_e1ed1"]
 [ext_resource type="Texture2D" uid="uid://bwvy31kw8ydjq" path="res://Assets/Background/closeBackground.png" id="9_234st"]
+[ext_resource type="Texture2D" uid="uid://c06x4pippvgch" path="res://Assets/Enemy/skull.png" id="11_nkhw3"]
 
-[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("element_texture_rect", "ammo_label", "key_label")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwth5"]
+
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("element_texture_rect", "ammo_label", "key_label", "enemy_label")]
 process_mode = 3
 script = ExtResource("1_17j7b")
 element_texture_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
 ammo_label = NodePath("MarginContainer/HBoxContainer/Label")
 key_label = NodePath("ObjectiveContainer/HBoxContainer/KeyLabel")
+enemy_label = NodePath("ObjectiveContainer/HBoxContainer/EnemyLabel")
 blank_texture = ExtResource("2_fexrg")
 fire_texture = ExtResource("2_pu3jy")
 water_texture = ExtResource("3_fexrg")
@@ -120,6 +124,23 @@ texture = ExtResource("7_wf68y")
 stretch_mode = 3
 
 [node name="KeyLabel" type="Label" parent="ObjectiveContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "0"
+
+[node name="VSeparator" type="VSeparator" parent="ObjectiveContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxFlat_jwth5")
+
+[node name="EnemyTextureRect" type="TextureRect" parent="ObjectiveContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_nkhw3")
+expand_mode = 3
+
+[node name="EnemyLabel" type="Label" parent="ObjectiveContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10

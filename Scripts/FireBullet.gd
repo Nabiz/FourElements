@@ -6,12 +6,14 @@ var direction = Vector2.RIGHT
 
 func _physics_process(delta: float) -> void:
 	position += speed * direction * delta
+	if direction.x < 0:
+		%Sprite2D.flip_h = true
 
 func _on_timer_timeout() -> void:
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	if area is MaskPickup:
+	if area is MaskPickup or area is FinishArea:
 		return
 	queue_free()
 

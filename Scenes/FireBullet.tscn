@@ -26,6 +26,7 @@ script = ExtResource("1_7musd")
 shape = SubResource("CircleShape2D_7musd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 material = SubResource("ShaderMaterial_cfoml")
 position = Vector2(-48, 0)
 texture = ExtResource("1_hvu62")

@@ -18,6 +18,7 @@ func _on_body_entered(body: Node2D) -> void:
 			LevelManagerAutoload.save_level(next_level)
 		get_tree().paused = true
 		end_level_popup.show()
+		end_level_popup.focus_button()
 
 func open_door():
 	close_door.visible = false
