@@ -21,6 +21,7 @@ shader_parameter/surface_thickness = 0.065
 shader_parameter/surface_intensity = 1.0
 
 [node name="WaterPath" type="Node2D" node_paths=PackedStringArray("static_body")]
+scale = Vector2(1, 1.25)
 script = ExtResource("1_xywqn")
 static_body = NodePath("StaticBody2D")
 

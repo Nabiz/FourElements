@@ -35,3 +35,11 @@ func _on_back_button_pressed() -> void:
 	main_container.show()
 	level_select_container.hide()
 	back_button.hide()
+
+
+func _on_fullscreen_button_pressed() -> void:
+	var current_mode = DisplayServer.window_get_mode()
+	if current_mode == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+	elif current_mode == DisplayServer.WINDOW_MODE_WINDOWED:
+		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)

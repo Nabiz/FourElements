@@ -1,0 +1,57 @@
+[gd_scene load_steps=9 format=4 uid="uid://cui2s07xcisyk"]
+
+[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://Scenes/Player.tscn" id="1_qomj6"]
+[ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://Scenes/FinishArea.tscn" id="2_qntih"]
+[ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://Scenes/GUI/EndLevelPopup.tscn" id="3_3x0tk"]
+[ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://Scenes/LevelObjective.tscn" id="4_adgfm"]
+[ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://Resources/Tileset.tres" id="5_t6pya"]
+[ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://Scenes/WaterPath.tscn" id="6_h2cuw"]
+[ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://Scenes/MaskPickup.tscn" id="7_vasab"]
+[ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://Scenes/Key.tscn" id="8_kt8ba"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_qomj6")]
+position = Vector2(119, 532)
+
+[node name="Camera2D" parent="Player" index="3"]
+limit_left = 0
+limit_right = 1792
+
+[node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_qntih")]
+position = Vector2(1648, 522)
+end_level_popup = NodePath("../EndLevelPopup")
+
+[node name="EndLevelPopup" parent="." instance=ExtResource("3_3x0tk")]
+
+[node name="LevelObjective" parent="." node_paths=PackedStringArray("finish_area") instance=ExtResource("4_adgfm")]
+keys = 1
+finish_area = NodePath("../FinishArea")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAAAAAgAAQABAAEAAAAAAAkAAQABAAEAAAAAAAoAAQABAAEAAAABAAoAAQABAAEAAAACAAoAAQABAAEAAAADAAoAAQABAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAEAAoAAQABAAEAAAAFAAoAAQABAAEAAAAGAAoAAQABAAEAAAAHAAoAAQABAAEAAAAIAAoAAQABAAEAAAAJAAoAAQABAAEAAAAKAAoAAQABAAEAAAALAAoAAQABAAEAAAASAAoAAQABAAEAAAATAAoAAQABAAEAAAAUAAoAAQABAAEAAAAVAAoAAQABAAEAAAAWAAoAAQABAAEAAAAXAAoAAQABAAEAAAAYAAoAAQABAAEAAAAZAAoAAQABAAEAAAAaAAoAAQABAAEAAAAbAAoAAQABAAEAAAARAAoAAQABAAEAAAAbAAkAAQABAAEAAAAaAAkAAQAAAAEAAAAZAAkAAQAAAAEAAAAYAAkAAQAAAAEAAAAbAAgAAQABAAEAAAAbAAcAAQABAAEAAAAbAAYAAQABAAEAAAAbAAUAAQABAAEAAAAbAAQAAQABAAEAAAAbAAMAAQABAAEAAAAbAAIAAQABAAEAAAAbAAEAAQABAAEAAAAbAAAAAQABAAEAAAAbAP//AQABAAEAAAAAAAMAAQABAAEAAAAAAAIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAAAP7/AQABAAEAAAAAAP3/AQABAAEAAAAAAPz/AQABAAEAAAAUAAkAAQAAAAEAAAALAAkAAQAAAAEAAAAKAAkAAQAAAAEAAAAJAAkAAQAAAAEAAAAIAAkAAQAAAAEAAAAHAAkAAQAAAAEAAAAGAAkAAQAAAAEAAAAFAAkAAQAAAAEAAAAEAAkAAQAAAAEAAAADAAkAAQAAAAEAAAACAAkAAQAAAAEAAAABAAkAAQAAAAEAAAARAAkAAQAAAAEAAAASAAkAAQAAAAEAAAATAAkAAQAAAAEAAAAVAAkAAQAAAAEAAAAWAAkAAQABAAEAAAAXAAkAAQABAAEAAAAWAAgAAQABAAEAAAAXAAgAAQABAAEAAAAXAAcAAQABAAEAAAAWAAcAAQABAAEAAAAWAAYAAQABAAEAAAAXAAYAAQABAAEAAAAXAAUAAQABAAEAAAAWAAUAAQABAAEAAAAWAAQAAQAAAAEAAAAXAAQAAQAAAAEAAAAMAAoAAQACAAEAAAANAAoAAQACAAEAAAAOAAoAAQACAAEAAAAPAAoAAQACAAEAAAAQAAoAAQACAAEAAAA=")
+tile_set = ExtResource("5_t6pya")
+
+[node name="WaterPath" parent="." instance=ExtResource("6_h2cuw")]
+position = Vector2(929, 623)
+scale = Vector2(1.085, 1)
+
+[node name="Masks" type="Node2D" parent="."]
+
+[node name="MaskPickup" parent="Masks" instance=ExtResource("7_vasab")]
+position = Vector2(301, 536)
+element = 2
+
+[node name="MaskPickup2" parent="Masks" instance=ExtResource("7_vasab")]
+position = Vector2(1157, 543)
+element = 4
+
+[node name="MaskPickup3" parent="Masks" instance=ExtResource("7_vasab")]
+position = Vector2(1289, 545)
+element = 4
+
+[node name="Key" parent="." instance=ExtResource("8_kt8ba")]
+position = Vector2(1471, 221)
+
+[editable path="Player"]

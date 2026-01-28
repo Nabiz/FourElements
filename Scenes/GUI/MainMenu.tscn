@@ -45,9 +45,9 @@ expand_mode = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.444531
-anchor_top = 0.368056
+anchor_top = 0.376389
 anchor_right = 0.555469
-anchor_bottom = 0.729167
+anchor_bottom = 0.876389
 offset_left = -4.0
 offset_top = -10.0
 offset_right = 4.0
@@ -66,6 +66,11 @@ text = "Zagraj"
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
 text = "Poziomy"
+
+[node name="FullscreenButton" type="Button" parent="VBoxContainer"]
+custom_minimum_size = Vector2(150, 80)
+layout_mode = 2
+text = "Pełny Ekran/Okno"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 80)
@@ -127,5 +132,6 @@ texture = ExtResource("6_wyv1s")
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LevelsButton" to="." method="_on_levels_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
 [connection signal="pressed" from="MarginContainer/BackButton" to="." method="_on_back_button_pressed"]

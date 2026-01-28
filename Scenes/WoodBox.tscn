@@ -29,7 +29,7 @@ shader_parameter/speed = 0.5
 shader_parameter/angle = 0.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ky0k4"]
-size = Vector2(64, 64)
+size = Vector2(128, 128)
 
 [sub_resource type="Animation" id="Animation_s4g4q"]
 resource_name = "destroy"
@@ -63,6 +63,7 @@ animation = NodePath("AnimationPlayer")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_s4g4q")
+scale = Vector2(2, 2)
 texture = ExtResource("1_f23en")
 
 [node name="SpriteOutlined" type="ColorRect" parent="Sprite2D"]

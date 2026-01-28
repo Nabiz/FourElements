@@ -1,31 +1,13 @@
-[gd_scene load_steps=11 format=4 uid="uid://c41i5qfwmu241"]
+[gd_scene load_steps=9 format=4 uid="uid://c41i5qfwmu241"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://Scenes/Player.tscn" id="1_kq6ib"]
-[ext_resource type="Texture2D" uid="uid://vc20ibch55do" path="res://Assets/TileSet/my_tiles.png" id="2_8d1as"]
+[ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://Resources/Tileset.tres" id="2_8d1as"]
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://Scenes/WaterPath.tscn" id="3_vvmau"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://Scenes/MaskPickup.tscn" id="4_ubmvv"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://Scenes/FinishArea.tscn" id="5_vvmau"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://Scenes/GUI/EndLevelPopup.tscn" id="6_ubmvv"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://Scenes/LevelObjective.tscn" id="7_5y52m"]
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://Scenes/Key.tscn" id="8_8d1as"]
-
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qrkbm"]
-texture = ExtResource("2_8d1as")
-texture_region_size = Vector2i(64, 64)
-0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-1:0/0 = 0
-1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-2:0/0 = 0
-0:1/0 = 0
-0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-1:1/0 = 0
-1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
-
-[sub_resource type="TileSet" id="TileSet_lccka"]
-tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 1
-sources/1 = SubResource("TileSetAtlasSource_qrkbm")
 
 [node name="NewTestLevel" type="Node2D"]
 
@@ -35,7 +17,7 @@ position = Vector2(133, 635)
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(256, 440)
 tile_map_data = PackedByteArray("AAD3/wAAAQABAAEAAAD3/wEAAQABAAEAAAD3/wIAAQABAAEAAAD3/wMAAQABAAEAAAD3/wQAAQABAAEAAAD4/wQAAQAAAAEAAAD5/wQAAQAAAAEAAAD6/wQAAQAAAAEAAAD7/wQAAQAAAAEAAAD8/wQAAQAAAAEAAAD9/wQAAQAAAAEAAAD+/wQAAQAAAAEAAAD//wQAAQAAAAEAAAAAAAQAAQAAAAEAAAABAAQAAQABAAEAAAACAAQAAQABAAEAAAADAAQAAQAAAAEAAAAEAAQAAQAAAAEAAAAFAAQAAQAAAAEAAAAGAAQAAQAAAAEAAAAHAAQAAQAAAAEAAAAIAAQAAQAAAAEAAAAJAAQAAQABAAEAAAAKAAQAAQABAAEAAAALAAQAAQAAAAEAAAAMAAQAAQAAAAEAAAANAAQAAQAAAAEAAAAOAAQAAQAAAAEAAAAPAAQAAQAAAAEAAAAQAAQAAQAAAAEAAAARAAQAAQAAAAEAAAD3////AQABAAEAAAD3//7/AQABAAEAAAD3//3/AQABAAEAAAD3//z/AQABAAEAAAD3//v/AQAAAAAAAAAVAAQAAQAAAAAAAAAUAAQAAQAAAAEAAAATAAQAAQAAAAEAAAASAAQAAQAAAAEAAAAJAAMAAQABAAEAAAAJAAIAAQABAAEAAAAKAAIAAQABAAEAAAAKAAMAAQABAAEAAAAKAAEAAQABAAEAAAAJAAEAAQABAAEAAAAWAAQAAQAAAAAAAAAXAAQAAQAAAAAAAAAYAAQAAQAAAAAAAAAZAAQAAQAAAAAAAAAjAAQAAQAAAAAAAAAkAAQAAQAAAAAAAAAlAAQAAQAAAAAAAAAmAAQAAQAAAAAAAAAnAAQAAQAAAAAAAAAoAAQAAQAAAAAAAAAUAAMAAQAAAAAAAAAUAAIAAQAAAAAAAAAUAAEAAQAAAAAAAAAVAAEAAQAAAAAAAAAVAAIAAQAAAAAAAAAVAAMAAQAAAAAAAAAiAAQAAQAAAAAAAAAxAAQAAQAAAAAAAAAyAAQAAQAAAAAAAAAzAAQAAQAAAAAAAAA0AAQAAQAAAAAAAAA1AAQAAQAAAAAAAAA2AAQAAQAAAAAAAAA3AAQAAQAAAAAAAAA4AAQAAQAAAAAAAAA5AAQAAQAAAAAAAAA6AAQAAQAAAAAAAAA7AAQAAQAAAAAAAAA8AAQAAQAAAAAAAAA9AAQAAQAAAAAAAAA+AAQAAQAAAAAAAAA/AAQAAQAAAAAAAAA/AAMAAQAAAAAAAAA/AAIAAQAAAAAAAAA/AAEAAQAAAAAAAAA/AAAAAQAAAAAAAAA/AP//AQAAAAAAAAA/AP7/AQAAAAAAAAA/AP3/AQAAAAAAAAA/APz/AQAAAAAAAAA/APv/AQAAAAAAAAABAAMAAQAAAAEAAAACAAMAAQAAAAEAAAA=")
-tile_set = SubResource("TileSet_lccka")
+tile_set = ExtResource("2_8d1as")
 
 [node name="WaterPath" parent="." instance=ExtResource("3_vvmau")]
 position = Vector2(1336, 719)
@@ -65,7 +47,7 @@ position = Vector2(1392, 104)
 element = 4
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("5_vvmau")]
-position = Vector2(2145, 651)
+position = Vector2(394, 555)
 end_level_popup = NodePath("../EndLevelPopup")
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("6_ubmvv")]
@@ -75,4 +57,4 @@ keys = 1
 finish_area = NodePath("../FinishArea")
 
 [node name="Key" parent="." instance=ExtResource("8_8d1as")]
-position = Vector2(2347, 662)
+position = Vector2(596, 566)

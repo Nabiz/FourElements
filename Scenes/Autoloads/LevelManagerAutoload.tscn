@@ -1,9 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://oj7dpdbij0gw"]
+[gd_scene load_steps=6 format=3 uid="uid://oj7dpdbij0gw"]
 
 [ext_resource type="Script" uid="uid://co0ok0wyes8vn" path="res://Scripts/Managers/LevelManager.gd" id="1_6rk87"]
-[ext_resource type="PackedScene" uid="uid://c41i5qfwmu241" path="res://Levels/NewTestLevel.tscn" id="2_jukwi"]
-[ext_resource type="PackedScene" uid="uid://bagpvo1aak85w" path="res://Levels/TestLevel.tscn" id="3_pm164"]
+[ext_resource type="PackedScene" uid="uid://b2rsgl8f8nuf4" path="res://Levels/AirLevel1.tscn" id="2_jukwi"]
+[ext_resource type="PackedScene" uid="uid://c0xy337xtxbla" path="res://Levels/AirLevel2.tscn" id="3_sktq0"]
+[ext_resource type="PackedScene" uid="uid://cui2s07xcisyk" path="res://Levels/WaterLevel1.tscn" id="4_bn7id"]
+[ext_resource type="PackedScene" uid="uid://bwbm6jsan0am8" path="res://Levels/WaterLevel2.tscn" id="5_bn7id"]
 
 [node name="LevelManagerAutoload" type="Node"]
 script = ExtResource("1_6rk87")
-level_scenes = Array[PackedScene]([ExtResource("2_jukwi"), ExtResource("3_pm164"), ExtResource("2_jukwi"), ExtResource("2_jukwi"), ExtResource("2_jukwi")])
+level_scenes = Array[PackedScene]([ExtResource("2_jukwi"), ExtResource("3_sktq0"), ExtResource("4_bn7id"), ExtResource("5_bn7id")])
