@@ -29,10 +29,16 @@ static func change_element(new_element: Element):
 	current_element = new_element
 	Player.instance.change_element(current_element)
 	GUI.instance.change_element(current_element)
+	
 	if current_element != Element.WATER:
 		WaterPathManager.disable_all_water_paths()
 	else:
 		WaterPathManager.enable_all_water_paths()
+	
+	if current_element == Element.FIRE:
+		WaterPathManager.disable_all_fire_paths()
+	else:
+		WaterPathManager.enable_all_fire_paths()
 
 static func use_ammo():
 	ammo -= 1

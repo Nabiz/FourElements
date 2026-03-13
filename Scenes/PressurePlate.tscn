@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7ikxeji6215b"]
+
+[ext_resource type="Script" uid="uid://wmmbhdmhkbd6" path="res://Scripts/PressurePlate.gd" id="1_6dsqy"]
+[ext_resource type="Texture2D" uid="uid://dg4p17sq3b3aa" path="res://Assets/Props/pressure_plate.png" id="2_j52f2"]
+[ext_resource type="Texture2D" uid="uid://crorekbhntllw" path="res://Assets/Props/pressure_plate_pressed.png" id="3_gwnrm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kxr0u"]
+size = Vector2(128, 32)
+
+[node name="PressurePlate" type="Area2D" node_paths=PackedStringArray("sprite", "pressed_sprite")]
+script = ExtResource("1_6dsqy")
+sprite = NodePath("Sprite")
+pressed_sprite = NodePath("PressedSprite")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+scale = Vector2(1, 0.5)
+texture = ExtResource("2_j52f2")
+
+[node name="PressedSprite" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(1, 0.5)
+texture = ExtResource("3_gwnrm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kxr0u")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

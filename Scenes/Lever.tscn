@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7vs0e7ft3dst"]
+
+[ext_resource type="Texture2D" uid="uid://b31wyxwyfg3fi" path="res://Assets/Props/Lever/lever_handle.png" id="1_0so5j"]
+[ext_resource type="Script" uid="uid://t2pk1iqrbfmq" path="res://Scripts/Lever.gd" id="1_eno02"]
+[ext_resource type="Texture2D" uid="uid://iicwy2iciqeq" path="res://Assets/Props/Lever/lever_base.png" id="2_eno02"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ijb51"]
+size = Vector2(80, 80)
+
+[node name="Lever" type="Area2D" node_paths=PackedStringArray("handle_sprite")]
+script = ExtResource("1_eno02")
+handle_sprite = NodePath("lever_handle")
+
+[node name="lever_handle" type="Sprite2D" parent="."]
+position = Vector2(0, 23)
+rotation = -0.785398
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_0so5j")
+offset = Vector2(0, -50)
+
+[node name="lever_base" type="Sprite2D" parent="."]
+position = Vector2(0, 23)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_eno02")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ijb51")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

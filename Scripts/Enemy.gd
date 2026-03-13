@@ -7,6 +7,8 @@ var time = 0.0
 const SPEED = 300.0
 var direction = -1.0
 
+var is_pushed = false
+
 func _ready() -> void:
 	sprite.play("default")
 	time = 0.0
@@ -18,12 +20,13 @@ func _process(delta: float) -> void:
 		time = 0
 
 func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-	if direction:
-		velocity.x = direction * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+	if not is_pushed:
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+		if direction and is_on_floor():
+			velocity.x = direction * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
 func change_direction():
@@ -33,6 +36,10 @@ func change_direction():
 	else:
 		direction = 1.0
 
+func push(direction):
+	is_pushed = true
+	velocity = direction * Vector2(500, 0)
+	%PushTimer.start()
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body is Player:
@@ -45,7 +52,10 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		area.queue_free()
 		queue_free()
 
-
-func _on_block_kill_area_area_entered(area: Area2D) -> void:
+func _on_block_kill_area_area_entered(_area: Area2D) -> void:
 	LevelObjective.instance.on_kill_enemy()
 	queue_free()
+
+
+func _on_push_timer_timeout() -> void:
+	is_pushed = false

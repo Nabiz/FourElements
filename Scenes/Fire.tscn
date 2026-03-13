@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b657y1ssc83x3"]
+
+[ext_resource type="Script" uid="uid://dfdlv0nffq8cu" path="res://Scripts/Fire.gd" id="1_j8afo"]
+[ext_resource type="Texture2D" uid="uid://c4tvq75imurk0" path="res://Assets/TempPlaceholders/pngtree-orange-red-flame-flame-clipart-png-image_2388399.jpg" id="1_t8fvv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t8fvv"]
+size = Vector2(112, 112)
+
+[node name="Fire" type="StaticBody2D"]
+script = ExtResource("1_j8afo")
+
+[node name="Pngtree-orange-red-flame-flame-clipart-png-image2388399" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_t8fvv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_t8fvv")

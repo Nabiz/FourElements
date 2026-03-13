@@ -20,6 +20,7 @@ var face_direction = Vector2.RIGHT
 @export var air_sprite: Texture
 
 var fire_bullet_scene: PackedScene = preload("res://Scenes/FireBullet.tscn")
+var air_bullet_scene: PackedScene = preload("res://Scenes/AirBullet.tscn")
 var earth_block_scene: PackedScene = preload("res://Scenes/EarthBlock.tscn")
 
 static var instance
@@ -29,7 +30,9 @@ func _enter_tree() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fire"):
 		spawn_fire_bullet()
+		spawn_air_bullet()
 		spawn_earth_block()
+		spawn_water()
 	play_animation()
 	if global_position.y > 1000:
 		LevelManagerAutoload.restart_level()
@@ -91,6 +94,27 @@ func spawn_fire_bullet():
 		bullet.direction = face_direction
 		bullet.position = position + Vector2(0, -16)
 		get_parent().add_child(bullet)
+
+func spawn_air_bullet():
+	if MaskManager.current_element == MaskManager.Element.AIR:
+		MaskManager.use_ammo()
+		var bullet: AirBullet = air_bullet_scene.instantiate()
+		bullet.direction = face_direction
+		bullet.position = position + Vector2(0, -16)
+		get_parent().add_child(bullet)
+
+func spawn_water():
+	if MaskManager.current_element == MaskManager.Element.WATER:
+		if check_water_space():
+			MaskManager.use_ammo()
+
+func check_water_space():
+	var x = %EarhtBlockSpace.get_overlapping_bodies()
+	for body in x:
+		if body is Fire:
+			body.remove_fire()
+			return true
+	return false
 
 func check_earth_block_space():
 	var x = %EarhtBlockSpace.get_overlapping_bodies()

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://vl2evf4od0ls"]
+
+[ext_resource type="Script" uid="uid://ch5vlkyaq0fno" path="res://Scripts/SwitchableObject.gd" id="1_8am8r"]
+[ext_resource type="Texture2D" uid="uid://47gyut2y5yen" path="res://icon.svg" id="2_35kdl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv5fy"]
+size = Vector2(64, 64)
+
+[node name="SwitchableObject" type="StaticBody2D" node_paths=PackedStringArray("collision")]
+script = ExtResource("1_8am8r")
+collision = NodePath("CollisionShape2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kv5fy")
+
+[node name="Icon" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_35kdl")
