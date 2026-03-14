@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://bkebn6jtk2a8l"]
+[gd_scene load_steps=14 format=4 uid="uid://bkebn6jtk2a8l"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://Scenes/Player.tscn" id="1_kxr0u"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://Scenes/FinishArea.tscn" id="2_kv5fy"]
@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://c7ikxeji6215b" path="res://Scenes/PressurePlate.tscn" id="8_kv5fy"]
 [ext_resource type="PackedScene" uid="uid://vl2evf4od0ls" path="res://Scenes/SwitchableObject.tscn" id="9_jeepb"]
 [ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://Scenes/Fire.tscn" id="10_8x8nf"]
-[ext_resource type="PackedScene" uid="uid://c7vs0e7ft3dst" path="res://Scenes/Lever.tscn" id="11_ej1bv"]
+[ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://Scenes/DialogueArea.tscn" id="11_ej1bv"]
+[ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://Scenes/GUI/DialogueCanvas.tscn" id="12_cxxvu"]
+[ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://Assets/Enemy/Enemy.png" id="13_a5le3"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -49,40 +51,8 @@ element = 3
 position = Vector2(1218, 433)
 element = 2
 
-[node name="MaskPickup3" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(247, 611)
-element = 4
-
-[node name="MaskPickup5" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(326, 611)
-element = 4
-
-[node name="MaskPickup7" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(326, 541)
-element = 4
-
-[node name="MaskPickup8" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(247, 534)
-element = 4
-
-[node name="MaskPickup9" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(193, 517)
-element = 4
-
-[node name="MaskPickup10" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(229, 445)
-element = 4
-
-[node name="MaskPickup11" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(306, 457)
-element = 4
-
-[node name="MaskPickup6" parent="Node2D" instance=ExtResource("7_a5le3")]
-position = Vector2(175, 611)
-element = 4
-
 [node name="PressurePlate" parent="." node_paths=PackedStringArray("switchable_object") instance=ExtResource("8_kv5fy")]
-position = Vector2(928, 580)
+position = Vector2(1144, 576)
 switchable_object = NodePath("../SwitchableObject")
 
 [node name="SwitchableObject" parent="." instance=ExtResource("9_jeepb")]
@@ -94,8 +64,22 @@ position = Vector2(1280, 552)
 [node name="Fire" parent="." instance=ExtResource("10_8x8nf")]
 position = Vector2(1164, 260)
 
-[node name="Lever" parent="." node_paths=PackedStringArray("switchable_object") instance=ExtResource("11_ej1bv")]
-position = Vector2(590, 552)
-switchable_object = NodePath("../SwitchableObject2")
+[node name="DialogueCanvas" parent="." instance=ExtResource("12_cxxvu")]
+visible = false
+
+[node name="DialogueArea" parent="." node_paths=PackedStringArray("dialogue_canvas") instance=ExtResource("11_ej1bv")]
+position = Vector2(535, 537)
+dialogue_canvas = NodePath("../DialogueCanvas")
+
+[node name="DialogueArea2" parent="." node_paths=PackedStringArray("dialogue_canvas") instance=ExtResource("11_ej1bv")]
+position = Vector2(912, 524)
+dialogue_canvas = NodePath("../DialogueCanvas")
+character_array = ["Szaman", "Chief"]
+sentence_array = ["A a je jestm złym szamanem!", "O nie muszę Cię pokonać!!!"]
+
+[node name="Cartograph" parent="DialogueArea2" index="1"]
+texture = ExtResource("13_a5le3")
+hframes = 2
 
 [editable path="Player"]
+[editable path="DialogueArea2"]

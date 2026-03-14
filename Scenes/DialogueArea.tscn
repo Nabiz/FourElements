@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwkde8i2sh1ce"]
+
+[ext_resource type="Script" uid="uid://d0fctfika0ndq" path="res://Scripts/DialogArea.gd" id="1_a2wum"]
+[ext_resource type="Texture2D" uid="uid://x5ibwxw3h8xe" path="res://Assets/Cartograph/cartograph.png" id="2_6sh7c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tdj7p"]
+radius = 64.0
+
+[node name="DialogueArea" type="Area2D" node_paths=PackedStringArray("hint_label")]
+script = ExtResource("1_a2wum")
+hint_label = NodePath("Label")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_tdj7p")
+
+[node name="Cartograph" type="Sprite2D" parent="."]
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("2_6sh7c")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -97.0
+offset_top = -92.0
+offset_right = 94.0
+offset_bottom = -69.0
+text = "Press \"Down Key\" to talk"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

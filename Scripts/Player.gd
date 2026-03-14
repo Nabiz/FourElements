@@ -27,8 +27,10 @@ static var instance
 func _enter_tree() -> void:
 	instance = self
 
+var can_move: bool = true
+
 func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_fire"):
+	if Input.is_action_just_pressed("ui_fire") and can_move:
 		spawn_fire_bullet()
 		spawn_air_bullet()
 		spawn_earth_block()
@@ -38,9 +40,10 @@ func _process(_delta: float) -> void:
 		LevelManagerAutoload.restart_level()
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("ui_select"):
-		double_jump()
-	basic_movement(delta)
+	if can_move:
+		if Input.is_action_just_pressed("ui_select"):
+			double_jump()
+		basic_movement(delta)
 
 func basic_movement(delta: float) -> void:
 	if not is_on_floor():
