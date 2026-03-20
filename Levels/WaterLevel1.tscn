@@ -9,14 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://Scenes/MaskPickup.tscn" id="7_vasab"]
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://Scenes/Key.tscn" id="8_kt8ba"]
 
-[node name="TestLevel" type="Node2D"]
+[node name="WaterLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_qomj6")]
 position = Vector2(523, 530)
-
-[node name="Camera2D" parent="Player" index="3"]
-limit_left = 0
-limit_right = 1792
+camera_limits = [null, -1000000, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_qntih")]
 position = Vector2(1648, 522)
@@ -53,5 +50,3 @@ element = 4
 
 [node name="Key" parent="." instance=ExtResource("8_kt8ba")]
 position = Vector2(1471, 221)
-
-[editable path="Player"]

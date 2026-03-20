@@ -19,6 +19,9 @@ var face_direction = Vector2.RIGHT
 @export var earth_sprite: Texture
 @export var air_sprite: Texture
 
+@export var camera: Camera2D
+@export var camera_limits: PackedInt32Array = []
+
 var fire_bullet_scene: PackedScene = preload("res://Scenes/FireBullet.tscn")
 var air_bullet_scene: PackedScene = preload("res://Scenes/AirBullet.tscn")
 var earth_block_scene: PackedScene = preload("res://Scenes/EarthBlock.tscn")
@@ -28,6 +31,12 @@ func _enter_tree() -> void:
 	instance = self
 
 var can_move: bool = true
+
+func _ready() -> void:
+	camera.limit_left = camera_limits[0]
+	camera.limit_top = camera_limits[1]
+	camera.limit_right = camera_limits[2]
+	camera.limit_bottom = camera_limits[3]
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fire") and can_move:

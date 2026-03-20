@@ -13,11 +13,7 @@
 
 [node name="Player" parent="." instance=ExtResource("1_nbmlc")]
 position = Vector2(248, 211)
-
-[node name="Camera2D" parent="Player" index="3"]
-limit_left = 0
-limit_top = -304
-limit_right = 1280
+camera_limits = [null, -304, 1280, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_35hm5")]
 position = Vector2(127, 9)
@@ -64,5 +60,3 @@ position = Vector2(599, 591)
 
 [node name="Key" parent="." instance=ExtResource("8_35hm5")]
 position = Vector2(219, 577)
-
-[editable path="Player"]

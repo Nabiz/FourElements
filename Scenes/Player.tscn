@@ -86,7 +86,7 @@ _data = {
 &"run": SubResource("Animation_bhhdu")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("marker_point", "sprites", "animation", "blank_sprite")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("marker_point", "sprites", "animation", "blank_sprite", "camera")]
 z_index = 1
 script = ExtResource("1_kyqiw")
 marker_point = NodePath("Marker2D")
@@ -98,6 +98,8 @@ fire_sprite = ExtResource("3_gntrk")
 water_sprite = ExtResource("4_nn08x")
 earth_sprite = ExtResource("5_52ee3")
 air_sprite = ExtResource("6_bhhdu")
+camera = NodePath("Camera2D")
+camera_limits = [null, null, null, 720]
 
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2(0, -13)

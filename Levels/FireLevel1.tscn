@@ -13,10 +13,7 @@
 
 [node name="Player" parent="." instance=ExtResource("1_5l3s2")]
 position = Vector2(111, 584)
-
-[node name="Camera2D" parent="Player" index="3"]
-limit_left = 0
-limit_right = 1792
+camera_limits = [null, -1000000, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_tckme")]
 position = Vector2(1622, 585)
@@ -66,5 +63,3 @@ text = "\"X\""
 
 [node name="Enemy" parent="." instance=ExtResource("8_tckme")]
 position = Vector2(1264, 580)
-
-[editable path="Player"]

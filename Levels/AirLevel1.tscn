@@ -8,14 +8,11 @@
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://Scenes/GUI/EndLevelPopup.tscn" id="6_n0vrp"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://Scenes/LevelObjective.tscn" id="8_rux8e"]
 
-[node name="TestLevel" type="Node2D"]
+[node name="AirLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_g83ix")]
 position = Vector2(111, 584)
-
-[node name="Camera2D" parent="Player" index="3"]
-limit_left = 0
-limit_right = 1792
+camera_limits = [null, -1000000, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("5_k21mx")]
 position = Vector2(1622, 521)
@@ -40,5 +37,3 @@ scale = Vector2(1.085, 1)
 [node name="MaskPickup" parent="Node2D" instance=ExtResource("2_h3oo1")]
 position = Vector2(938, 540)
 element = 4
-
-[editable path="Player"]

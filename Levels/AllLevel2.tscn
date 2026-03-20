@@ -13,15 +13,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0va4v"]
 size = Vector2(285.769, 20)
 
-[node name="TestLevel" type="Node2D"]
+[node name="AllLevel2" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_amow4")]
 position = Vector2(575, 541)
-
-[node name="Camera2D" parent="Player" index="3"]
-limit_left = -1024
-limit_top = -432
-limit_right = 1792
+camera_limits = [-1024, -432, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_0va4v")]
 position = Vector2(866, 521)
@@ -110,5 +106,4 @@ position = Vector2(-893, 75)
 position = Vector2(1056, 518)
 move_duration = 2.0
 
-[editable path="Player"]
 [editable path="WaterPath"]

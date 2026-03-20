@@ -9,15 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://Scenes/Key.tscn" id="8_54ec6"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://Scenes/Enemy.tscn" id="8_qrakl"]
 
-[node name="FireLevel" type="Node2D"]
+[node name="EarthLevel1" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_pnsri")]
 position = Vector2(138, 530)
-
-[node name="Camera2D" parent="Player" index="3"]
-limit_left = 0
-limit_top = -48
-limit_right = 1792
+camera_limits = [null, -48, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_54ec6")]
 position = Vector2(1420, 584)
@@ -71,5 +67,3 @@ move_duration = 0.3
 
 [node name="Key" parent="." instance=ExtResource("8_54ec6")]
 position = Vector2(1666, 481)
-
-[editable path="Player"]
