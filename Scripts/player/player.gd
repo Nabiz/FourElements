@@ -1,0 +1,162 @@
+class_name Player
+extends CharacterBody2D
+
+
+const SPEED = 250.0
+var JUMP_VELOCITY = -420.0
+const HIGHER_JUMP_VELOCITY = -550.0
+
+var face_direction = Vector2.RIGHT
+
+@export var higher_jumps: bool = false
+
+@export var marker_point: Marker2D
+@export var sprites: Node
+@export var animation: AnimationPlayer
+
+@export_category("ElementSprites")
+@export var blank_sprite: Sprite2D
+@export var blank_sprite_texture: Texture
+@export var fire_sprite: Texture
+@export var water_sprite: Texture
+@export var earth_sprite: Texture
+@export var air_sprite: Texture
+
+@export var camera: Camera2D
+@export var camera_limits: PackedInt32Array = []
+
+@export var fire_bullet_scene: PackedScene
+@export var air_bullet_scene: PackedScene
+@export var earth_block_scene: PackedScene
+
+static var instance
+func _enter_tree() -> void:
+	instance = self
+
+var can_move: bool = true
+
+func _ready() -> void:
+	camera.limit_left = camera_limits[0]
+	camera.limit_top = camera_limits[1]
+	camera.limit_right = camera_limits[2]
+	camera.limit_bottom = camera_limits[3]
+	
+	if higher_jumps:
+		JUMP_VELOCITY = HIGHER_JUMP_VELOCITY
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_fire") and can_move:
+		spawn_fire_bullet()
+		spawn_air_bullet()
+		spawn_earth_block()
+		spawn_water()
+	play_animation()
+	if global_position.y > 1000:
+		LevelManagerAutoload.restart_level()
+
+func _physics_process(delta: float) -> void:
+	if can_move:
+		if Input.is_action_just_pressed("ui_select"):
+			double_jump()
+		basic_movement(delta)
+
+func basic_movement(delta: float) -> void:
+	if not is_on_floor():
+		velocity += get_gravity() * delta
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		if Input.is_action_pressed("ui_down"):
+			set_collision_mask_value(8, false)
+			await get_tree().create_timer(0.2).timeout
+			set_collision_mask_value(8, true)
+		else:
+			velocity.y = JUMP_VELOCITY
+	var direction := Input.get_axis("ui_left", "ui_right")
+	if direction:
+		velocity.x = direction * SPEED
+		_set_face_direction(direction)
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	move_and_slide()
+
+func play_animation():
+	if !is_on_floor():
+		animation.play("jump")
+	elif abs(velocity.x) > 0.1:
+		animation.play("run")
+	else:
+		animation.play("idle")
+
+func change_element(element: MaskManager.Element) -> void:
+	change_sprite(element)
+
+func change_sprite(element: MaskManager.Element):
+	match element:
+		MaskManager.Element.BLANK:
+			blank_sprite.texture = blank_sprite_texture
+		MaskManager.Element.FIRE:
+			blank_sprite.texture = fire_sprite
+		MaskManager.Element.WATER:
+			blank_sprite.texture = water_sprite
+		MaskManager.Element.EARTH:
+			blank_sprite.texture = earth_sprite
+		MaskManager.Element.AIR:
+			blank_sprite.texture = air_sprite
+		_:
+			blank_sprite.show()
+
+func double_jump():
+	if MaskManager.current_element == MaskManager.Element.AIR:
+		if !is_on_floor():
+			MaskManager.use_ammo()
+			velocity.y = 1.2 * JUMP_VELOCITY
+
+func spawn_fire_bullet():
+	if MaskManager.current_element == MaskManager.Element.FIRE:
+		MaskManager.use_ammo()
+		var bullet: FireBullet = fire_bullet_scene.instantiate()
+		bullet.direction = face_direction
+		bullet.position = position + Vector2(0, -16)
+		get_parent().add_child(bullet)
+
+func spawn_air_bullet():
+	if MaskManager.current_element == MaskManager.Element.AIR:
+		MaskManager.use_ammo()
+		var bullet: AirBullet = air_bullet_scene.instantiate()
+		bullet.direction = face_direction
+		bullet.position = position + Vector2(0, -16)
+		get_parent().add_child(bullet)
+
+func spawn_water():
+	if MaskManager.current_element == MaskManager.Element.WATER:
+		if check_water_space():
+			MaskManager.use_ammo()
+
+func check_water_space():
+	var x = %EarhtBlockSpace.get_overlapping_bodies()
+	for body in x:
+		if body is Fire:
+			body.remove_fire()
+			return true
+	return false
+
+func check_earth_block_space():
+	var x = %EarhtBlockSpace.get_overlapping_bodies()
+	return x.size() == 0
+
+func spawn_earth_block():
+	if MaskManager.current_element == MaskManager.Element.EARTH:
+		if check_earth_block_space():
+			MaskManager.use_ammo()
+			var block: EarthBlock = earth_block_scene.instantiate()
+			block.global_position = marker_point.global_position
+			get_parent().add_child(block)
+
+func _set_face_direction(direction):
+		if direction < -0.05:
+			sprites.scale.x = -1
+			face_direction = Vector2.LEFT
+			marker_point.position.x = -64.0
+		elif direction > 0.05:
+			sprites.scale.x = 1
+			face_direction = Vector2.RIGHT
+			marker_point.position.x = 64.0

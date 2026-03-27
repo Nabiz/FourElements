@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bxy410ibkswes"
-path="res://.godot/imported/earth_mask.png-9884b779541e857a9821bee9ad3137ef.ctex"
+path="res://.godot/imported/earth_mask.png-2ab60032c933ae16a7988a6acff19689.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Mask/earth_mask.png"
-dest_files=["res://.godot/imported/earth_mask.png-9884b779541e857a9821bee9ad3137ef.ctex"]
+source_file="res://assets/mask/earth_mask.png"
+dest_files=["res://.godot/imported/earth_mask.png-2ab60032c933ae16a7988a6acff19689.ctex"]
 
 [params]
 

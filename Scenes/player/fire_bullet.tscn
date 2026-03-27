@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=3 uid="uid://xa78ghncf2hi"]
+
+[ext_resource type="Script" uid="uid://iwqov1l3nq2e" path="res://scripts/player/fire_bullet.gd" id="1_7musd"]
+[ext_resource type="Texture2D" uid="uid://47gyut2y5yen" path="res://icon.svg" id="1_hvu62"]
+[ext_resource type="Shader" uid="uid://cbdwvl2im4q3i" path="res://resources/shaders/fire_bullet.gdshader" id="2_yh38r"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7musd"]
+radius = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cfoml"]
+shader = ExtResource("2_yh38r")
+shader_parameter/fire_color = Color(1, 0.33, 0.068, 1)
+shader_parameter/fire_power_factor = 2.0
+shader_parameter/fire_intensity = 3.0
+shader_parameter/fire_start = 1.0
+shader_parameter/ball_size = 1.0
+shader_parameter/roughness = 0.675
+shader_parameter/detail = 6
+shader_parameter/scale = 4.0
+shader_parameter/lacunarity = 2.0
+
+[node name="FireBullet" type="Area2D"]
+script = ExtResource("1_7musd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7musd")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_cfoml")
+position = Vector2(-48, 0)
+texture = ExtResource("1_hvu62")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

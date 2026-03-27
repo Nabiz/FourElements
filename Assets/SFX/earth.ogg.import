@@ -3,12 +3,12 @@
 importer="oggvorbisstr"
 type="AudioStreamOggVorbis"
 uid="uid://tt86win0mkfr"
-path="res://.godot/imported/earth.ogg-bbd6c3ec3e861fed962ac4e9f1c5d5bf.oggvorbisstr"
+path="res://.godot/imported/earth.ogg-86f7b71760ce4ca5407501c65d65d838.oggvorbisstr"
 
 [deps]
 
-source_file="res://Assets/SFX/earth.ogg"
-dest_files=["res://.godot/imported/earth.ogg-bbd6c3ec3e861fed962ac4e9f1c5d5bf.oggvorbisstr"]
+source_file="res://assets/sfx/earth.ogg"
+dest_files=["res://.godot/imported/earth.ogg-86f7b71760ce4ca5407501c65d65d838.oggvorbisstr"]
 
 [params]
 

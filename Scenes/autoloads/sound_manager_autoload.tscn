@@ -1,0 +1,41 @@
+[gd_scene load_steps=12 format=3 uid="uid://ctrkbuppq7nbs"]
+
+[ext_resource type="Script" uid="uid://bjbcjhbx4ktqw" path="res://scripts/managers/sound_manager.gd" id="1_o3t63"]
+[ext_resource type="AudioStream" uid="uid://jk2eres5osan" path="res://assets/sfx/fire.ogg" id="2_11ih6"]
+[ext_resource type="AudioStream" uid="uid://cwrfxcm3qy0gs" path="res://assets/sfx/water.wav" id="3_gnq2m"]
+[ext_resource type="AudioStream" uid="uid://tt86win0mkfr" path="res://assets/sfx/earth.ogg" id="4_rkghj"]
+[ext_resource type="AudioStream" uid="uid://cn10lsltil7wj" path="res://assets/sfx/air.wav" id="5_wxvyw"]
+[ext_resource type="AudioStream" uid="uid://do6qc0t5xy5y2" path="res://assets/soundtrack/tad_-_unexplored_-_expanded_1_by_bo_jingles.mp3" id="6_rkghj"]
+[ext_resource type="AudioStream" uid="uid://cmg7bff48gtt2" path="res://assets/soundtrack/a_newcomer_full.wav" id="7_wxvyw"]
+[ext_resource type="AudioStream" uid="uid://y3ampefo8alo" path="res://assets/sfx/intro.mp3" id="8_ip3dx"]
+[ext_resource type="AudioStream" uid="uid://ckcowsv5he3tf" path="res://assets/sfx/outro.mp3" id="9_jy21v"]
+[ext_resource type="AudioStream" uid="uid://q6whh5qlilpo" path="res://assets/sfx/death.mp3" id="10_jy21v"]
+[ext_resource type="AudioStream" uid="uid://fb1lv7g187i7" path="res://assets/sfx/coin.wav" id="11_0gd4e"]
+
+[node name="SoundManagerAutoload" type="Node" node_paths=PackedStringArray("sfx_audio1", "sfx_audio2", "sfx_audio3", "music_audio")]
+process_mode = 3
+script = ExtResource("1_o3t63")
+sfx_audio1 = NodePath("SFXAudio")
+sfx_audio2 = NodePath("SFXAudio2")
+sfx_audio3 = NodePath("SFXAudio3")
+music_audio = NodePath("MusicPlayer")
+fire_sound = ExtResource("2_11ih6")
+water_sound = ExtResource("3_gnq2m")
+earth_sound = ExtResource("4_rkghj")
+air_sound = ExtResource("5_wxvyw")
+menu_music = ExtResource("6_rkghj")
+level_music = ExtResource("7_wxvyw")
+intro_sound = ExtResource("8_ip3dx")
+outro_sound = ExtResource("9_jy21v")
+death = ExtResource("10_jy21v")
+key = ExtResource("11_0gd4e")
+
+[node name="SFXAudio" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXAudio2" type="AudioStreamPlayer" parent="."]
+
+[node name="SFXAudio3" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -20.0

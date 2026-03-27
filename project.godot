@@ -17,10 +17,10 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-MaskManagerAutoload="*res://Scenes/Autoloads/MaskManagerAutoload.tscn"
-WaterPathManagerAutoload="*res://Scenes/Autoloads/WaterPathManagerAutoload.tscn"
-LevelManagerAutoload="*res://Scenes/Autoloads/LevelManagerAutoload.tscn"
-SoundManagerAutoload="*res://Scenes/Autoloads/SoundManagerAutoload.tscn"
+MaskManagerAutoload="*res://scenes/autoloads/mask_manager_autoload.tscn"
+WaterPathManagerAutoload="*res://scenes/autoloads/water_path_manager_autoload.tscn"
+LevelManagerAutoload="*res://scenes/autoloads/level_manager_autoload.tscn"
+SoundManagerAutoload="*res://scenes/autoloads/sound_manager_autoload.tscn"
 
 [display]
 
@@ -31,11 +31,11 @@ window/stretch/mode="canvas_items"
 [file_customization]
 
 folder_colors={
-"res://Assets/": "pink",
-"res://Levels/": "yellow",
-"res://Resources/": "purple",
-"res://Scenes/": "green",
-"res://Scripts/": "blue"
+"res://assets/": "pink",
+"res://levels/": "yellow",
+"res://resources/": "purple",
+"res://scenes/": "green",
+"res://scripts/": "blue"
 }
 
 [gui]

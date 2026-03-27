@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://bqyfju7safsrg"]
 
-[ext_resource type="Script" uid="uid://ifr5jmqyupem" path="res://Scripts/GUI/Outro.gd" id="1_yruvl"]
-[ext_resource type="Theme" uid="uid://b5cjnydq4hbi5" path="res://Resources/theme.tres" id="6_dyhxn"]
+[ext_resource type="Script" uid="uid://ifr5jmqyupem" path="res://scripts/gui/outro.gd" id="1_yruvl"]
+[ext_resource type="Theme" uid="uid://b5cjnydq4hbi5" path="res://resources/themes/theme.tres" id="6_dyhxn"]
 
 [sub_resource type="Animation" id="Animation_xkxkw"]
 length = 0.001

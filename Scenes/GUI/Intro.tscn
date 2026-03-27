@@ -1,11 +1,11 @@
 [gd_scene load_steps=10 format=3 uid="uid://c074qn4q1gars"]
 
-[ext_resource type="Script" uid="uid://b7bwttejo6ga1" path="res://Scripts/GUI/Intro.gd" id="1_w7sfs"]
-[ext_resource type="Texture2D" uid="uid://b6ml2ofd7iwi8" path="res://Assets/Elements/fire.png" id="2_ug5lx"]
-[ext_resource type="Texture2D" uid="uid://cnu1e2ti2ywos" path="res://Assets/Elements/water.png" id="3_xkxkw"]
-[ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://Assets/Elements/earth.png" id="4_an2ni"]
-[ext_resource type="Texture2D" uid="uid://bh5g48w1u1mdy" path="res://Assets/Elements/air.png" id="5_p87ff"]
-[ext_resource type="Theme" uid="uid://b5cjnydq4hbi5" path="res://Resources/theme.tres" id="6_an2ni"]
+[ext_resource type="Script" uid="uid://b7bwttejo6ga1" path="res://scripts/gui/intro.gd" id="1_w7sfs"]
+[ext_resource type="Texture2D" uid="uid://b6ml2ofd7iwi8" path="res://assets/elements/fire.png" id="2_ug5lx"]
+[ext_resource type="Texture2D" uid="uid://cnu1e2ti2ywos" path="res://assets/elements/water.png" id="3_xkxkw"]
+[ext_resource type="Texture2D" uid="uid://hw2jiubd6fbq" path="res://assets/elements/earth.png" id="4_an2ni"]
+[ext_resource type="Texture2D" uid="uid://bh5g48w1u1mdy" path="res://assets/elements/air.png" id="5_p87ff"]
+[ext_resource type="Theme" uid="uid://b5cjnydq4hbi5" path="res://resources/themes/theme.tres" id="6_an2ni"]
 
 [sub_resource type="Animation" id="Animation_xkxkw"]
 length = 0.001
