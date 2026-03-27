@@ -88,6 +88,7 @@ _data = {
 
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("marker_point", "sprites", "animation", "blank_sprite", "camera")]
 z_index = 1
+collision_mask = 129
 script = ExtResource("1_kyqiw")
 marker_point = NodePath("Marker2D")
 sprites = NodePath("Sprites")
@@ -99,7 +100,7 @@ water_sprite = ExtResource("4_nn08x")
 earth_sprite = ExtResource("5_52ee3")
 air_sprite = ExtResource("6_bhhdu")
 camera = NodePath("Camera2D")
-camera_limits = [null, null, null, 720]
+camera_limits = [-1000000, -1000000, 1000000, 720]
 
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2(0, -13)

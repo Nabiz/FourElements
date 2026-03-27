@@ -3,9 +3,12 @@ extends CharacterBody2D
 
 
 const SPEED = 250.0
-const JUMP_VELOCITY = -420.0
+var JUMP_VELOCITY = -420.0
+const HIGHER_JUMP_VELOCITY = -550.0
 
 var face_direction = Vector2.RIGHT
+
+@export var higher_jumps: bool = false
 
 @export var marker_point: Marker2D
 @export var sprites: Node
@@ -37,6 +40,9 @@ func _ready() -> void:
 	camera.limit_top = camera_limits[1]
 	camera.limit_right = camera_limits[2]
 	camera.limit_bottom = camera_limits[3]
+	
+	if higher_jumps:
+		JUMP_VELOCITY = HIGHER_JUMP_VELOCITY
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fire") and can_move:
@@ -58,7 +64,12 @@ func basic_movement(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		if Input.is_action_pressed("ui_down"):
+			set_collision_mask_value(8, false)
+			await get_tree().create_timer(0.2).timeout
+			set_collision_mask_value(8, true)
+		else:
+			velocity.y = JUMP_VELOCITY
 	var direction := Input.get_axis("ui_left", "ui_right")
 	if direction:
 		velocity.x = direction * SPEED
