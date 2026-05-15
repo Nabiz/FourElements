@@ -1,23 +1,28 @@
 extends Control
 
 @export var animation: AnimationPlayer
-
+@export var menu_button: Button
 @export var show_element_index = 0
+@export var outro_label: Label
 
 @export_multiline var full_text: String
 
+
 func _ready() -> void:
 	play_outro()
-	%MenuButton.grab_focus()
+	menu_button.grab_focus()
+
 
 func play_outro():
 	animation.play("outro")
 
+
 func play_outro_sound():
 	SoundManagerAutoload.play_outro()
 
+
 func play_typewriter_intro():
-	var label = %OutroLabel
+	var label = outro_label
 	label.text = full_text
 	label.visible_ratio = 0.0
 	

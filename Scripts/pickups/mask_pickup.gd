@@ -4,8 +4,9 @@ extends Area2D
 @export var element: MaskManager.Element = MaskManager.Element.FIRE
 @export var collision: CollisionShape2D
 @export var audio_player: AudioStreamPlayer
-
 @export var sprties: Node2D
+@export var outline: Sprite2D
+
 @export_subgroup("Sprites")
 @export var fire_sprite: Sprite2D
 @export var water_sprite: Sprite2D
@@ -17,6 +18,7 @@ extends Area2D
 @export var water_sound: AudioStream
 @export var earth_sound: AudioStream
 @export var air_sound: AudioStream
+
 
 func _ready() -> void:
 	match element:
@@ -33,26 +35,30 @@ func _ready() -> void:
 			audio_player.stream = air_sound
 			air_sprite.show()
 
+
 func _process(_delta: float) -> void:
 	if MaskManager.current_element == MaskManager.Element.BLANK:
 		enable_mask()
+
+
+func enable_mask():
+	outline.show()
+	collision.set_deferred("disabled", false)
+	sprties.modulate = Color(1,1,1,1)
+
+
+func disable_mask():
+	outline.hide()
+	collision.set_deferred("disabled", true)
+	sprties.modulate = Color(1,1,1,0.2)
+
 
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:
 		MaskManager.on_mask_picked(self)
 		audio_player.play()
 
+
 func _on_body_exited(body: Node2D) -> void:
 	if body is Player:
 		disable_mask()
-
-func enable_mask():
-	%Outline.show()
-	collision.set_deferred("disabled", false)
-	sprties.modulate = Color(1,1,1,1)
-
-func disable_mask():
-	%Outline.hide()
-	collision.set_deferred("disabled", true)
-	sprties.modulate = Color(1,1,1,0.2)
-	

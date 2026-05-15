@@ -1,39 +1,43 @@
 class_name Player
 extends CharacterBody2D
 
-
 const SPEED = 250.0
 var JUMP_VELOCITY = -420.0
 const HIGHER_JUMP_VELOCITY = -550.0
 
+static var instance
+
 var face_direction = Vector2.RIGHT
+var can_move: bool = true
 
 @export var higher_jumps: bool = false
-
-@export var marker_point: Marker2D
-@export var sprites: Node
 @export var animation: AnimationPlayer
 
-@export_category("ElementSprites")
+@export_category("Sprites")
+@export var sprites: Node
 @export var blank_sprite: Sprite2D
+@export_subgroup("Textures")
 @export var blank_sprite_texture: Texture
 @export var fire_sprite: Texture
 @export var water_sprite: Texture
 @export var earth_sprite: Texture
 @export var air_sprite: Texture
 
+@export_category("Camera")
 @export var camera: Camera2D
 @export var camera_limits: PackedInt32Array = []
 
+@export_category("Elements Objects")
+@export var marker_point: Marker2D
 @export var fire_bullet_scene: PackedScene
 @export var air_bullet_scene: PackedScene
 @export var earth_block_scene: PackedScene
+@export var earth_block_space: Area2D
 
-static var instance
+
 func _enter_tree() -> void:
 	instance = self
 
-var can_move: bool = true
 
 func _ready() -> void:
 	camera.limit_left = camera_limits[0]
@@ -43,6 +47,7 @@ func _ready() -> void:
 	
 	if higher_jumps:
 		JUMP_VELOCITY = HIGHER_JUMP_VELOCITY
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_fire") and can_move:
@@ -54,11 +59,13 @@ func _process(_delta: float) -> void:
 	if global_position.y > 1000:
 		LevelManagerAutoload.restart_level()
 
+
 func _physics_process(delta: float) -> void:
 	if can_move:
 		if Input.is_action_just_pressed("ui_select"):
 			double_jump()
 		basic_movement(delta)
+
 
 func basic_movement(delta: float) -> void:
 	if not is_on_floor():
@@ -78,6 +85,7 @@ func basic_movement(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 	move_and_slide()
 
+
 func play_animation():
 	if !is_on_floor():
 		animation.play("jump")
@@ -86,8 +94,10 @@ func play_animation():
 	else:
 		animation.play("idle")
 
+
 func change_element(element: MaskManager.Element) -> void:
 	change_sprite(element)
+
 
 func change_sprite(element: MaskManager.Element):
 	match element:
@@ -104,11 +114,13 @@ func change_sprite(element: MaskManager.Element):
 		_:
 			blank_sprite.show()
 
+
 func double_jump():
 	if MaskManager.current_element == MaskManager.Element.AIR:
 		if !is_on_floor():
 			MaskManager.use_ammo()
 			velocity.y = 1.2 * JUMP_VELOCITY
+
 
 func spawn_fire_bullet():
 	if MaskManager.current_element == MaskManager.Element.FIRE:
@@ -118,6 +130,7 @@ func spawn_fire_bullet():
 		bullet.position = position + Vector2(0, -16)
 		get_parent().add_child(bullet)
 
+
 func spawn_air_bullet():
 	if MaskManager.current_element == MaskManager.Element.AIR:
 		MaskManager.use_ammo()
@@ -126,22 +139,26 @@ func spawn_air_bullet():
 		bullet.position = position + Vector2(0, -16)
 		get_parent().add_child(bullet)
 
+
 func spawn_water():
 	if MaskManager.current_element == MaskManager.Element.WATER:
 		if check_water_space():
 			MaskManager.use_ammo()
 
+
 func check_water_space():
-	var x = %EarhtBlockSpace.get_overlapping_bodies()
+	var x = earth_block_space.get_overlapping_bodies()
 	for body in x:
 		if body is Fire:
 			body.remove_fire()
 			return true
 	return false
 
+
 func check_earth_block_space():
-	var x = %EarhtBlockSpace.get_overlapping_bodies()
+	var x = earth_block_space.get_overlapping_bodies()
 	return x.size() == 0
+
 
 func spawn_earth_block():
 	if MaskManager.current_element == MaskManager.Element.EARTH:
@@ -150,6 +167,7 @@ func spawn_earth_block():
 			var block: EarthBlock = earth_block_scene.instantiate()
 			block.global_position = marker_point.global_position
 			get_parent().add_child(block)
+
 
 func _set_face_direction(direction):
 		if direction < -0.05:

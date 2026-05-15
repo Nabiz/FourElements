@@ -13,12 +13,13 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_spqju"]
 size = Vector2(64, 80)
 
-[node name="MaskPickup" type="Area2D" node_paths=PackedStringArray("collision", "audio_player", "sprties", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
+[node name="MaskPickup" type="Area2D" node_paths=PackedStringArray("collision", "audio_player", "sprties", "outline", "fire_sprite", "water_sprite", "earth_sprite", "air_sprite")]
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_oqyrf")
 collision = NodePath("CollisionShape2D")
 audio_player = NodePath("AudioStreamPlayer")
 sprties = NodePath("Sprites")
+outline = NodePath("Outline")
 fire_sprite = NodePath("Sprites/FireSprite")
 water_sprite = NodePath("Sprites/WaterSprite")
 earth_sprite = NodePath("Sprites/EarthSprite")
@@ -29,7 +30,6 @@ earth_sound = ExtResource("4_8akiv")
 air_sound = ExtResource("4_spqju")
 
 [node name="Outline" type="Sprite2D" parent="."]
-unique_name_in_owner = true
 self_modulate = Color(100, 100, 100, 1)
 scale = Vector2(0.28, 0.28)
 texture = ExtResource("5_swy00")

@@ -59,10 +59,12 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kc8y0"]
 size = Vector2(128, 128)
 
-[node name="WoodBox" type="StaticBody2D" node_paths=PackedStringArray("sprite", "animation")]
+[node name="WoodBox" type="StaticBody2D" node_paths=PackedStringArray("sprite", "animation", "cover_sprite", "sprite_outlined")]
 script = ExtResource("1_s4g4q")
 sprite = NodePath("Sprite2D")
 animation = NodePath("AnimationPlayer")
+cover_sprite = NodePath("CoverSprite")
+sprite_outlined = NodePath("Sprite2D/SpriteOutlined")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_s4g4q")
@@ -70,7 +72,6 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_f23en")
 
 [node name="SpriteOutlined" type="ColorRect" parent="Sprite2D"]
-unique_name_in_owner = true
 z_index = -1
 custom_minimum_size = Vector2(68, 68)
 anchors_preset = 8
@@ -86,7 +87,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="CoverSprite" type="Sprite2D" parent="."]
-unique_name_in_owner = true
 scale = Vector2(2, 2)
 texture = ExtResource("1_f23en")
 

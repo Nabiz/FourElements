@@ -1,7 +1,10 @@
 class_name GUI
 extends CanvasLayer
 
+static var instance: GUI
+
 @export var element_texture_rect: TextureRect
+@export var cloud_layer: ParallaxLayer
 @export var ammo_label: Label
 
 @export var key_label: Label
@@ -14,15 +17,17 @@ extends CanvasLayer
 @export var earth_texture: CompressedTexture2D
 @export var air_texture: CompressedTexture2D
 
-static var instance: GUI
+
 func _enter_tree() -> void:
 	instance = self
 
+
 func _process(delta: float) -> void:
-	%CloudLayer.motion_offset.x -= 25 * delta
+	cloud_layer.motion_offset.x -= 25 * delta
 	if Input.is_action_just_pressed("ui_menu"):
 		get_tree().paused = false
 		LevelManagerAutoload.load_menu()
+
 
 func change_element(element: MaskManager.Element) -> void:
 	match element:
@@ -36,18 +41,23 @@ func change_element(element: MaskManager.Element) -> void:
 			element_texture_rect.set_texture(air_texture)
 		_:
 			element_texture_rect.set_texture(blank_texture)
-			
+
+
 func update_ammo(value: int):
 	ammo_label.text = str(value)
+
 
 func update_key(value: int):
 	key_label.text = str(value)
 
+
 func update_enemies(value: int):
 	enemy_label.text = str(value)
 
+
 func _on_reset_button_pressed() -> void:
 	LevelManagerAutoload.restart_level()
+
 
 func _on_menu_button_pressed() -> void:
 	get_tree().paused = false

@@ -19,8 +19,9 @@ shader_parameter/detail = 6
 shader_parameter/scale = 4.0
 shader_parameter/lacunarity = 2.0
 
-[node name="FireBullet" type="Area2D"]
+[node name="FireBullet" type="Area2D" node_paths=PackedStringArray("sprite")]
 script = ExtResource("1_7musd")
+sprite = NodePath("Sprite2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7musd")

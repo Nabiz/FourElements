@@ -1,22 +1,25 @@
 class_name LevelManager
 extends Node
 
+const SAVE_PATH = "user://four_elements.dat"
+
+@export var level_scenes: Array[PackedScene]
 var current_level
 var current_level_index = 0
 var unlocked_level = 0
 var intro_scene: PackedScene = preload("res://scenes/gui/intro.tscn")
 var outro_scene: PackedScene = preload("res://scenes/gui/outro.tscn")
 var menu_scene: PackedScene = preload("res://scenes/gui/main_menu.tscn")
-@export var level_scenes: Array[PackedScene]
 
-const SAVE_PATH = "user://four_elements.dat"
+
+func _ready() -> void:
+	unlocked_level = load_level()
+
 
 func _input(_event: InputEvent) -> void:
 	if Input.is_action_just_pressed("ui_reset"):
 		restart_level()
 
-func _ready() -> void:
-	unlocked_level = load_level()
 
 func change_level(level_index):
 	MaskManager.reset_manager()
@@ -26,19 +29,24 @@ func change_level(level_index):
 	get_tree().change_scene_to_packed(current_level)
 	SoundManagerAutoload.play_music(SoundManagerAutoload.level_music)
 
+
 func restart_level():
 	change_level(current_level_index)
+
 
 func play_intro():
 	get_tree().change_scene_to_packed(intro_scene)
 
+
 func load_menu():
 	unlocked_level = load_level()
 	get_tree().change_scene_to_packed(menu_scene)
-	
+
+
 func play_outro():
 	SoundManagerAutoload.play_music(SoundManagerAutoload.menu_music)
 	get_tree().change_scene_to_packed(outro_scene)
+
 
 func save_level(level_number: int):
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)

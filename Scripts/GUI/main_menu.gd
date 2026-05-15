@@ -3,12 +3,17 @@ extends Control
 @export var main_container: VBoxContainer
 @export var level_select_container: GridContainer
 @export var back_button: Button
+@export var play_button: Button
+@export var sprites_node: Node2D
+
 var level_button_scene: PackedScene = preload("res://scenes/gui/level_button.tscn")
+
 
 func _ready() -> void:
 	update_unlocked_levels()
 	SoundManagerAutoload.play_music(SoundManagerAutoload.menu_music)
-	%PlayButton.grab_focus()
+	play_button.grab_focus()
+
 
 func update_unlocked_levels():
 	var level_buttons = level_select_container.get_children()
@@ -19,25 +24,29 @@ func update_unlocked_levels():
 		level_select_container.add_child(level_button)
 		level_button.set_level_number(level_number)
 
+
 func _on_play_button_pressed() -> void:
 	LevelManagerAutoload.play_intro()
 
+
 func _on_levels_button_pressed() -> void:
-	%Sprites.hide()
+	sprites_node.hide()
 	main_container.hide()
 	level_select_container.show()
 	back_button.show()
 	back_button.grab_focus()
 
+
 func _on_exit_button_pressed() -> void:
 	get_tree().quit()
 
+
 func _on_back_button_pressed() -> void:
-	%Sprites.show()
+	sprites_node.show()
 	main_container.show()
 	level_select_container.hide()
 	back_button.hide()
-	%PlayButton.grab_focus()
+	play_button.grab_focus()
 
 
 func _on_fullscreen_button_pressed() -> void:

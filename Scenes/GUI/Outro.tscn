@@ -91,7 +91,7 @@ _data = {
 &"outro": SubResource("Animation_taq0s")
 }
 
-[node name="Outro" type="Control" node_paths=PackedStringArray("animation")]
+[node name="Outro" type="Control" node_paths=PackedStringArray("animation", "menu_button", "outro_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -100,6 +100,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yruvl")
 animation = NodePath("AnimationPlayer")
+menu_button = NodePath("MarginContainer/MenuButton")
+outro_label = NodePath("OutroLabel")
 full_text = "Opanowałeś wszystkie
 moce masek żywiołów.
 Możesz dumnie nosić miano
@@ -127,7 +129,6 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="MenuButton" type="Button" parent="MarginContainer"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 theme = ExtResource("6_dyhxn")
@@ -141,7 +142,6 @@ libraries = {
 }
 
 [node name="OutroLabel" type="Label" parent="."]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

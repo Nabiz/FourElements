@@ -34,10 +34,11 @@ size = Vector2(70, 127)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xeo28"]
 size = Vector2(61, 28)
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite")]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("sprite", "push_timer")]
 collision_mask = 129
 script = ExtResource("1_wovta")
 sprite = NodePath("AnimatedSprite2D")
+push_timer = NodePath("PushTimer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 13)

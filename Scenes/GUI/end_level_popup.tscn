@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://rhg63creols2" path="res://scripts/gui/end_level_popup.gd" id="1_mi6lc"]
 
-[node name="EndLevelPopup" type="CanvasLayer"]
+[node name="EndLevelPopup" type="CanvasLayer" node_paths=PackedStringArray("next_level_button")]
 process_mode = 3
 visible = false
 script = ExtResource("1_mi6lc")
+next_level_button = NodePath("Panel/VBoxContainer/Button")
 
 [node name="Panel" type="Panel" parent="."]
 custom_minimum_size = Vector2(400, 200)

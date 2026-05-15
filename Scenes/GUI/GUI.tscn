@@ -14,10 +14,11 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jwth5"]
 
-[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("element_texture_rect", "ammo_label", "key_label", "enemy_label")]
+[node name="GUI" type="CanvasLayer" node_paths=PackedStringArray("element_texture_rect", "cloud_layer", "ammo_label", "key_label", "enemy_label")]
 process_mode = 3
 script = ExtResource("1_17j7b")
 element_texture_rect = NodePath("MarginContainer/HBoxContainer/TextureRect")
+cloud_layer = NodePath("ParallaxBackground/CloudLayer")
 ammo_label = NodePath("MarginContainer/HBoxContainer/Label")
 key_label = NodePath("ObjectiveContainer/HBoxContainer/KeyLabel")
 enemy_label = NodePath("ObjectiveContainer/HBoxContainer/EnemyLabel")
@@ -38,7 +39,6 @@ texture = ExtResource("7_7fy40")
 centered = false
 
 [node name="CloudLayer" type="ParallaxLayer" parent="ParallaxBackground"]
-unique_name_in_owner = true
 motion_scale = Vector2(0.2, 0.2)
 motion_mirroring = Vector2(2560, 0)
 
@@ -95,15 +95,13 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(100, 80)
 layout_mode = 2
 size_flags_horizontal = 8
-text = "RESETUJ
-POZIOM"
+text = "Reset"
 
 [node name="MenuButton" type="Button" parent="MarginContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(100, 80)
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Wyjdź do
-MENU"
+text = "Menu"
 
 [node name="ObjectiveContainer" type="MarginContainer" parent="."]
 anchors_preset = 5

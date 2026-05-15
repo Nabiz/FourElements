@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="FourElements"
+config/name="Maskbound"
 run/main_scene="uid://dmfbkxe52mhcn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
@@ -26,6 +26,7 @@ SoundManagerAutoload="*res://scenes/autoloads/sound_manager_autoload.tscn"
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=3
 window/stretch/mode="canvas_items"
 
 [file_customization]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bcvat1s8jo4il"]
+[gd_scene load_steps=15 format=4 uid="uid://bcvat1s8jo4il"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_xfmod"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_gur2h"]
@@ -8,23 +8,21 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="6_5cabp"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="7_tdya1"]
 [ext_resource type="PackedScene" uid="uid://bn85t4sjvtkks" path="res://scenes/props/wood_box.tscn" id="7_vy2kb"]
+[ext_resource type="Texture2D" uid="uid://dve8xxd3nthh1" path="res://assets/cartograph/rope.png" id="8_bvx3d"]
 [ext_resource type="Texture2D" uid="uid://x5ibwxw3h8xe" path="res://assets/cartograph/cartograph.png" id="8_gur2h"]
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="10_5cabp"]
 [ext_resource type="Texture2D" uid="uid://47gyut2y5yen" path="res://icon.svg" id="12_5cabp"]
 [ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="12_tdya1"]
+[ext_resource type="Texture2D" uid="uid://by6hvtxok1nhk" path="res://assets/cartograph/pot.png" id="14_ha5n6"]
 
 [node name="CartographLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_xfmod")]
 position = Vector2(816, 594)
-
-[node name="Camera2D" parent="Player" index="3"]
-limit_left = 0
-limit_top = 0
-limit_right = 1280
+camera_limits = [200, 0, 1280, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_gur2h")]
-position = Vector2(418, 579)
+position = Vector2(-266, 503)
 end_level_popup = NodePath("../EndLevelPopup")
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("3_6knwa")]
@@ -59,8 +57,22 @@ element = 3
 position = Vector2(1091, 202)
 scale = Vector2(0.0689655, 3.42545)
 
+[node name="Rope" type="Sprite2D" parent="Node2D"]
+position = Vector2(1091, 202)
+scale = Vector2(0.4, 0.5)
+texture = ExtResource("8_bvx3d")
+
 [node name="Enemy" parent="." instance=ExtResource("7_tdya1")]
 position = Vector2(264, 574)
+SPEED = 0.0
+
+[node name="Enemy2" parent="." instance=ExtResource("7_tdya1")]
+position = Vector2(449, 572)
+SPEED = 0.0
+
+[node name="Enemy3" parent="." instance=ExtResource("7_tdya1")]
+position = Vector2(140, 570)
+SPEED = 0.0
 
 [node name="Cartograph" type="Sprite2D" parent="."]
 position = Vector2(1090, 401)
@@ -69,15 +81,39 @@ scale = Vector2(0.35, 0.35)
 texture = ExtResource("8_gur2h")
 
 [node name="WaterPath" parent="." instance=ExtResource("10_5cabp")]
+visible = false
 position = Vector2(1103, 543)
 
 [node name="Icon" type="Sprite2D" parent="."]
+visible = false
 z_index = -2
 position = Vector2(1085, 610)
 scale = Vector2(2.26563, 1.46875)
 texture = ExtResource("12_5cabp")
 
 [node name="Fire" parent="." instance=ExtResource("12_tdya1")]
+visible = false
 position = Vector2(1090, 617)
 
-[editable path="Player"]
+[node name="Rope2" type="Sprite2D" parent="."]
+position = Vector2(1089, 380)
+rotation = 1.5708
+scale = Vector2(0.4, -0.071701)
+texture = ExtResource("8_bvx3d")
+
+[node name="Rope3" type="Sprite2D" parent="."]
+position = Vector2(1089, 388)
+rotation = 1.5708
+scale = Vector2(0.4, -0.0652012)
+texture = ExtResource("8_bvx3d")
+
+[node name="Rope4" type="Sprite2D" parent="."]
+position = Vector2(1089.82, 397)
+rotation = 1.5708
+scale = Vector2(0.4, -0.0707009)
+texture = ExtResource("8_bvx3d")
+
+[node name="Pot" type="Sprite2D" parent="."]
+position = Vector2(1091, 568)
+scale = Vector2(0.300186, 0.300186)
+texture = ExtResource("14_ha5n6")

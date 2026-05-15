@@ -12,6 +12,7 @@ static func reset_manager():
 	current_element = Element.BLANK
 	ammo = 0
 
+
 static func on_mask_picked(mask: MaskPickup):
 	if mask.element != current_element:
 		for picekd_mask in picked_masks:
@@ -24,6 +25,7 @@ static func on_mask_picked(mask: MaskPickup):
 		ammo += 1
 		picked_masks.append(mask)
 	GUI.instance.update_ammo(ammo)
+
 
 static func change_element(new_element: Element):
 	current_element = new_element
@@ -39,6 +41,7 @@ static func change_element(new_element: Element):
 		WaterPathManager.disable_all_fire_paths()
 	else:
 		WaterPathManager.enable_all_fire_paths()
+
 
 static func use_ammo():
 	ammo -= 1

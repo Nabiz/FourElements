@@ -26,11 +26,13 @@ extends Node
 @export var key: AudioStream
 @export var doors: AudioStream
 
+
 func _ready() -> void:
 	sfx_audio1.volume_db = -100
 	sfx_audio2.volume_db = -100
 	sfx_audio3.volume_db = -100
 	music_audio.volume_db = -100
+
 
 func play_sound(sound: AudioStream):
 	if !sfx_audio1.playing:
@@ -43,16 +45,19 @@ func play_sound(sound: AudioStream):
 		sfx_audio3.stream = sound
 		sfx_audio3.play()
 
+
 func play_music(music):
 	if music_audio.stream != music:
 		music_audio.stop()
 		music_audio.stream = music
 		music_audio.play()
 
+
 func play_intro():
 	sfx_audio3.stop()
 	sfx_audio3.stream = intro_sound
 	sfx_audio3.play()
+
 
 func play_outro():
 	sfx_audio3.stop()

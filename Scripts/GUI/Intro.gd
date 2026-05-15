@@ -10,29 +10,38 @@ extends Control
 @onready var elements_texts: Array[String] = ["Ogień!", "Woda!", "Ziemia!", "Powietrze!"]
 @onready var colors: Array[Color] = [Color.DARK_RED, Color.ROYAL_BLUE, Color.SADDLE_BROWN, Color.SKY_BLUE]
 
+@export var play_button: Button
+@export var intro_label: Label
+
 @export_multiline var full_text: String
+
 
 func _ready() -> void:
 	play_intro()
-	%PlayButton.grab_focus()
+	play_button.grab_focus()
+
 
 func _on_play_button_pressed() -> void:
 	LevelManagerAutoload.change_level(0)
 	SoundManagerAutoload.sfx_audio3.stop()
 
+
 func play_intro():
 	animation.play("intro")
 
+
 func play_intro_sound():
 	SoundManagerAutoload.play_intro()
+
 
 func present_element():
 	textureRect.texture = elements[show_element_index]
 	element_label.add_theme_color_override("font_color", colors[show_element_index])
 	element_label.text = elements_texts[show_element_index]
 
+
 func play_typewriter_intro():
-	var label = %IntroLabel
+	var label = intro_label
 	label.text = full_text
 	label.visible_ratio = 0.0
 	

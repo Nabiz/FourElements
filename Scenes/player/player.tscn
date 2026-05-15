@@ -89,13 +89,12 @@ _data = {
 &"run": SubResource("Animation_bhhdu")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("marker_point", "sprites", "animation", "blank_sprite", "camera")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "sprites", "blank_sprite", "camera", "marker_point", "earth_block_space")]
 z_index = 1
 collision_mask = 129
 script = ExtResource("1_kyqiw")
-marker_point = NodePath("Marker2D")
-sprites = NodePath("Sprites")
 animation = NodePath("AnimationPlayer")
+sprites = NodePath("Sprites")
 blank_sprite = NodePath("Sprites/BlankSprite")
 blank_sprite_texture = ExtResource("2_kyqiw")
 fire_sprite = ExtResource("3_gntrk")
@@ -103,9 +102,12 @@ water_sprite = ExtResource("4_nn08x")
 earth_sprite = ExtResource("5_52ee3")
 air_sprite = ExtResource("6_bhhdu")
 camera = NodePath("Camera2D")
+camera_limits = [-100000, -100000, 1000000, 720]
+marker_point = NodePath("Marker2D")
 fire_bullet_scene = ExtResource("7_h17s1")
 air_bullet_scene = ExtResource("8_je7p5")
 earth_block_scene = ExtResource("9_fm80t")
+earth_block_space = NodePath("Sprites/EarhtBlockSpace")
 
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2(0, -13)
@@ -117,7 +119,6 @@ hframes = 3
 vframes = 2
 
 [node name="EarhtBlockSpace" type="Area2D" parent="Sprites"]
-unique_name_in_owner = true
 position = Vector2(64, 5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/EarhtBlockSpace"]

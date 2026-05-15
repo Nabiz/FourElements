@@ -121,7 +121,7 @@ _data = {
 &"intro": SubResource("Animation_w7sfs")
 }
 
-[node name="Intro" type="Control" node_paths=PackedStringArray("animation", "textureRect", "element_label")]
+[node name="Intro" type="Control" node_paths=PackedStringArray("animation", "textureRect", "element_label", "play_button", "intro_label")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -133,6 +133,8 @@ animation = NodePath("AnimationPlayer")
 textureRect = NodePath("ElementContainer/TextureRect")
 element_label = NodePath("ElementContainer/Label")
 elements = Array[Texture]([ExtResource("2_ug5lx"), ExtResource("3_xkxkw"), ExtResource("4_an2ni"), ExtResource("5_p87ff")])
+play_button = NodePath("MarginContainer/PlayButton")
+intro_label = NodePath("IntroLabel")
 full_text = "Ogień, Woda, Ziemia, Powietrze!
 Tylko ten, kto opanuje moc masek,
 zostanie mistrzem czterech żywiołów
@@ -160,7 +162,6 @@ theme_override_constants/margin_right = 25
 theme_override_constants/margin_bottom = 25
 
 [node name="PlayButton" type="Button" parent="MarginContainer"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 theme = ExtResource("6_an2ni")
@@ -174,7 +175,6 @@ libraries = {
 }
 
 [node name="ElementContainer" type="VBoxContainer" parent="."]
-unique_name_in_owner = true
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -202,7 +202,6 @@ theme_override_font_sizes/font_size = 72
 text = "OGIEŃ!"
 
 [node name="IntroLabel" type="Label" parent="."]
-unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
