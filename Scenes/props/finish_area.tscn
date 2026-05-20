@@ -32,11 +32,12 @@ shader_parameter/edge_softness = 0.1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fsdjd"]
 size = Vector2(64, 132)
 
-[node name="FinishArea" type="Area2D" node_paths=PackedStringArray("close_door", "teleport")]
+[node name="FinishArea" type="Area2D" node_paths=PackedStringArray("close_door", "teleport", "collision_shape")]
 z_index = -3
 script = ExtResource("1_ugrld")
 close_door = NodePath("CloseDoor")
 teleport = NodePath("DoorTeleport")
+collision_shape = NodePath("CollisionShape2D")
 
 [node name="DoorTeleport" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_uvle3")

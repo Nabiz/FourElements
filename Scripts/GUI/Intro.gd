@@ -31,7 +31,8 @@ func play_intro():
 
 
 func play_intro_sound():
-	SoundManagerAutoload.play_intro()
+	return
+	#SoundManagerAutoload.play_intro()
 
 
 func present_element():

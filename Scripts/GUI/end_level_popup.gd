@@ -4,7 +4,6 @@ extends CanvasLayer
 
 @export var next_level_button: Button
 
-
 func focus_button():
 	next_level_button.grab_focus()
 

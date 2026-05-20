@@ -9,6 +9,7 @@ var current_statement_index = 0
 var character_array
 var sentence_array
 
+signal dialogue_ended
 
 func _input(event: InputEvent) -> void:
 	if visible:
@@ -44,3 +45,8 @@ func update_statement():
 func end_dialogue():
 	hide()
 	Player.instance.can_move = true
+	emit_signal("dialogue_ended")
+
+
+func _on_next_label_pressed() -> void:
+	next_statement()

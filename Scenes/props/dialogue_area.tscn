@@ -19,11 +19,15 @@ texture = ExtResource("2_6sh7c")
 
 [node name="Label" type="Label" parent="."]
 visible = false
-offset_left = -97.0
+z_index = 10
+offset_left = -170.0
 offset_top = -92.0
-offset_right = 94.0
-offset_bottom = -69.0
-text = "Press \"Down Key\" to talk"
+offset_right = 179.0
+offset_bottom = -58.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 24
+text = "Wciśnij \"E\", żeby porozmawiać"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

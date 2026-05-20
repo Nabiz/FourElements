@@ -4,6 +4,7 @@ extends Area2D
 @export var end_level_popup: EndLevelPopup
 @export var close_door: Sprite2D
 @export var teleport: Sprite2D
+@export var collision_shape: CollisionShape2D
 
 var is_open = false
 
@@ -25,6 +26,8 @@ func _on_body_entered(body: Node2D) -> void:
 
 
 func open_door():
+	collision_shape.call_deferred("set_disabled", true)
 	close_door.visible = false
 	is_open = true
 	teleport.visible = true
+	collision_shape.call_deferred("set_disabled", false)

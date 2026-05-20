@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bjofflnslcd2q"]
+[gd_scene load_steps=10 format=4 uid="uid://bjofflnslcd2q"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_5l3s2"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_tckme"]
@@ -8,15 +8,16 @@
 [ext_resource type="PackedScene" uid="uid://bn85t4sjvtkks" path="res://scenes/props/wood_box.tscn" id="7_5l3s2"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_dsr4j"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="8_tckme"]
+[ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="9_mrv01"]
 
 [node name="FireLevel" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_5l3s2")]
 position = Vector2(111, 584)
-camera_limits = [null, -1000000, 1792, 720]
+camera_limits = [null, -1000000, 2272, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_tckme")]
-position = Vector2(1622, 585)
+position = Vector2(2145, 585)
 end_level_popup = NodePath("../EndLevelPopup")
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("3_7ne3s")]
@@ -27,7 +28,7 @@ finish_area = NodePath("../FinishArea")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 16)
-tile_map_data = PackedByteArray("AAAAAAgAAQABAAAAAAAAAAkAAQABAAAAAAAAAAoAAQABAAAAAAABAAoAAQAAAAAAAAACAAoAAQAAAAAAAAADAAoAAQAAAAAAAAAAAAQAAQABAAAAAAAAAAUAAQABAAAAAAAAAAYAAQABAAAAAAAAAAcAAQABAAAAAAAEAAoAAQACAAAAAAAFAAoAAQACAAAAAAAGAAoAAQACAAAAAAAHAAoAAQACAAAAAAAIAAoAAQAAAAAAAAAJAAoAAQAAAAAAAAAKAAoAAQAAAAAAAAALAAoAAQAAAAAAAAASAAoAAQAAAAAAAAATAAoAAQAAAAAAAAAUAAoAAQAAAAAAAAAVAAoAAQAAAAAAAAAWAAoAAQAAAAAAAAAXAAoAAQAAAAAAAAAYAAoAAQAAAAAAAAAZAAoAAQAAAAAAAAAaAAoAAQAAAAAAAAAbAAoAAQABAAAAAAARAAoAAQAAAAAAAAAbAAkAAQABAAAAAAAbAAgAAQABAAAAAAAbAAcAAQABAAAAAAAbAAYAAQABAAAAAAAbAAUAAQABAAAAAAAbAAQAAQABAAAAAAAbAAMAAQABAAAAAAAbAAIAAQABAAAAAAAbAAEAAQABAAAAAAAbAAAAAQABAAAAAAAbAP//AQABAAAAAAAAAAMAAQABAAAAAAAAAAIAAQABAAAAAAAAAAEAAQABAAAAAAAAAAAAAQABAAAAAAAAAP//AQABAAAAAAAAAP7/AQABAAAAAAAAAP3/AQABAAAAAAAAAPz/AQABAAAAAAAMAAoAAQACAAAAAAANAAoAAQACAAAAAAAOAAoAAQACAAAAAAAPAAoAAQACAAAAAAAQAAoAAQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAgAAQABAAAAAAAAAAkAAQABAAAAAAAAAAoAAQABAAAAAAABAAoAAQAAAAAAAAACAAoAAQAAAAAAAAADAAoAAQAAAAAAAAAAAAQAAQABAAAAAAAAAAUAAQABAAAAAAAAAAYAAQABAAAAAAAAAAcAAQABAAAAAAAEAAoAAQACAAAAAAAFAAoAAQACAAAAAAAGAAoAAQACAAAAAAAHAAoAAQACAAAAAAAIAAoAAQAAAAAAAAAJAAoAAQAAAAAAAAAKAAoAAQAAAAAAAAALAAoAAQAAAAAAAAASAAoAAQAAAAAAAAATAAoAAQAAAAAAAAAUAAoAAQAAAAAAAAAVAAoAAQAAAAAAAAAWAAoAAQAAAAAAAAAXAAoAAQAAAAAAAAAYAAoAAQAAAAAAAAAZAAoAAQAAAAAAAAAaAAoAAQAAAAAAAAAbAAoAAQABAAAAAAARAAoAAQAAAAAAAAAAAAMAAQABAAAAAAAAAAIAAQABAAAAAAAAAAEAAQABAAAAAAAAAAAAAQABAAAAAAAAAP//AQABAAAAAAAAAP7/AQABAAAAAAAAAP3/AQABAAAAAAAAAPz/AQABAAAAAAAMAAoAAQACAAAAAAANAAoAAQACAAAAAAAOAAoAAQACAAAAAAAPAAoAAQACAAAAAAAQAAoAAQACAAAAAAAcAAoAAQAAAAAAAAAdAAoAAQAAAAAAAAAeAAoAAQAAAAAAAAAfAAoAAQAAAAAAAAAgAAoAAQAAAAAAAAAhAAoAAQAAAAAAAAAiAAoAAQAAAAAAAAAjAAoAAQAAAAAAAAAjAAkAAQABAAAAAAAjAAgAAQABAAAAAAAjAAcAAQABAAAAAAAjAAYAAQABAAAAAAAjAAUAAQABAAAAAAAjAAQAAQABAAAAAAAjAAMAAQABAAAAAAAjAAIAAQABAAAAAAAjAAEAAQABAAAAAAAjAAAAAQABAAAAAAAjAP//AQABAAAAAAAjAP7/AQABAAAAAAA=")
 tile_set = ExtResource("5_0asc1")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -39,7 +40,7 @@ position = Vector2(367, 585)
 position = Vector2(631, 589)
 
 [node name="WoodBox2" parent="." instance=ExtResource("7_5l3s2")]
-position = Vector2(1452, 595)
+position = Vector2(1909, 595)
 
 [node name="LabelHandler" type="Node2D" parent="."]
 position = Vector2(465, 484)
@@ -63,3 +64,10 @@ text = "\"X\""
 
 [node name="Enemy" parent="." instance=ExtResource("8_tckme")]
 position = Vector2(1264, 580)
+
+[node name="Fire" parent="." instance=ExtResource("9_mrv01")]
+position = Vector2(1570, 601)
+
+[node name="MaskPickup" parent="." instance=ExtResource("7_dsr4j")]
+position = Vector2(939, 587)
+element = 2

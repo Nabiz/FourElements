@@ -18,7 +18,8 @@ func play_outro():
 
 
 func play_outro_sound():
-	SoundManagerAutoload.play_outro()
+	pass
+	#SoundManagerAutoload.play_outro()
 
 
 func play_typewriter_intro():

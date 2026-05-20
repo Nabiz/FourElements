@@ -27,11 +27,11 @@ extends Node
 @export var doors: AudioStream
 
 
-func _ready() -> void:
-	sfx_audio1.volume_db = -100
-	sfx_audio2.volume_db = -100
-	sfx_audio3.volume_db = -100
-	music_audio.volume_db = -100
+#func _ready() -> void:
+	#sfx_audio1.volume_db = -100
+	#sfx_audio2.volume_db = -100
+	#sfx_audio3.volume_db = -100
+	#music_audio.volume_db = -100
 
 
 func play_sound(sound: AudioStream):

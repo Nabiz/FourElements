@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d1ouvpi4u5u6y"]
+[gd_scene load_steps=19 format=3 uid="uid://d1ouvpi4u5u6y"]
 
 [ext_resource type="Script" uid="uid://7jg3vhsj6k5r" path="res://scripts/player/player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="2_kyqiw"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://xa78ghncf2hi" path="res://scenes/player/fire_bullet.tscn" id="7_h17s1"]
 [ext_resource type="PackedScene" uid="uid://bcr3dtq4rb71j" path="res://scenes/player/air_bullet.tscn" id="8_je7p5"]
 [ext_resource type="PackedScene" uid="uid://cy55rh68t6vhq" path="res://scenes/player/earth_block.tscn" id="9_fm80t"]
+[ext_resource type="PackedScene" uid="uid://jwg0a6288amj" path="res://scenes/player/water_wave.tscn" id="10_je7p5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_megsn"]
 size = Vector2(80, 64)
@@ -102,11 +103,11 @@ water_sprite = ExtResource("4_nn08x")
 earth_sprite = ExtResource("5_52ee3")
 air_sprite = ExtResource("6_bhhdu")
 camera = NodePath("Camera2D")
-camera_limits = [-100000, -100000, 1000000, 720]
 marker_point = NodePath("Marker2D")
 fire_bullet_scene = ExtResource("7_h17s1")
 air_bullet_scene = ExtResource("8_je7p5")
 earth_block_scene = ExtResource("9_fm80t")
+water_wave_scene = ExtResource("10_je7p5")
 earth_block_space = NodePath("Sprites/EarhtBlockSpace")
 
 [node name="Sprites" type="Node2D" parent="."]

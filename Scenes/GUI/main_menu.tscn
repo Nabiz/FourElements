@@ -62,22 +62,22 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-text = "Play"
+text = "Nowa Gra"
 
 [node name="LevelsButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-text = "Levels"
+text = "Poziomy"
 
 [node name="FullscreenButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-text = "Settings"
+text = "Okno/Pełny Ekran"
 
 [node name="ExitButton" type="Button" parent="VBoxContainer"]
 custom_minimum_size = Vector2(150, 80)
 layout_mode = 2
-text = "Quit"
+text = "Wyjście"
 
 [node name="LevelSelectContainer" type="GridContainer" parent="."]
 visible = false

@@ -25,13 +25,14 @@ var can_move: bool = true
 
 @export_category("Camera")
 @export var camera: Camera2D
-@export var camera_limits: PackedInt32Array = []
+@export var camera_limits: PackedInt32Array = [0, 0, 1280, 720]
 
 @export_category("Elements Objects")
 @export var marker_point: Marker2D
 @export var fire_bullet_scene: PackedScene
 @export var air_bullet_scene: PackedScene
 @export var earth_block_scene: PackedScene
+@export var water_wave_scene: PackedScene
 @export var earth_block_space: Area2D
 
 
@@ -132,12 +133,13 @@ func spawn_fire_bullet():
 
 
 func spawn_air_bullet():
-	if MaskManager.current_element == MaskManager.Element.AIR:
-		MaskManager.use_ammo()
-		var bullet: AirBullet = air_bullet_scene.instantiate()
-		bullet.direction = face_direction
-		bullet.position = position + Vector2(0, -16)
-		get_parent().add_child(bullet)
+	pass
+	#if MaskManager.current_element == MaskManager.Element.AIR:
+		#MaskManager.use_ammo()
+		#var bullet: AirBullet = air_bullet_scene.instantiate()
+		#bullet.direction = face_direction
+		#bullet.position = position + Vector2(0, -16)
+		#get_parent().add_child(bullet)
 
 
 func spawn_water():
@@ -150,6 +152,10 @@ func check_water_space():
 	var x = earth_block_space.get_overlapping_bodies()
 	for body in x:
 		if body is Fire:
+			var water_wave = water_wave_scene.instantiate() as AnimatedSprite2D
+			water_wave.position = body.position
+			water_wave.frame = 0
+			get_parent().add_child(water_wave)
 			body.remove_fire()
 			return true
 	return false
