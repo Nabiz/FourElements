@@ -12,7 +12,7 @@ extends Area2D
 var can_open_dialogue: bool = false
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_talk") and can_open_dialogue:
+	if event.is_action_pressed("ui_talk") and can_open_dialogue and Player.instance.is_on_floor():
 		if dialogue_canvas.visible == false:
 			dialogue_canvas.start_dialogue(character_array, sentence_array)
 			hint_label.hide()

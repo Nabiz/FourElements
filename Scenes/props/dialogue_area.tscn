@@ -27,7 +27,8 @@ offset_bottom = -58.0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 24
-text = "Wciśnij \"E\", żeby porozmawiać"
+text = "Wciśnij \"E\", żeby porozmawiać
+(Y na padzie XBox)"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

@@ -12,7 +12,7 @@ shader_parameter/smoothness = 1.0
 shader_parameter/animated = false
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7lsk"]
-size = Vector2(80, 64)
+size = Vector2(60, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w52ox"]
 size = Vector2(54, 20)
@@ -24,11 +24,10 @@ script = ExtResource("1_unpfy")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_60iae")
 position = Vector2(0, -4)
-scale = Vector2(0.35, 0.35)
+scale = Vector2(0.28, 0.35)
 texture = ExtResource("2_unpfy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_v7lsk")
 
 [node name="KillEnemyArea" type="Area2D" parent="."]

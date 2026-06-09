@@ -14,7 +14,7 @@ signal dialogue_ended
 func _input(event: InputEvent) -> void:
 	if visible:
 		if event.is_action_pressed("ui_up"):
-			end_dialogue()
+			pass#end_dialogue()
 		elif event.is_action_released("ui_select"):
 			next_statement()
 

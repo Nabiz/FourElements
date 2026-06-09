@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bwbm6jsan0am8" path="res://levels/water_level_2.tscn" id="5_bn7id"]
 [ext_resource type="PackedScene" uid="uid://by3pogtl6r5ai" path="res://levels/earth_level_1.tscn" id="6_yhjk2"]
 [ext_resource type="PackedScene" uid="uid://84m6i3ilcqf1" path="res://levels/fire_level_2.tscn" id="7_of0c7"]
-[ext_resource type="PackedScene" uid="uid://cectcv6g74itv" path="res://levels/air_level_3.tscn" id="9_y6n6c"]
+[ext_resource type="PackedScene" uid="uid://cectcv6g74itv" path="res://levels/air_level_3.tscn" id="8_u6ns3"]
 [ext_resource type="PackedScene" uid="uid://be0pf3wehnkhr" path="res://levels/all_Level_2.tscn" id="10_ogw4q"]
 [ext_resource type="PackedScene" uid="uid://bcvat1s8jo4il" path="res://levels/cartographer_level.tscn" id="12_atg64"]
 
 [node name="LevelManagerAutoload" type="Node"]
 script = ExtResource("1_6rk87")
-level_scenes = Array[PackedScene]([ExtResource("2_jukwi"), ExtResource("4_bn7id"), ExtResource("3_sktq0"), ExtResource("3_p1qnx"), ExtResource("6_yhjk2"), ExtResource("5_bn7id"), ExtResource("9_y6n6c"), ExtResource("7_of0c7"), ExtResource("10_ogw4q"), ExtResource("12_atg64")])
+level_scenes = Array[PackedScene]([ExtResource("2_jukwi"), ExtResource("4_bn7id"), ExtResource("3_sktq0"), ExtResource("3_p1qnx"), ExtResource("6_yhjk2"), ExtResource("5_bn7id"), ExtResource("8_u6ns3"), ExtResource("7_of0c7"), ExtResource("10_ogw4q"), ExtResource("12_atg64")])

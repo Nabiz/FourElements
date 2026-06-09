@@ -8,11 +8,13 @@ func _ready() -> void:
 	disable_static_body()
 	WaterPathManager.append_water_path(self)
 
+func _on_area_2d_body_entered(body: Node2D) -> void:
+		if body is Player and MaskManager.current_element != MaskManager.Element.WATER:
+			LevelManagerAutoload.restart_level()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player and MaskManager.current_element == MaskManager.Element.WATER:
-		MaskManager.use_ammo()
-
+			MaskManager.use_ammo()
 
 func enable_static_body():
 	static_body.set_collision_layer_value(1, true)

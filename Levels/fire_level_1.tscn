@@ -14,7 +14,6 @@
 
 [node name="Player" parent="." instance=ExtResource("1_5l3s2")]
 position = Vector2(111, 584)
-camera_limits = [null, -1000000, 2272, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_tckme")]
 position = Vector2(2145, 585)
@@ -66,8 +65,12 @@ text = "\"X\""
 position = Vector2(1264, 580)
 
 [node name="Fire" parent="." instance=ExtResource("9_mrv01")]
+z_index = 10
 position = Vector2(1570, 601)
 
 [node name="MaskPickup" parent="." instance=ExtResource("7_dsr4j")]
-position = Vector2(939, 587)
+position = Vector2(1738, 587)
 element = 2
+
+[node name="MaskPickup2" parent="." instance=ExtResource("7_dsr4j")]
+position = Vector2(1389, 589)

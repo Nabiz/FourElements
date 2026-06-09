@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=4 uid="uid://bcvat1s8jo4il"]
+[gd_scene load_steps=31 format=4 uid="uid://bcvat1s8jo4il"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_xfmod"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_gur2h"]
@@ -7,16 +7,17 @@
 [ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://resources/tilesets/tileset.tres" id="5_vy2kb"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="6_5cabp"]
 [ext_resource type="Texture2D" uid="uid://dve8xxd3nthh1" path="res://assets/cartograph/rope.png" id="8_bvx3d"]
-[ext_resource type="Texture2D" uid="uid://x5ibwxw3h8xe" path="res://assets/cartograph/cartograph.png" id="8_gur2h"]
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="10_5cabp"]
 [ext_resource type="Texture2D" uid="uid://b4hjfgh28lpdo" path="res://assets/cartograph/pot_cover.png" id="10_bvx3d"]
 [ext_resource type="Script" uid="uid://cmjm8o6ifdamu" path="res://scripts/custom_objectives/cartographer_encounter.gd" id="11_pbsl8"]
 [ext_resource type="Texture2D" uid="uid://47gyut2y5yen" path="res://icon.svg" id="12_5cabp"]
 [ext_resource type="Script" uid="uid://dn6vlnmw501al" path="res://scripts/props/rope.gd" id="12_bvx3d"]
+[ext_resource type="Texture2D" uid="uid://dxyohwfduk0tb" path="res://assets/cartograph/cartograph_v2.png" id="12_shu37"]
 [ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="12_tdya1"]
 [ext_resource type="Texture2D" uid="uid://by6hvtxok1nhk" path="res://assets/cartograph/pot.png" id="14_ha5n6"]
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="16_3l2mx"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="17_rvum4"]
+[ext_resource type="Texture2D" uid="uid://csgd6qmb47yrd" path="res://assets/particles/bubble.png" id="18_shu37"]
 
 [sub_resource type="Animation" id="Animation_ha5n6"]
 resource_name = "1"
@@ -30,7 +31,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(1089, 283), Vector2(1090, 439)]
+"values": [Vector2(1089, 283), Vector2(1090, 444)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -69,6 +70,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimationPlayer:current_animation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"waving"]
 }
 
 [sub_resource type="Animation" id="Animation_pbsl8"]
@@ -109,6 +122,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("AnimationPlayer:current_animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [""]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3l2mx"]
 _data = {
@@ -116,14 +141,62 @@ _data = {
 &"RESET": SubResource("Animation_pbsl8")
 }
 
+[sub_resource type="Animation" id="Animation_rdxbt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_shu37"]
+resource_name = "waving"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2ih8c"]
+_data = {
+&"RESET": SubResource("Animation_rdxbt"),
+&"waving": SubResource("Animation_shu37")
+}
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bvx3d"]
 size = Vector2(20, 367)
+
+[sub_resource type="Curve" id="Curve_rdxbt"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.502066, 0.264911), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2ih8c"]
+size = Vector2(171, 30)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rvum4"]
 size = Vector2(250, 172)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_shu37"]
 size = Vector2(77, 87)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdxbt"]
+size = Vector2(21, 55)
 
 [node name="CartographLevel" type="Node2D"]
 
@@ -142,7 +215,7 @@ finish_area = NodePath("../FinishArea")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(0, 16)
-tile_map_data = PackedByteArray("AAAAAAgAAQABAAEAAAAAAAkAAQABAAEAAAAAAAoAAQABAAEAAAABAAoAAQAAAAEAAAACAAoAAQAAAAEAAAADAAoAAQAAAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAEAAoAAQAAAAEAAAAFAAoAAQAAAAEAAAAGAAoAAQAAAAEAAAAHAAoAAQAAAAEAAAAIAAoAAQAAAAEAAAAJAAoAAQAAAAEAAAAKAAoAAQABAAEAAAALAAoAAQABAAEAAAASAAoAAQAAAAEAAAATAAoAAQAAAAEAAAARAAoAAQAAAAEAAAATAAkAAQABAAEAAAATAAgAAQABAAEAAAAAAAMAAQABAAEAAAAAAAIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAAAP7/AQABAAEAAAAAAP3/AQABAAEAAAAAAPz/AQABAAEAAAATAAcAAQAAAAEAAAATAAYAAQAAAAEAAAATAAUAAQAAAAEAAAATAAQAAQAAAAEAAAATAAMAAQAAAAEAAAATAAIAAQAAAAEAAAATAAEAAQAAAAEAAAATAAAAAQAAAAEAAAATAP//AQAAAAEAAAATAP7/AQAAAAEAAAATAP3/AQAAAAEAAAATAPz/AQAAAAEAAAATAPv/AQAAAAEAAAATAPr/AQAAAAEAAAAAAPv/AQAAAAEAAAAAAPr/AQAAAAEAAAAMAAoAAQAAAAEAAAANAAoAAQAAAAEAAAAOAAoAAQAAAAEAAAAPAAoAAQAAAAEAAAAQAAoAAQAAAAEAAAAKAAkAAQACAAAAAAALAAkAAQACAAAAAAAJAAgAAQACAAAAAAAKAAgAAQACAAAAAAAJAAcAAQACAAAAAAAIAAcAAQACAAAAAAAMAAYAAQACAAAAAAANAAYAAQACAAAAAAADAAQAAQACAAAAAAAEAAQAAQACAAAAAAAFAAQAAQACAAAAAAAGAAQAAQACAAAAAAA=")
+tile_map_data = PackedByteArray("AAAAAAgAAQABAAEAAAAAAAkAAQABAAEAAAAAAAoAAQABAAEAAAABAAoAAQAAAAEAAAACAAoAAQAAAAEAAAADAAoAAQAAAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAEAAoAAQAAAAEAAAAFAAoAAQAAAAEAAAAGAAoAAQAAAAEAAAAHAAoAAQAAAAEAAAAIAAoAAQAAAAEAAAAJAAoAAQAAAAEAAAAKAAoAAQABAAEAAAALAAoAAQABAAEAAAASAAoAAQAAAAEAAAATAAoAAQAAAAEAAAARAAoAAQAAAAEAAAATAAkAAQABAAEAAAATAAgAAQABAAEAAAAAAAMAAQABAAEAAAAAAAIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAAAP7/AQABAAEAAAAAAP3/AQABAAEAAAAAAPz/AQABAAEAAAATAAcAAQAAAAEAAAATAAYAAQAAAAEAAAATAAUAAQAAAAEAAAATAAQAAQAAAAEAAAATAAMAAQAAAAEAAAATAAIAAQAAAAEAAAATAAEAAQAAAAEAAAATAAAAAQAAAAEAAAATAP//AQAAAAEAAAATAP7/AQAAAAEAAAATAP3/AQAAAAEAAAATAPz/AQAAAAEAAAATAPv/AQAAAAEAAAATAPr/AQAAAAEAAAAAAPv/AQAAAAEAAAAAAPr/AQAAAAEAAAAMAAoAAQAAAAEAAAANAAoAAQAAAAEAAAAOAAoAAQAAAAEAAAAPAAoAAQAAAAEAAAAQAAoAAQAAAAEAAAAKAAkAAQACAAAAAAALAAkAAQACAAAAAAAJAAgAAQACAAAAAAAKAAgAAQACAAAAAAAJAAcAAQACAAAAAAAIAAcAAQACAAAAAAAMAAYAAQACAAAAAAANAAYAAQACAAAAAAADAAQAAQACAAAAAAAEAAQAAQACAAAAAAAFAAQAAQACAAAAAAAGAAQAAQACAAAAAAAHAAcAAQACAAAAAAA=")
 tile_set = ExtResource("5_vy2kb")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -155,7 +228,7 @@ element = 2
 position = Vector2(321, 231)
 
 [node name="MaskPickup3" parent="Node2D" instance=ExtResource("6_5cabp")]
-position = Vector2(576, 421)
+position = Vector2(479, 418)
 element = 4
 
 [node name="Icon" type="Sprite2D" parent="."]
@@ -182,9 +255,10 @@ z_index = 2
 position = Vector2(1080, 473)
 scale = Vector2(0.6, 0.75)
 
-[node name="CartographerEncounter" type="Node2D" parent="." node_paths=PackedStringArray("fire")]
+[node name="CartographerEncounter" type="Node2D" parent="." node_paths=PackedStringArray("fire", "bubbles")]
 script = ExtResource("11_pbsl8")
 fire = NodePath("Fire")
+bubbles = NodePath("CPUParticles2D")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CartographerEncounter"]
 root_node = NodePath("../Cartograph")
@@ -196,8 +270,14 @@ libraries = {
 position = Vector2(1089, 283)
 rotation = -3.14159
 scale = Vector2(0.35, 0.35)
-texture = ExtResource("8_gur2h")
+texture = ExtResource("12_shu37")
 flip_h = true
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CartographerEncounter/Cartograph"]
+libraries = {
+&"": SubResource("AnimationLibrary_2ih8c")
+}
 
 [node name="Rope" type="Area2D" parent="CartographerEncounter" node_paths=PackedStringArray("animation_player", "collision_shape")]
 position = Vector2(1091, 132)
@@ -236,10 +316,14 @@ texture = ExtResource("8_bvx3d")
 z_index = 1
 position = Vector2(1090, 601)
 
+[node name="CollisionShape2D" parent="CartographerEncounter/Fire" index="1"]
+position = Vector2(-21, 0)
+
 [node name="DialogueArea" parent="CartographerEncounter" node_paths=PackedStringArray("dialogue_canvas") instance=ExtResource("16_3l2mx")]
 position = Vector2(1089, 433)
 monitoring = false
 dialogue_canvas = NodePath("../DialogCanvas")
+character_array = ["Thomas", "Shilah", "Thomas", "Shilah"]
 sentence_array = ["Ratunku nie umiem pływać!", "Nie martw się! Już jesteś bezpieczny. Mam na imię Shilah i jestem wodzem Indian. Znany jestem ze swej łaskawości i oddaniu mojemu ludowi. Potrafię również okazać litość obcym zza Wielkiej Wody, dlatego postanowiłem według swojej woli wyciągnąć Cię z płuapki złych szamanów. Potem zaprowadzę Cię do mojej wioski. ", "Dziękuję, ale mógłbyś się pośpieszyć......", "Jak Bladej Twarzy coś nie pasi to może zostać w tym kotle!"]
 
 [node name="Cartograph" parent="CartographerEncounter/DialogueArea" index="1"]
@@ -247,6 +331,24 @@ visible = false
 
 [node name="DialogCanvas" parent="CartographerEncounter" instance=ExtResource("17_rvum4")]
 visible = false
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CartographerEncounter"]
+z_index = 1
+position = Vector2(1086, 455)
+amount = 50
+texture = ExtResource("18_shu37")
+speed_scale = 0.5
+emission_shape = 3
+emission_rect_extents = Vector2(80, 10)
+gravity = Vector2(0, -245)
+scale_amount_curve = SubResource("Curve_rdxbt")
+
+[node name="WaterArea" type="Area2D" parent="CartographerEncounter"]
+position = Vector2(1065, 472)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CartographerEncounter/WaterArea"]
+position = Vector2(17, -21)
+shape = SubResource("RectangleShape2D_2ih8c")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(1079, 564)
@@ -259,7 +361,14 @@ shape = SubResource("RectangleShape2D_rvum4")
 position = Vector2(138, -77)
 shape = SubResource("RectangleShape2D_shu37")
 
-[connection signal="area_entered" from="CartographerEncounter/Rope" to="CartographerEncounter/Rope" method="_on_area_entered"]
-[connection signal="dialogue_ended" from="CartographerEncounter/DialogCanvas" to="CartographerEncounter" method="_on_dialog_canvas_dialogue_ended"]
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-104.5, -99.5)
+shape = SubResource("RectangleShape2D_rdxbt")
 
+[connection signal="area_entered" from="CartographerEncounter/Rope" to="CartographerEncounter/Rope" method="_on_area_entered"]
+[connection signal="tree_exited" from="CartographerEncounter/Fire" to="CartographerEncounter" method="_on_fire_tree_exited"]
+[connection signal="dialogue_ended" from="CartographerEncounter/DialogCanvas" to="CartographerEncounter" method="_on_dialog_canvas_dialogue_ended"]
+[connection signal="body_entered" from="CartographerEncounter/WaterArea" to="CartographerEncounter" method="_on_water_area_body_entered"]
+
+[editable path="CartographerEncounter/Fire"]
 [editable path="CartographerEncounter/DialogueArea"]

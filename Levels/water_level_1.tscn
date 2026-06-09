@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://cui2s07xcisyk"]
+[gd_scene load_steps=10 format=4 uid="uid://cui2s07xcisyk"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_qomj6"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_qntih"]
@@ -8,11 +8,32 @@
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="6_h2cuw"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_vasab"]
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_kt8ba"]
+[ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="8_ku3fi"]
 
 [node name="WaterLevel" type="Node2D"]
 
+[node name="LabelHandler" type="Node2D" parent="."]
+position = Vector2(610, 1016)
+
+[node name="Label" type="Label" parent="LabelHandler"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -365.0
+offset_top = -639.0
+offset_right = -269.0
+offset_bottom = -551.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_font_sizes/font_size = 64
+text = "\"X\""
+
 [node name="Player" parent="." instance=ExtResource("1_qomj6")]
-position = Vector2(523, 530)
+position = Vector2(145, 532)
 camera_limits = [null, -1000000, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_qntih")]
@@ -40,6 +61,10 @@ scale = Vector2(1.085, 1)
 position = Vector2(301, 536)
 element = 2
 
+[node name="MaskPickup4" parent="Masks" instance=ExtResource("7_vasab")]
+position = Vector2(657, 528)
+element = 2
+
 [node name="MaskPickup2" parent="Masks" instance=ExtResource("7_vasab")]
 position = Vector2(1157, 543)
 element = 4
@@ -50,3 +75,7 @@ element = 4
 
 [node name="Key" parent="." instance=ExtResource("8_kt8ba")]
 position = Vector2(1471, 221)
+
+[node name="Fire" parent="." instance=ExtResource("8_ku3fi")]
+position = Vector2(485, 524)
+scale = Vector2(1.2, 1.2)

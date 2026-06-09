@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://jwg0a6288amj" path="res://scenes/player/water_wave.tscn" id="10_je7p5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_megsn"]
-size = Vector2(80, 64)
+size = Vector2(64, 64)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dewec"]
 radius = 22.0
@@ -90,7 +90,7 @@ _data = {
 &"run": SubResource("Animation_bhhdu")
 }
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "sprites", "blank_sprite", "camera", "marker_point", "earth_block_space")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "sprites", "blank_sprite", "camera", "marker_point", "earth_block_space", "coyote_timer")]
 z_index = 1
 collision_mask = 129
 script = ExtResource("1_kyqiw")
@@ -109,6 +109,7 @@ air_bullet_scene = ExtResource("8_je7p5")
 earth_block_scene = ExtResource("9_fm80t")
 water_wave_scene = ExtResource("10_je7p5")
 earth_block_space = NodePath("Sprites/EarhtBlockSpace")
+coyote_timer = NodePath("CoyoteTimer")
 
 [node name="Sprites" type="Node2D" parent="."]
 position = Vector2(0, -13)
@@ -120,7 +121,7 @@ hframes = 3
 vframes = 2
 
 [node name="EarhtBlockSpace" type="Area2D" parent="Sprites"]
-position = Vector2(64, 5)
+position = Vector2(56, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprites/EarhtBlockSpace"]
 shape = SubResource("RectangleShape2D_megsn")
@@ -130,7 +131,7 @@ position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_dewec")
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(64, -8)
+position = Vector2(56, -12)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_bottom = 720
@@ -141,3 +142,8 @@ limit_bottom = 720
 libraries = {
 &"": SubResource("AnimationLibrary_ksbbd")
 }
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]

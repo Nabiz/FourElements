@@ -5,7 +5,7 @@ const SPEED = 250.0
 var JUMP_VELOCITY = -420.0
 const HIGHER_JUMP_VELOCITY = -550.0
 
-static var instance
+static var instance: Player
 
 var face_direction = Vector2.RIGHT
 var can_move: bool = true
@@ -35,16 +35,19 @@ var can_move: bool = true
 @export var water_wave_scene: PackedScene
 @export var earth_block_space: Area2D
 
+var can_shoot = true
+@export var coyote_timer: Timer
+var can_jump = true
 
 func _enter_tree() -> void:
 	instance = self
 
 
 func _ready() -> void:
-	camera.limit_left = camera_limits[0]
-	camera.limit_top = camera_limits[1]
-	camera.limit_right = camera_limits[2]
-	camera.limit_bottom = camera_limits[3]
+	#camera.limit_left = camera_limits[0]
+	#camera.limit_top = camera_limits[1]
+	#camera.limit_right = camera_limits[2]
+	#camera.limit_bottom = camera_limits[3]
 	
 	if higher_jumps:
 		JUMP_VELOCITY = HIGHER_JUMP_VELOCITY
@@ -71,7 +74,11 @@ func _physics_process(delta: float) -> void:
 func basic_movement(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		if coyote_timer.is_stopped():
+			coyote_timer.start()
+	else:
+		can_jump = true
+	if Input.is_action_just_pressed("ui_accept") and can_jump:
 		if Input.is_action_pressed("ui_down"):
 			set_collision_mask_value(8, false)
 			await get_tree().create_timer(0.2).timeout
@@ -124,7 +131,7 @@ func double_jump():
 
 
 func spawn_fire_bullet():
-	if MaskManager.current_element == MaskManager.Element.FIRE:
+	if MaskManager.current_element == MaskManager.Element.FIRE and can_shoot:
 		MaskManager.use_ammo()
 		var bullet: FireBullet = fire_bullet_scene.instantiate()
 		bullet.direction = face_direction
@@ -171,7 +178,8 @@ func spawn_earth_block():
 		if check_earth_block_space():
 			MaskManager.use_ammo()
 			var block: EarthBlock = earth_block_scene.instantiate()
-			block.global_position = marker_point.global_position
+			block.velocity.y = clamp(velocity.y, 0, abs(velocity.y))
+			block.global_position = marker_point.global_position.snapped(Vector2(32,1))
 			get_parent().add_child(block)
 
 
@@ -184,3 +192,7 @@ func _set_face_direction(direction):
 			sprites.scale.x = 1
 			face_direction = Vector2.RIGHT
 			marker_point.position.x = 64.0
+
+
+func _on_coyote_timer_timeout() -> void:
+	can_jump = false

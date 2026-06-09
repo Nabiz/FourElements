@@ -34,11 +34,11 @@ tile_set = ExtResource("5_hho1r")
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="MaskPickup" parent="Node2D" instance=ExtResource("7_u37go")]
-position = Vector2(580, 349)
+position = Vector2(633, 349)
 element = 3
 
 [node name="MaskPickup2" parent="Node2D" instance=ExtResource("7_u37go")]
-position = Vector2(899, 349)
+position = Vector2(837, 349)
 element = 3
 
 [node name="LabelHandler" type="Node2D" parent="."]

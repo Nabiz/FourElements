@@ -26,7 +26,7 @@ func change_level(level_index):
 	WaterPathManager.reset_manager()
 	current_level_index = level_index
 	current_level = level_scenes[current_level_index]
-	get_tree().change_scene_to_packed(current_level)
+	get_tree().call_deferred("change_scene_to_packed", current_level)
 	SoundManagerAutoload.play_music(SoundManagerAutoload.level_music)
 
 
