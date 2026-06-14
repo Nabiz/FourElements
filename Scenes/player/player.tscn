@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1ouvpi4u5u6y"]
+[gd_scene load_steps=25 format=3 uid="uid://d1ouvpi4u5u6y"]
 
 [ext_resource type="Script" uid="uid://7jg3vhsj6k5r" path="res://scripts/player/player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="2_kyqiw"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bcr3dtq4rb71j" path="res://scenes/player/air_bullet.tscn" id="8_je7p5"]
 [ext_resource type="PackedScene" uid="uid://cy55rh68t6vhq" path="res://scenes/player/earth_block.tscn" id="9_fm80t"]
 [ext_resource type="PackedScene" uid="uid://jwg0a6288amj" path="res://scenes/player/water_wave.tscn" id="10_je7p5"]
+[ext_resource type="Texture2D" uid="uid://cxwyj0k7xj8te" path="res://assets/props/water_splash.png" id="12_fm80t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_megsn"]
 size = Vector2(64, 64)
@@ -90,6 +91,45 @@ _data = {
 &"run": SubResource("Animation_bhhdu")
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
+atlas = ExtResource("12_fm80t")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
+atlas = ExtResource("12_fm80t")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcs02"]
+atlas = ExtResource("12_fm80t")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
+atlas = ExtResource("12_fm80t")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kvlxm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx1jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugbui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcs02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myrg7")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"water_splash",
+"speed": 5.0
+}]
+
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "sprites", "blank_sprite", "camera", "marker_point", "earth_block_space", "coyote_timer")]
 z_index = 1
 collision_mask = 129
@@ -146,4 +186,12 @@ libraries = {
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.3
 
+[node name="WaterDie" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 10
+position = Vector2(0, 25)
+sprite_frames = SubResource("SpriteFrames_kvlxm")
+animation = &"water_splash"
+
 [connection signal="timeout" from="CoyoteTimer" to="." method="_on_coyote_timer_timeout"]
+[connection signal="animation_finished" from="WaterDie" to="." method="_on_water_die_animation_finished"]

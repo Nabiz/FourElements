@@ -320,6 +320,7 @@ position = Vector2(1090, 601)
 position = Vector2(-21, 0)
 
 [node name="DialogueArea" parent="CartographerEncounter" node_paths=PackedStringArray("dialogue_canvas") instance=ExtResource("16_3l2mx")]
+visible = false
 position = Vector2(1089, 433)
 monitoring = false
 dialogue_canvas = NodePath("../DialogCanvas")

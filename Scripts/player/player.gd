@@ -14,7 +14,7 @@ var can_move: bool = true
 @export var animation: AnimationPlayer
 
 @export_category("Sprites")
-@export var sprites: Node
+@export var sprites: Node2D
 @export var blank_sprite: Sprite2D
 @export_subgroup("Textures")
 @export var blank_sprite_texture: Texture
@@ -44,10 +44,10 @@ func _enter_tree() -> void:
 
 
 func _ready() -> void:
-	#camera.limit_left = camera_limits[0]
-	#camera.limit_top = camera_limits[1]
-	#camera.limit_right = camera_limits[2]
-	#camera.limit_bottom = camera_limits[3]
+	camera.limit_left = camera_limits[0]
+	camera.limit_top = camera_limits[1]
+	camera.limit_right = camera_limits[2]
+	camera.limit_bottom = camera_limits[3]
 	
 	if higher_jumps:
 		JUMP_VELOCITY = HIGHER_JUMP_VELOCITY
@@ -196,3 +196,13 @@ func _set_face_direction(direction):
 
 func _on_coyote_timer_timeout() -> void:
 	can_jump = false
+
+func die_by_water():
+	sprites.hide()
+	can_move = false
+	velocity = Vector2.ZERO
+	$WaterDie.show()
+	$WaterDie.play("water_splash")
+
+func _on_water_die_animation_finished() -> void:
+	LevelManagerAutoload.restart_level()

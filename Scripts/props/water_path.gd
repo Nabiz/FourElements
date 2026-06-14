@@ -10,7 +10,8 @@ func _ready() -> void:
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 		if body is Player and MaskManager.current_element != MaskManager.Element.WATER:
-			LevelManagerAutoload.restart_level()
+			var player = body as Player
+			player.die_by_water()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
 	if body is Player and MaskManager.current_element == MaskManager.Element.WATER:

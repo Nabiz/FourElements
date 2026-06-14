@@ -49,8 +49,8 @@ func play_sound(sound: AudioStream):
 func play_music(music):
 	if music_audio.stream != music:
 		music_audio.stop()
-		music_audio.stream = music
-		music_audio.play()
+		#music_audio.stream = music
+		#music_audio.play()
 
 
 func play_intro():
