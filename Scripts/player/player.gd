@@ -23,10 +23,6 @@ var can_move: bool = true
 @export var earth_sprite: Texture
 @export var air_sprite: Texture
 
-@export_category("Camera")
-@export var camera: Camera2D
-@export var camera_limits: PackedInt32Array = [0, 0, 1280, 720]
-
 @export_category("Elements Objects")
 @export var marker_point: Marker2D
 @export var fire_bullet_scene: PackedScene
@@ -42,13 +38,6 @@ var can_jump = true
 func _enter_tree() -> void:
 	instance = self
 
-
-func _ready() -> void:
-	camera.limit_left = camera_limits[0]
-	camera.limit_top = camera_limits[1]
-	camera.limit_right = camera_limits[2]
-	camera.limit_bottom = camera_limits[3]
-	
 	if higher_jumps:
 		JUMP_VELOCITY = HIGHER_JUMP_VELOCITY
 

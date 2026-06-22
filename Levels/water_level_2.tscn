@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://bwbm6jsan0am8"]
+[gd_scene load_steps=10 format=4 uid="uid://bwbm6jsan0am8"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_i6lgh"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_ivwu8"]
@@ -8,12 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="6_io3g2"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_7mcw5"]
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_tqq7n"]
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="9_voej7"]
 
 [node name="WaterLevel2" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_i6lgh")]
 position = Vector2(-12, 546)
-camera_limits = [-320, -1000000, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_ivwu8")]
 position = Vector2(-120, 520)
@@ -68,3 +68,7 @@ position = Vector2(402, 550)
 
 [node name="Key3" parent="." instance=ExtResource("8_tqq7n")]
 position = Vector2(1150, 547)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("9_voej7")
+tile_map = NodePath("../TileMapLayer")

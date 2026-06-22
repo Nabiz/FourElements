@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://be0pf3wehnkhr"]
+[gd_scene load_steps=12 format=4 uid="uid://be0pf3wehnkhr"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_amow4"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_0va4v"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_qsjp0"]
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_i3aej"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="9_0va4v"]
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="10_03gse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0va4v"]
 size = Vector2(285.769, 20)
@@ -108,5 +109,9 @@ position = Vector2(-893, 75)
 [node name="Enemy" parent="." instance=ExtResource("9_0va4v")]
 position = Vector2(1056, 518)
 move_duration = 2.0
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("10_03gse")
+tile_map = NodePath("../TileMapLayer")
 
 [editable path="WaterPath"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=4 uid="uid://bcvat1s8jo4il"]
+[gd_scene load_steps=32 format=4 uid="uid://bcvat1s8jo4il"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_xfmod"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_gur2h"]
@@ -18,6 +18,7 @@
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="16_3l2mx"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="17_rvum4"]
 [ext_resource type="Texture2D" uid="uid://csgd6qmb47yrd" path="res://assets/particles/bubble.png" id="18_shu37"]
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="19_rdxbt"]
 
 [sub_resource type="Animation" id="Animation_ha5n6"]
 resource_name = "1"
@@ -365,6 +366,10 @@ shape = SubResource("RectangleShape2D_shu37")
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(-104.5, -99.5)
 shape = SubResource("RectangleShape2D_rdxbt")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("19_rdxbt")
+tile_map = NodePath("../TileMapLayer")
 
 [connection signal="area_entered" from="CartographerEncounter/Rope" to="CartographerEncounter/Rope" method="_on_area_entered"]
 [connection signal="tree_exited" from="CartographerEncounter/Fire" to="CartographerEncounter" method="_on_fire_tree_exited"]

@@ -130,7 +130,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "sprites", "blank_sprite", "camera", "marker_point", "earth_block_space", "coyote_timer")]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "sprites", "blank_sprite", "marker_point", "earth_block_space", "coyote_timer")]
 z_index = 1
 collision_mask = 129
 script = ExtResource("1_kyqiw")
@@ -142,7 +142,6 @@ fire_sprite = ExtResource("3_gntrk")
 water_sprite = ExtResource("4_nn08x")
 earth_sprite = ExtResource("5_52ee3")
 air_sprite = ExtResource("6_bhhdu")
-camera = NodePath("Camera2D")
 marker_point = NodePath("Marker2D")
 fire_bullet_scene = ExtResource("7_h17s1")
 air_bullet_scene = ExtResource("8_je7p5")
@@ -172,9 +171,6 @@ shape = SubResource("CapsuleShape2D_dewec")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(56, -12)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_bottom = 720
 
 [node name="GUI" parent="." instance=ExtResource("7_52ee3")]
 

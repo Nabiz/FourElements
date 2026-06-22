@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=4 uid="uid://cectcv6g74itv"]
+[gd_scene load_steps=9 format=4 uid="uid://cectcv6g74itv"]
 
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_epvi0"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_yfcc0"]
@@ -7,12 +7,12 @@
 [ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://resources/tilesets/tileset.tres" id="5_k7d4e"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_7qeat"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="7_epvi0"]
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="8_d2hw6"]
 
 [node name="AirLevel3" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_epvi0")]
 position = Vector2(816, 594)
-camera_limits = [null, null, 1280, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_yfcc0")]
 position = Vector2(659, 584)
@@ -49,3 +49,7 @@ element = 3
 
 [node name="Enemy" parent="." instance=ExtResource("7_epvi0")]
 position = Vector2(264, 574)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("8_d2hw6")
+tile_map = NodePath("../TileMapLayer")

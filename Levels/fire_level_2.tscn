@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=4 uid="uid://84m6i3ilcqf1"]
+[gd_scene load_steps=11 format=4 uid="uid://84m6i3ilcqf1"]
 
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="1_36j3p"]
 [ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_mjjx4"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_euo5e"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_2u64h"]
@@ -12,9 +13,13 @@
 
 [node name="FireLevel2" type="Node2D"]
 
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+position = Vector2(875, 354)
+script = ExtResource("1_36j3p")
+tile_map = NodePath("../TileMapLayer")
+
 [node name="Player" parent="." instance=ExtResource("1_mjjx4")]
 position = Vector2(875, 354)
-camera_limits = [null, -1000000, 1792, 720]
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_euo5e")]
 position = Vector2(875, 585)
