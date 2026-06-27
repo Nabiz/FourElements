@@ -1,0 +1,45 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://dc1egyes4liho"]
+
+[ext_resource type="Texture2D" uid="uid://blra8swkntnib" path="res://assets/tile_set/tilemap.png" id="1_shj3u"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o5yuq"]
+texture = ExtResource("1_shj3u")
+separation = Vector2i(3, 3)
+7:0/0 = 0
+7:0/0/custom_data_0 = true
+7:1/0 = 0
+7:1/0/custom_data_0 = true
+7:2/0 = 0
+7:2/0/custom_data_0 = true
+8:0/0 = 0
+8:0/0/custom_data_0 = true
+8:1/0 = 0
+8:1/0/custom_data_0 = true
+8:2/0 = 0
+8:2/0/custom_data_0 = true
+11:0/0 = 0
+11:0/0/custom_data_0 = true
+11:1/0 = 0
+11:1/0/custom_data_0 = true
+11:2/0 = 0
+11:2/0/custom_data_0 = true
+11:3/0 = 0
+11:3/0/custom_data_0 = true
+11:4/0 = 0
+11:4/0/custom_data_0 = true
+11:5/0 = 0
+11:5/0/custom_data_0 = true
+11:6/0 = 0
+11:6/0/custom_data_0 = true
+4:2/0 = 0
+4:2/0/custom_data_0 = true
+4:3/0 = 0
+4:3/0/custom_data_0 = true
+4:4/0 = 0
+4:4/0/custom_data_0 = true
+
+[resource]
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "is_ladder"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_o5yuq")

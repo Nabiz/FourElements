@@ -35,6 +35,8 @@ var can_shoot = true
 @export var coyote_timer: Timer
 var can_jump = true
 
+@export var ladder_tile_map: TileMapLayer
+
 func _enter_tree() -> void:
 	instance = self
 
@@ -58,13 +60,18 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_select"):
 			double_jump()
 		basic_movement(delta)
+	
+	if ladder_tile_map:
+		check_ladder_interaction()
 
+var climbing = false
 
 func basic_movement(delta: float) -> void:
 	if not is_on_floor():
-		velocity += get_gravity() * delta
 		if coyote_timer.is_stopped():
 			coyote_timer.start()
+		if !climbing:
+			velocity += get_gravity() * delta
 	else:
 		can_jump = true
 	if Input.is_action_just_pressed("ui_accept") and can_jump:
@@ -75,11 +82,23 @@ func basic_movement(delta: float) -> void:
 		else:
 			velocity.y = JUMP_VELOCITY
 	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
+	if direction and !climbing:
 		velocity.x = direction * SPEED
 		_set_face_direction(direction)
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if can_climb:
+		var vertical_input = Input.get_axis("ui_up", "ui_down")
+		if vertical_input:
+			climbing = true
+			velocity.y = vertical_input * SPEED
+			position.x = snapped(position.x-32, 64) + 32
+			velocity.x = 0
+		else:
+			velocity.y = 0
+			climbing = false
+	
 	move_and_slide()
 
 
@@ -195,3 +214,16 @@ func die_by_water():
 
 func _on_water_die_animation_finished() -> void:
 	LevelManagerAutoload.restart_level()
+
+var can_climb: bool = false
+
+func check_ladder_interaction():
+	var map_pos = ladder_tile_map.local_to_map(global_position+Vector2(0,25))
+	var tile_data = ladder_tile_map.get_cell_tile_data(map_pos)
+	if tile_data:
+		can_climb = tile_data.get_custom_data("is_ladder")
+	else:
+		can_climb = false
+		if climbing:
+			climbing = false
+			velocity.y = 0
