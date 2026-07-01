@@ -1,6 +1,5 @@
 [gd_scene load_steps=11 format=4 uid="uid://cui2s07xcisyk"]
 
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_qomj6"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_qntih"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_3x0tk"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="4_adgfm"]
@@ -9,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_vasab"]
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_kt8ba"]
 [ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="8_ku3fi"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="9_ku3fi"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="10_xdyu3"]
 
 [node name="WaterLevel" type="Node2D"]
@@ -32,9 +32,6 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_font_sizes/font_size = 64
 text = "\"X\""
-
-[node name="Player" parent="." instance=ExtResource("1_qomj6")]
-position = Vector2(145, 532)
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_qntih")]
 position = Vector2(1648, 522)
@@ -81,5 +78,9 @@ position = Vector2(485, 524)
 scale = Vector2(1.2, 1.2)
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+position = Vector2(153, 517)
 script = ExtResource("10_xdyu3")
 tile_map = NodePath("../TileMapLayer")
+
+[node name="NewPlayer" parent="." instance=ExtResource("9_ku3fi")]
+position = Vector2(153, 517)

@@ -10,11 +10,12 @@ func _ready() -> void:
 	call_deferred("follow_player")
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_home"):
-		if free_camera:
-			follow_player()
-		else:
-			freecam()
+	pass
+	#if event.is_action_pressed("ui_home"):
+		#if free_camera:
+			#follow_player()
+		#else:
+			#freecam()
 
 func _process(delta: float) -> void:
 	if free_camera:
@@ -34,13 +35,19 @@ func _process(delta: float) -> void:
 
 func follow_player():
 	free_camera = false
-	reparent(Player.instance)
+	if Player.instance:
+		reparent(Player.instance)
+	if NewPlayer.instance:
+		reparent(NewPlayer.instance)
 	position = Vector2.ZERO
-	Player.instance.can_move = true
+	#Player.instance.can_move = true
 
 func freecam():
-	Player.instance.can_move = false
-	reparent(Player.instance.get_parent())
+	#Player.instance.can_move = false
+	if Player.instance:
+		reparent(Player.instance.get_parent())
+	if NewPlayer.instance:
+		reparent(Player.instance.get_parent())
 	free_camera = true
 
 func set_camera_limits() -> void:

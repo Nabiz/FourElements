@@ -1,7 +1,5 @@
-[gd_scene load_steps=16 format=4 uid="uid://bkebn6jtk2a8l"]
+[gd_scene load_steps=15 format=4 uid="uid://bkebn6jtk2a8l"]
 
-[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="1_8hjdj"]
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_kxr0u"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_kv5fy"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_jeepb"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="4_8x8nf"]
@@ -14,17 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="11_ej1bv"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="12_cxxvu"]
 [ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://assets/enemy/enemy.png" id="13_a5le3"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="14_8hjdj"]
 [ext_resource type="TileSet" uid="uid://dc1egyes4liho" path="res://resources/tilesets/ladder_tileset.tres" id="15_0vv12"]
 
 [node name="TestLevel" type="Node2D"]
-
-[node name="Player" parent="." node_paths=PackedStringArray("ladder_tile_map") instance=ExtResource("1_kxr0u")]
-position = Vector2(111, 584)
-ladder_tile_map = NodePath("../LadderTileMapLayer")
-
-[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("tile_map")]
-script = ExtResource("1_8hjdj")
-tile_map = NodePath("../../TileMapLayer")
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_kv5fy")]
 position = Vector2(1622, 521)
@@ -87,5 +78,8 @@ hframes = 2
 [node name="LadderTileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAEAAkAAAAHAAEAAAAEAAgAAAAHAAEAAAAEAAcAAAAHAAEAAAAEAAYAAAAHAAEAAAAEAAUAAAAHAAEAAAAEAAQAAAAHAAEAAAAEAAMAAAAHAAEAAAALAAgAAAAHAAEAAAALAAcAAAAHAAEAAAALAAYAAAAHAAEAAAALAAUAAAAHAAEAAAALAAQAAAAHAAEAAAALAAMAAAAHAAEAAAA=")
 tile_set = ExtResource("15_0vv12")
+
+[node name="NewPlayer" parent="." instance=ExtResource("14_8hjdj")]
+position = Vector2(148, 583)
 
 [editable path="DialogueArea2"]

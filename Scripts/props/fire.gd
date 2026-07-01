@@ -33,3 +33,7 @@ func _on_area_2d_body_exited(body: Node2D) -> void:
 		var player = body as Player
 		MaskManager.use_ammo()
 		player.can_shoot = true
+	if body is NewPlayer:
+		var player = body as NewPlayer
+		MaskManager.use_ammo()
+		#player.can_shoot = true

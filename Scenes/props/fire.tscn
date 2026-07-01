@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://b657y1ssc83x3"]
 
 [ext_resource type="Script" uid="uid://dfdlv0nffq8cu" path="res://scripts/props/fire.gd" id="1_j8afo"]
-[ext_resource type="Texture2D" uid="uid://c4tvq75imurk0" path="res://assets/temp_placeholders/pngtree-orange-red-flame-flame-clipart-png-image_2388399.jpg" id="1_t8fvv"]
 [ext_resource type="Shader" uid="uid://dpll0stodhbr8" path="res://resources/shaders/fire.gdshader" id="2_5yvhl"]
+[ext_resource type="Texture2D" uid="uid://hdt7phcwr5gi" path="res://assets/elements/blank.png" id="3_5yvhl"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5yvhl"]
 noise_type = 0
@@ -27,10 +27,10 @@ script = ExtResource("1_j8afo")
 
 [node name="Pngtree-orange-red-flame-flame-clipart-png-image2388399" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_t1ugo")
-position = Vector2(0.500002, -33)
+position = Vector2(0.5, -8)
 rotation = 3.14159
 scale = Vector2(0.536111, 0.494444)
-texture = ExtResource("1_t8fvv")
+texture = ExtResource("3_5yvhl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_t8fvv")

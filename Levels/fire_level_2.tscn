@@ -1,7 +1,6 @@
 [gd_scene load_steps=11 format=4 uid="uid://84m6i3ilcqf1"]
 
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="1_36j3p"]
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_mjjx4"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_euo5e"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_2u64h"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="4_je3rl"]
@@ -10,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_euo5e"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="8_x1xt4"]
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="9_2u64h"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="10_36j3p"]
 
 [node name="FireLevel2" type="Node2D"]
 
@@ -17,9 +17,6 @@
 position = Vector2(875, 354)
 script = ExtResource("1_36j3p")
 tile_map = NodePath("../TileMapLayer")
-
-[node name="Player" parent="." instance=ExtResource("1_mjjx4")]
-position = Vector2(875, 354)
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_euo5e")]
 position = Vector2(875, 585)
@@ -98,3 +95,6 @@ position = Vector2(1643, 341)
 [node name="WaterPath" parent="." instance=ExtResource("9_2u64h")]
 position = Vector2(1250, 692)
 scale = Vector2(1.1, 1.25)
+
+[node name="NewPlayer" parent="." instance=ExtResource("10_36j3p")]
+position = Vector2(843.95, 340.29)

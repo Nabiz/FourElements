@@ -12,10 +12,14 @@ func _on_area_2d_body_entered(body: Node2D) -> void:
 		if body is Player and MaskManager.current_element != MaskManager.Element.WATER:
 			var player = body as Player
 			player.die_by_water()
+		
+		if body is NewPlayer and MaskManager.current_element != MaskManager.Element.WATER:
+			var player = body as NewPlayer
+			player.die_by_water()
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is Player and MaskManager.current_element == MaskManager.Element.WATER:
-			MaskManager.use_ammo()
+	if (body is Player or body is NewPlayer) and MaskManager.current_element == MaskManager.Element.WATER:
+		MaskManager.use_ammo()
 
 func enable_static_body():
 	static_body.set_collision_layer_value(1, true)

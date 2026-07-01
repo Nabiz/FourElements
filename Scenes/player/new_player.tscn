@@ -1,0 +1,220 @@
+[gd_scene load_steps=30 format=3 uid="uid://d3on8tgstst14"]
+
+[ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="1_k3hjk"]
+[ext_resource type="Script" uid="uid://dnc0v22ipos5v" path="res://scripts/player/new_player.gd" id="1_p6vqr"]
+[ext_resource type="PackedScene" uid="uid://d1g0ts06yy5jx" path="res://scenes/gui/gui.tscn" id="2_p6vqr"]
+[ext_resource type="PackedScene" uid="uid://xa78ghncf2hi" path="res://scenes/player/fire_bullet.tscn" id="2_qthwb"]
+[ext_resource type="Texture2D" uid="uid://d1j8dv7fbpf0b" path="res://assets/player/player_fire.png" id="3_tfplx"]
+[ext_resource type="Texture2D" uid="uid://cxwyj0k7xj8te" path="res://assets/props/water_splash.png" id="3_ujxmj"]
+[ext_resource type="PackedScene" uid="uid://bcr3dtq4rb71j" path="res://scenes/player/air_bullet.tscn" id="3_y5yk8"]
+[ext_resource type="Texture2D" uid="uid://bwannb5fs8gts" path="res://assets/player/player_water.png" id="4_4bq1a"]
+[ext_resource type="PackedScene" uid="uid://cy55rh68t6vhq" path="res://scenes/player/earth_block.tscn" id="4_nfuqa"]
+[ext_resource type="Texture2D" uid="uid://yr6yhtuxr4ht" path="res://assets/player/player_earth.png" id="5_mw318"]
+[ext_resource type="Script" uid="uid://befdk3gb7ml1x" path="res://scripts/player/state_machine/player_state_machine.gd" id="5_ujxmj"]
+[ext_resource type="PackedScene" uid="uid://jwg0a6288amj" path="res://scenes/player/water_wave.tscn" id="5_v4juy"]
+[ext_resource type="Script" uid="uid://c8n760h3lm12t" path="res://scripts/player/state_machine/states/idle_player_state.gd" id="6_8ilib"]
+[ext_resource type="Texture2D" uid="uid://bsmdmypxvbyrf" path="res://assets/player/player_air.png" id="6_6771u"]
+[ext_resource type="Script" uid="uid://g0rhy41tc4e" path="res://scripts/player/state_machine/states/walking_player_state.gd" id="7_5dv50"]
+[ext_resource type="Script" uid="uid://cua1snpigf6sl" path="res://scripts/player/state_machine/states/falling_player_state.gd" id="8_dneq4"]
+[ext_resource type="Script" uid="uid://bttmsuiryhnog" path="res://scripts/player/state_machine/states/jump_player_state.gd" id="9_26kdi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ilib"]
+size = Vector2(64, 64)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dv50"]
+radius = 22.0
+height = 96.0
+
+[sub_resource type="Animation" id="Animation_yoq75"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GFXHandler/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_52ee3"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GFXHandler/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_megsn"]
+resource_name = "jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GFXHandler/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_bhhdu"]
+resource_name = "run"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GFXHandler/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ksbbd"]
+_data = {
+&"RESET": SubResource("Animation_yoq75"),
+&"idle": SubResource("Animation_52ee3"),
+&"jump": SubResource("Animation_megsn"),
+&"run": SubResource("Animation_bhhdu")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gx1jg"]
+atlas = ExtResource("3_ujxmj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugbui"]
+atlas = ExtResource("3_ujxmj")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcs02"]
+atlas = ExtResource("3_ujxmj")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_myrg7"]
+atlas = ExtResource("3_ujxmj")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dneq4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gx1jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugbui")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcs02")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_myrg7")
+}, {
+"duration": 1.0,
+"texture": null
+}],
+"loop": false,
+"name": &"water_splash",
+"speed": 5.0
+}]
+
+[node name="NewPlayer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "gfx_handler", "sprite", "marker_point", "earth_block_space")]
+collision_mask = 129
+script = ExtResource("1_p6vqr")
+animation = NodePath("AnimationPlayer")
+gfx_handler = NodePath("GFXHandler")
+sprite = NodePath("GFXHandler/Sprite")
+blank_sprite_texture = ExtResource("1_k3hjk")
+fire_sprite = ExtResource("3_tfplx")
+water_sprite = ExtResource("4_4bq1a")
+earth_sprite = ExtResource("5_mw318")
+air_sprite = ExtResource("6_6771u")
+marker_point = NodePath("Marker2D")
+fire_bullet_scene = ExtResource("2_qthwb")
+air_bullet_scene = ExtResource("3_y5yk8")
+earth_block_scene = ExtResource("4_nfuqa")
+water_wave_scene = ExtResource("5_v4juy")
+earth_block_space = NodePath("GFXHandler/EarhtBlockSpace")
+
+[node name="GFXHandler" type="Node2D" parent="."]
+position = Vector2(0, -13)
+
+[node name="Sprite" type="Sprite2D" parent="GFXHandler"]
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_k3hjk")
+hframes = 3
+vframes = 2
+
+[node name="EarhtBlockSpace" type="Area2D" parent="GFXHandler"]
+position = Vector2(56, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GFXHandler/EarhtBlockSpace"]
+shape = SubResource("RectangleShape2D_8ilib")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_5dv50")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(56, -12)
+
+[node name="GUI" parent="." instance=ExtResource("2_p6vqr")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ksbbd")
+}
+
+[node name="WaterDie" type="AnimatedSprite2D" parent="."]
+visible = false
+z_index = 10
+position = Vector2(0, 25)
+sprite_frames = SubResource("SpriteFrames_dneq4")
+animation = &"water_splash"
+
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player", "label", "idle_state", "walking_state", "jump_state", "falling_state")]
+script = ExtResource("5_ujxmj")
+current_state = NodePath("Falling")
+player = NodePath("..")
+label = NodePath("../Label")
+idle_state = NodePath("Idle")
+walking_state = NodePath("Walking")
+jump_state = NodePath("Jump")
+falling_state = NodePath("Falling")
+
+[node name="Idle" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("6_8ilib")
+
+[node name="Walking" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_5dv50")
+
+[node name="Falling" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("8_dneq4")
+
+[node name="Jump" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("9_26kdi")
+
+[node name="Label" type="Label" parent="."]
+offset_left = -45.0
+offset_top = -95.0
+offset_bottom = -72.0
+text = "State:"
+
+[connection signal="animation_finished" from="WaterDie" to="." method="_on_water_die_animation_finished"]

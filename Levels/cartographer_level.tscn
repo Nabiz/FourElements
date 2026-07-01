@@ -1,6 +1,5 @@
 [gd_scene load_steps=32 format=4 uid="uid://bcvat1s8jo4il"]
 
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_xfmod"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_gur2h"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_6knwa"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="4_ywu0x"]
@@ -18,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="16_3l2mx"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="17_rvum4"]
 [ext_resource type="Texture2D" uid="uid://csgd6qmb47yrd" path="res://assets/particles/bubble.png" id="18_shu37"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="19_2ih8c"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="19_rdxbt"]
 
 [sub_resource type="Animation" id="Animation_ha5n6"]
@@ -201,9 +201,6 @@ size = Vector2(21, 55)
 
 [node name="CartographLevel" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_xfmod")]
-position = Vector2(375, 598)
-
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_gur2h")]
 position = Vector2(-137, 363)
 end_level_popup = NodePath("../EndLevelPopup")
@@ -370,6 +367,9 @@ shape = SubResource("RectangleShape2D_rdxbt")
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("19_rdxbt")
 tile_map = NodePath("../TileMapLayer")
+
+[node name="NewPlayer" parent="." instance=ExtResource("19_2ih8c")]
+position = Vector2(375.1, 596.9)
 
 [connection signal="area_entered" from="CartographerEncounter/Rope" to="CartographerEncounter/Rope" method="_on_area_entered"]
 [connection signal="tree_exited" from="CartographerEncounter/Fire" to="CartographerEncounter" method="_on_fire_tree_exited"]

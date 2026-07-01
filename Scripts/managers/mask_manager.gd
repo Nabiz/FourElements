@@ -29,7 +29,11 @@ static func on_mask_picked(mask: MaskPickup):
 
 static func change_element(new_element: Element):
 	current_element = new_element
-	Player.instance.change_element(current_element)
+	if Player.instance:
+		Player.instance.change_element(current_element)
+	if NewPlayer.instance:
+		NewPlayer.instance.change_element(current_element)
+	
 	GUI.instance.change_element(current_element)
 	
 	if current_element != Element.WATER:

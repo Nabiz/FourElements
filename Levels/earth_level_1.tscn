@@ -1,6 +1,5 @@
 [gd_scene load_steps=10 format=4 uid="uid://by3pogtl6r5ai"]
 
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_pnsri"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_54ec6"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_qrakl"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="4_stqx0"]
@@ -9,11 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_54ec6"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="8_qrakl"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="9_rg4bx"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="9_vn2ha"]
 
 [node name="EarthLevel1" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_pnsri")]
-position = Vector2(138, 530)
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_54ec6")]
 position = Vector2(1420, 584)
@@ -71,3 +68,6 @@ position = Vector2(1666, 481)
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("9_rg4bx")
 tile_map = NodePath("../TileMapLayer")
+
+[node name="NewPlayer" parent="." instance=ExtResource("9_vn2ha")]
+position = Vector2(150, 527)

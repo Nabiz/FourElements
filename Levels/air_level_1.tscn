@@ -1,22 +1,15 @@
 [gd_scene load_steps=9 format=4 uid="uid://b2rsgl8f8nuf4"]
 
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="1_2epbk"]
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_g83ix"]
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="2_h3oo1"]
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="4_66tw6"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="5_k21mx"]
 [ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://resources/tilesets/tileset.tres" id="5_tsmyk"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="6_n0vrp"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="7_gfls4"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="8_rux8e"]
 
 [node name="AirLevel" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_g83ix")]
-position = Vector2(111, 584)
-
-[node name="Camera2D" type="Camera2D" parent="Player" node_paths=PackedStringArray("tile_map")]
-script = ExtResource("1_2epbk")
-tile_map = NodePath("../../TileMapLayer")
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("5_k21mx")]
 position = Vector2(1622, 521)
@@ -41,3 +34,10 @@ scale = Vector2(1.085, 1)
 [node name="MaskPickup" parent="Node2D" instance=ExtResource("2_h3oo1")]
 position = Vector2(938, 540)
 element = 4
+
+[node name="NewPlayer" parent="." instance=ExtResource("7_gfls4")]
+position = Vector2(226, 545)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("1_2epbk")
+tile_map = NodePath("../TileMapLayer")

@@ -1,6 +1,5 @@
 [gd_scene load_steps=11 format=4 uid="uid://bjofflnslcd2q"]
 
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_5l3s2"]
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_tckme"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_7ne3s"]
 [ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="4_y87iw"]
@@ -9,12 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_dsr4j"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="8_tckme"]
 [ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="9_mrv01"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="10_lv11g"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="10_ru5dn"]
 
 [node name="FireLevel" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_5l3s2")]
-position = Vector2(111, 584)
 
 [node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("2_tckme")]
 position = Vector2(2145, 585)
@@ -73,9 +70,9 @@ position = Vector2(1570, 601)
 position = Vector2(1738, 587)
 element = 2
 
-[node name="MaskPickup2" parent="." instance=ExtResource("7_dsr4j")]
-position = Vector2(1389, 589)
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("10_ru5dn")
 tile_map = NodePath("../TileMapLayer")
+
+[node name="NewPlayer" parent="." instance=ExtResource("10_lv11g")]
+position = Vector2(171, 595)
