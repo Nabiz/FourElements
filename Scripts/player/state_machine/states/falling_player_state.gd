@@ -6,7 +6,9 @@ func handle_input(event: InputEvent) -> void:
 		MaskManager.use_ammo()
 		player.jump_velocity = player.BOOSTED_JUMP_VELOCITY
 		emit_signal("finished", player_state_machine.jump_state)
-		
+	
+	elif Input.get_axis("ui_up", "ui_down") and player.is_on_climb():
+		emit_signal("finished", player_state_machine.climbing_state)
 
 func physics_process(delta: float) -> void:
 	var horizontal_input: float = Input.get_axis("ui_left", "ui_right")

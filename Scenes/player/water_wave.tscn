@@ -1,6 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://jwg0a6288amj"]
 
 [ext_resource type="Texture2D" uid="uid://cqi6fufnaf2hv" path="res://assets/props/water_wave.png" id="1_47heo"]
+[ext_resource type="Script" uid="uid://668d5mkaqgei" path="res://scripts/player/water_wave.tres.gd" id="2_6rhv6"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_47heo"]
 atlas = ExtResource("1_47heo")
@@ -41,17 +42,9 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="GDScript" id="GDScript_47heo"]
-script/source = "extends AnimatedSprite2D
-
-func _process(_delta: float) -> void:
-	if frame == 4:
-		queue_free()
-"
-
 [node name="Sprite2D" type="AnimatedSprite2D"]
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_fy7oj")
 autoplay = "default"
 frame_progress = 1.0
-script = SubResource("GDScript_47heo")
+script = ExtResource("2_6rhv6")

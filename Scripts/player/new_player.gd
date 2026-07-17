@@ -20,13 +20,9 @@ var jump_velocity = JUMP_VELOCITY
 @export var earth_sprite: Texture
 @export var air_sprite: Texture
 
-@export_category("Elements Objects")
-@export var marker_point: Marker2D
-@export var fire_bullet_scene: PackedScene
-@export var air_bullet_scene: PackedScene
-@export var earth_block_scene: PackedScene
-@export var water_wave_scene: PackedScene
-@export var earth_block_space: Area2D
+@export var shoot_ability: ShootAbility
+
+@export var ladder_tile_map: TileMapLayer
 
 var can_shoot: bool = true
 var face_direction = Vector2.RIGHT
@@ -40,9 +36,10 @@ func _process(_delta: float) -> void:
 	check_dead()
 	set_face_direction(velocity.x)
 	if Input.is_action_just_pressed("ui_fire"):
-		spawn_water()
-		spawn_fire_bullet()
-		spawn_earth_block()
+		shoot_ability.spawn_water()
+		shoot_ability.spawn_fire_bullet()
+		shoot_ability.spawn_earth_block()
+		shoot_ability.spawn_air_bullet()
 		
 
 func change_element(element: MaskManager.Element) -> void:
@@ -73,60 +70,6 @@ func play_animation():
 	else:
 		animation.play("idle")
 
-
-func spawn_water():
-	if MaskManager.current_element == MaskManager.Element.WATER:
-		if check_water_space():
-			MaskManager.use_ammo()
-
-
-func spawn_fire_bullet():
-	if MaskManager.current_element == MaskManager.Element.FIRE and can_shoot:
-		MaskManager.use_ammo()
-		var bullet: FireBullet = fire_bullet_scene.instantiate()
-		bullet.direction = face_direction
-		bullet.position = position + Vector2(0, -16)
-		get_parent().add_child(bullet)
-
-
-func check_water_space():
-	var x = earth_block_space.get_overlapping_bodies()
-	for body in x:
-		if body is Fire:
-			var water_wave = water_wave_scene.instantiate() as AnimatedSprite2D
-			water_wave.position = body.position
-			water_wave.frame = 0
-			get_parent().add_child(water_wave)
-			body.remove_fire()
-			return true
-	return false
-
-
-func check_earth_block_space():
-	var x = earth_block_space.get_overlapping_bodies()
-	return x.size() == 0
-
-
-func spawn_earth_block():
-	if MaskManager.current_element == MaskManager.Element.EARTH:
-		if check_earth_block_space():
-			MaskManager.use_ammo()
-			var block: EarthBlock = earth_block_scene.instantiate()
-			block.velocity.y = clamp(velocity.y, 0, abs(velocity.y))
-			block.global_position = marker_point.global_position.snapped(Vector2(32,1))
-			get_parent().add_child(block)
-
-
-func spawn_air_bullet():
-	pass
-	#if MaskManager.current_element == MaskManager.Element.AIR:
-		#MaskManager.use_ammo()
-		#var bullet: AirBullet = air_bullet_scene.instantiate()
-		#bullet.direction = face_direction
-		#bullet.position = position + Vector2(0, -16)
-		#get_parent().add_child(bullet)
-
-
 func check_dead() -> void:
 	if global_position.y > 1000:
 		LevelManagerAutoload.restart_level()
@@ -134,7 +77,7 @@ func check_dead() -> void:
 
 func die_by_water():
 	gfx_handler.hide()
-	velocity = Vector2.ZERO
+	$PlayerStateMachine.current_state.emit_signal("finished", $PlayerStateMachine.dying_state)
 	$WaterDie.show()
 	$WaterDie.play("water_splash")
 
@@ -143,12 +86,21 @@ func set_face_direction(direction):
 		if direction < -0.05:
 			gfx_handler.scale.x = -1
 			face_direction = Vector2.LEFT
-			marker_point.position.x = -64.0
 		elif direction > 0.05:
 			gfx_handler.scale.x = 1
 			face_direction = Vector2.RIGHT
-			marker_point.position.x = 64.0
 
 
 func _on_water_die_animation_finished() -> void:
 	LevelManagerAutoload.restart_level()
+
+
+func is_on_climb() -> bool:
+	if ladder_tile_map:
+		var map_pos = ladder_tile_map.local_to_map(global_position+Vector2(0,16))
+		var tile_data = ladder_tile_map.get_cell_tile_data(map_pos)
+		if tile_data:
+			return tile_data.get_custom_data("is_ladder")
+		else:
+			return false
+	return false

@@ -76,10 +76,12 @@ texture = ExtResource("13_a5le3")
 hframes = 2
 
 [node name="LadderTileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
 tile_map_data = PackedByteArray("AAAEAAkAAAAHAAEAAAAEAAgAAAAHAAEAAAAEAAcAAAAHAAEAAAAEAAYAAAAHAAEAAAAEAAUAAAAHAAEAAAAEAAQAAAAHAAEAAAAEAAMAAAAHAAEAAAALAAgAAAAHAAEAAAALAAcAAAAHAAEAAAALAAYAAAAHAAEAAAALAAUAAAAHAAEAAAALAAQAAAAHAAEAAAALAAMAAAAHAAEAAAA=")
 tile_set = ExtResource("15_0vv12")
 
-[node name="NewPlayer" parent="." instance=ExtResource("14_8hjdj")]
+[node name="NewPlayer" parent="." node_paths=PackedStringArray("ladder_tile_map") instance=ExtResource("14_8hjdj")]
 position = Vector2(148, 583)
+ladder_tile_map = NodePath("../LadderTileMapLayer")
 
 [editable path="DialogueArea2"]

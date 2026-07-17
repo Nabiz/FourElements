@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d3on8tgstst14"]
+[gd_scene load_steps=33 format=3 uid="uid://d3on8tgstst14"]
 
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="1_k3hjk"]
 [ext_resource type="Script" uid="uid://dnc0v22ipos5v" path="res://scripts/player/new_player.gd" id="1_p6vqr"]
@@ -17,13 +17,16 @@
 [ext_resource type="Script" uid="uid://g0rhy41tc4e" path="res://scripts/player/state_machine/states/walking_player_state.gd" id="7_5dv50"]
 [ext_resource type="Script" uid="uid://cua1snpigf6sl" path="res://scripts/player/state_machine/states/falling_player_state.gd" id="8_dneq4"]
 [ext_resource type="Script" uid="uid://bttmsuiryhnog" path="res://scripts/player/state_machine/states/jump_player_state.gd" id="9_26kdi"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ilib"]
-size = Vector2(64, 64)
+[ext_resource type="Script" uid="uid://rploqtrcsujm" path="res://scripts/player/state_machine/states/climbing_player_state.gd" id="18_4bq1a"]
+[ext_resource type="Script" uid="uid://coxpor6itprfb" path="res://scripts/player/state_machine/states/dying_player_state.gd" id="19_mw318"]
+[ext_resource type="Script" uid="uid://oc4efe1rbxpc" path="res://scripts/player/shoot_ability.gd" id="20_6771u"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dv50"]
 radius = 22.0
 height = 96.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ilib"]
+size = Vector2(64, 64)
 
 [sub_resource type="Animation" id="Animation_yoq75"]
 length = 0.001
@@ -135,7 +138,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="NewPlayer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "gfx_handler", "sprite", "marker_point", "earth_block_space")]
+[node name="NewPlayer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "gfx_handler", "sprite", "shoot_ability")]
 collision_mask = 129
 script = ExtResource("1_p6vqr")
 animation = NodePath("AnimationPlayer")
@@ -146,12 +149,11 @@ fire_sprite = ExtResource("3_tfplx")
 water_sprite = ExtResource("4_4bq1a")
 earth_sprite = ExtResource("5_mw318")
 air_sprite = ExtResource("6_6771u")
-marker_point = NodePath("Marker2D")
-fire_bullet_scene = ExtResource("2_qthwb")
-air_bullet_scene = ExtResource("3_y5yk8")
-earth_block_scene = ExtResource("4_nfuqa")
-water_wave_scene = ExtResource("5_v4juy")
-earth_block_space = NodePath("GFXHandler/EarhtBlockSpace")
+shoot_ability = NodePath("GFXHandler/ShootAbility")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_5dv50")
 
 [node name="GFXHandler" type="Node2D" parent="."]
 position = Vector2(0, -13)
@@ -162,18 +164,23 @@ texture = ExtResource("1_k3hjk")
 hframes = 3
 vframes = 2
 
-[node name="EarhtBlockSpace" type="Area2D" parent="GFXHandler"]
-position = Vector2(56, 0)
+[node name="ShootAbility" type="Node2D" parent="GFXHandler" node_paths=PackedStringArray("player", "marker_point", "earth_block_space")]
+script = ExtResource("20_6771u")
+player = NodePath("../..")
+marker_point = NodePath("Marker2D")
+fire_bullet_scene = ExtResource("2_qthwb")
+air_bullet_scene = ExtResource("3_y5yk8")
+earth_block_scene = ExtResource("4_nfuqa")
+water_wave_scene = ExtResource("5_v4juy")
+earth_block_space = NodePath("EarhtBlockSpace")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GFXHandler/EarhtBlockSpace"]
+[node name="Marker2D" type="Marker2D" parent="GFXHandler/ShootAbility"]
+
+[node name="EarhtBlockSpace" type="Area2D" parent="GFXHandler/ShootAbility"]
+position = Vector2(56, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GFXHandler/ShootAbility/EarhtBlockSpace"]
 shape = SubResource("RectangleShape2D_8ilib")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -4)
-shape = SubResource("CapsuleShape2D_5dv50")
-
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(56, -12)
 
 [node name="GUI" parent="." instance=ExtResource("2_p6vqr")]
 
@@ -189,15 +196,17 @@ position = Vector2(0, 25)
 sprite_frames = SubResource("SpriteFrames_dneq4")
 animation = &"water_splash"
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player", "label", "idle_state", "walking_state", "jump_state", "falling_state")]
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player", "label", "idle_state", "walking_state", "jump_state", "falling_state", "climbing_state", "dying_state")]
 script = ExtResource("5_ujxmj")
-current_state = NodePath("Falling")
+current_state = NodePath("Climbing")
 player = NodePath("..")
 label = NodePath("../Label")
 idle_state = NodePath("Idle")
 walking_state = NodePath("Walking")
 jump_state = NodePath("Jump")
 falling_state = NodePath("Falling")
+climbing_state = NodePath("Climbing")
+dying_state = NodePath("Dying")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_8ilib")
@@ -210,6 +219,12 @@ script = ExtResource("8_dneq4")
 
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_26kdi")
+
+[node name="Climbing" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("18_4bq1a")
+
+[node name="Dying" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("19_mw318")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -45.0

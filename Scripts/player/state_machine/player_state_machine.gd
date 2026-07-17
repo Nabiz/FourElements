@@ -10,6 +10,8 @@ extends Node
 @export var walking_state: WalkingPlayerState
 @export var jump_state: JumpPlayerState
 @export var falling_state: FallingPlayerState
+@export var climbing_state: ClimbingPlayerState
+@export var dying_state: DyingPlayerState
 
 func _ready() -> void:
 	label.text = "State: " + current_state.name
