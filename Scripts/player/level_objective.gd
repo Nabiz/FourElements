@@ -41,7 +41,7 @@ func on_fullify_custom_objective():
 func active_finish():
 	finish_area.open_door()
 	if LevelManagerAutoload.current_level_index == 9:
-		finish_area._on_body_entered(Player.instance)
+		finish_area._on_body_entered(NewPlayer.instance)
 
 
 func check_finish():

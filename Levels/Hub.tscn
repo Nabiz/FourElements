@@ -1,6 +1,5 @@
-[gd_scene load_steps=12 format=4 uid="uid://02xcptcstqxo"]
+[gd_scene load_steps=13 format=4 uid="uid://02xcptcstqxo"]
 
-[ext_resource type="PackedScene" uid="uid://d1ouvpi4u5u6y" path="res://scenes/player/player.tscn" id="1_5p1h7"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_7we1d"]
 [ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://resources/tilesets/tileset.tres" id="5_b85ow"]
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="6_svskh"]
@@ -9,14 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="8_1ku3c"]
 [ext_resource type="Texture2D" uid="uid://dxyohwfduk0tb" path="res://assets/cartograph/cartograph_v2.png" id="8_82mvp"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="11_82ey0"]
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="11_fiilc"]
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="12_ep8va"]
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="12_r78kj"]
 [ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://assets/enemy/enemy.png" id="13_x5bvp"]
 
 [node name="Hub" type="Node2D"]
-
-[node name="Player" parent="." instance=ExtResource("1_5p1h7")]
-position = Vector2(-524, 292)
-higher_jumps = true
 
 [node name="EndLevelPopup" parent="." instance=ExtResource("3_7we1d")]
 
@@ -107,6 +104,13 @@ element = 3
 
 [node name="MaskPickup4" parent="." instance=ExtResource("7_021d7")]
 position = Vector2(-2677, 104)
+
+[node name="NewPlayer" parent="." instance=ExtResource("11_fiilc")]
+position = Vector2(-515.641, 274.715)
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("12_r78kj")
+tile_map = NodePath("../TileMapLayer")
 
 [editable path="DialogueArea2"]
 [editable path="DialogueArea3"]

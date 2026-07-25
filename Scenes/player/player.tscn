@@ -1,6 +1,5 @@
-[gd_scene load_steps=25 format=3 uid="uid://d1ouvpi4u5u6y"]
+[gd_scene load_steps=25 format=3 uid="uid://b1ytmlm44opw2"]
 
-[ext_resource type="Script" uid="uid://7jg3vhsj6k5r" path="res://scripts/player/player.gd" id="1_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="2_kyqiw"]
 [ext_resource type="Texture2D" uid="uid://d1j8dv7fbpf0b" path="res://assets/player/player_fire.png" id="3_gntrk"]
 [ext_resource type="Texture2D" uid="uid://bwannb5fs8gts" path="res://assets/player/player_water.png" id="4_nn08x"]
@@ -12,6 +11,238 @@
 [ext_resource type="PackedScene" uid="uid://cy55rh68t6vhq" path="res://scenes/player/earth_block.tscn" id="9_fm80t"]
 [ext_resource type="PackedScene" uid="uid://jwg0a6288amj" path="res://scenes/player/water_wave.tscn" id="10_je7p5"]
 [ext_resource type="Texture2D" uid="uid://cxwyj0k7xj8te" path="res://assets/props/water_splash.png" id="12_fm80t"]
+
+[sub_resource type="GDScript" id="GDScript_je7p5"]
+script/source = "class_name Player
+extends CharacterBody2D
+
+const SPEED = 250.0
+var JUMP_VELOCITY = -420.0
+const HIGHER_JUMP_VELOCITY = -550.0
+
+static var instance: Player
+
+var face_direction = Vector2.RIGHT
+var can_move: bool = true
+
+@export var higher_jumps: bool = false
+@export var animation: AnimationPlayer
+
+@export_category(\"Sprites\")
+@export var sprites: Node2D
+@export var blank_sprite: Sprite2D
+@export_subgroup(\"Textures\")
+@export var blank_sprite_texture: Texture
+@export var fire_sprite: Texture
+@export var water_sprite: Texture
+@export var earth_sprite: Texture
+@export var air_sprite: Texture
+
+@export_category(\"Elements Objects\")
+@export var marker_point: Marker2D
+@export var fire_bullet_scene: PackedScene
+@export var air_bullet_scene: PackedScene
+@export var earth_block_scene: PackedScene
+@export var water_wave_scene: PackedScene
+@export var earth_block_space: Area2D
+
+var can_shoot = true
+@export var coyote_timer: Timer
+var can_jump = true
+
+@export var ladder_tile_map: TileMapLayer
+
+func _enter_tree() -> void:
+	instance = self
+
+	if higher_jumps:
+		JUMP_VELOCITY = HIGHER_JUMP_VELOCITY
+
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed(\"ui_fire\") and can_move:
+		spawn_fire_bullet()
+		spawn_air_bullet()
+		spawn_earth_block()
+		spawn_water()
+	play_animation()
+	if global_position.y > 1000:
+		LevelManagerAutoload.restart_level()
+
+
+func _physics_process(delta: float) -> void:
+	if can_move:
+		if Input.is_action_just_pressed(\"ui_select\"):
+			double_jump()
+		basic_movement(delta)
+	
+	if ladder_tile_map:
+		check_ladder_interaction()
+
+var climbing = false
+
+func basic_movement(delta: float) -> void:
+	if not is_on_floor():
+		if coyote_timer.is_stopped():
+			coyote_timer.start()
+		if !climbing:
+			velocity += get_gravity() * delta
+	else:
+		can_jump = true
+	if Input.is_action_just_pressed(\"ui_accept\") and can_jump:
+		if Input.is_action_pressed(\"ui_down\"):
+			set_collision_mask_value(8, false)
+			await get_tree().create_timer(0.2).timeout
+			set_collision_mask_value(8, true)
+		else:
+			velocity.y = JUMP_VELOCITY
+	var direction := Input.get_axis(\"ui_left\", \"ui_right\")
+	if direction and !climbing:
+		velocity.x = direction * SPEED
+		_set_face_direction(direction)
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if can_climb:
+		var vertical_input = Input.get_axis(\"ui_up\", \"ui_down\")
+		if vertical_input:
+			climbing = true
+			velocity.y = vertical_input * SPEED
+			position.x = snapped(position.x-32, 64) + 32
+			velocity.x = 0
+		else:
+			velocity.y = 0
+			climbing = false
+	
+	move_and_slide()
+
+
+func play_animation():
+	if !is_on_floor():
+		animation.play(\"jump\")
+	elif abs(velocity.x) > 0.1:
+		animation.play(\"run\")
+	else:
+		animation.play(\"idle\")
+
+
+func change_element(element: MaskManager.Element) -> void:
+	change_sprite(element)
+
+
+func change_sprite(element: MaskManager.Element):
+	match element:
+		MaskManager.Element.BLANK:
+			blank_sprite.texture = blank_sprite_texture
+		MaskManager.Element.FIRE:
+			blank_sprite.texture = fire_sprite
+		MaskManager.Element.WATER:
+			blank_sprite.texture = water_sprite
+		MaskManager.Element.EARTH:
+			blank_sprite.texture = earth_sprite
+		MaskManager.Element.AIR:
+			blank_sprite.texture = air_sprite
+		_:
+			blank_sprite.show()
+
+
+func double_jump():
+	if MaskManager.current_element == MaskManager.Element.AIR:
+		if !is_on_floor():
+			MaskManager.use_ammo()
+			velocity.y = 1.2 * JUMP_VELOCITY
+
+
+func spawn_fire_bullet():
+	if MaskManager.current_element == MaskManager.Element.FIRE and can_shoot:
+		MaskManager.use_ammo()
+		var bullet: FireBullet = fire_bullet_scene.instantiate()
+		bullet.direction = face_direction
+		bullet.position = position + Vector2(0, -16)
+		get_parent().add_child(bullet)
+
+
+func spawn_air_bullet():
+	pass
+	#if MaskManager.current_element == MaskManager.Element.AIR:
+		#MaskManager.use_ammo()
+		#var bullet: AirBullet = air_bullet_scene.instantiate()
+		#bullet.direction = face_direction
+		#bullet.position = position + Vector2(0, -16)
+		#get_parent().add_child(bullet)
+
+
+func spawn_water():
+	if MaskManager.current_element == MaskManager.Element.WATER:
+		if check_water_space():
+			MaskManager.use_ammo()
+
+
+func check_water_space():
+	var x = earth_block_space.get_overlapping_bodies()
+	for body in x:
+		if body is Fire:
+			var water_wave = water_wave_scene.instantiate() as AnimatedSprite2D
+			water_wave.position = body.position
+			water_wave.frame = 0
+			get_parent().add_child(water_wave)
+			body.remove_fire()
+			return true
+	return false
+
+
+func check_earth_block_space():
+	var x = earth_block_space.get_overlapping_bodies()
+	return x.size() == 0
+
+
+func spawn_earth_block():
+	if MaskManager.current_element == MaskManager.Element.EARTH:
+		if check_earth_block_space():
+			MaskManager.use_ammo()
+			var block: EarthBlock = earth_block_scene.instantiate()
+			block.velocity.y = clamp(velocity.y, 0, abs(velocity.y))
+			block.global_position = marker_point.global_position.snapped(Vector2(32,1))
+			get_parent().add_child(block)
+
+
+func _set_face_direction(direction):
+		if direction < -0.05:
+			sprites.scale.x = -1
+			face_direction = Vector2.LEFT
+			marker_point.position.x = -64.0
+		elif direction > 0.05:
+			sprites.scale.x = 1
+			face_direction = Vector2.RIGHT
+			marker_point.position.x = 64.0
+
+
+func _on_coyote_timer_timeout() -> void:
+	can_jump = false
+
+func die_by_water():
+	sprites.hide()
+	can_move = false
+	velocity = Vector2.ZERO
+	$WaterDie.show()
+	$WaterDie.play(\"water_splash\")
+
+func _on_water_die_animation_finished() -> void:
+	LevelManagerAutoload.restart_level()
+
+var can_climb: bool = false
+
+func check_ladder_interaction():
+	var map_pos = ladder_tile_map.local_to_map(global_position+Vector2(0,25))
+	var tile_data = ladder_tile_map.get_cell_tile_data(map_pos)
+	if tile_data:
+		can_climb = tile_data.get_custom_data(\"is_ladder\")
+	else:
+		can_climb = false
+		if climbing:
+			climbing = false
+			velocity.y = 0
+"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_megsn"]
 size = Vector2(64, 64)
@@ -133,7 +364,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("animation", "sprites", "blank_sprite", "marker_point", "earth_block_space", "coyote_timer")]
 z_index = 1
 collision_mask = 129
-script = ExtResource("1_kyqiw")
+script = SubResource("GDScript_je7p5")
 animation = NodePath("AnimationPlayer")
 sprites = NodePath("Sprites")
 blank_sprite = NodePath("Sprites/BlankSprite")

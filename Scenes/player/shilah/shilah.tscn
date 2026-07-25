@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://dli0h83ockmbc"]
+
+[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="1_t23s5"]
+[ext_resource type="Script" uid="uid://cfx73j6hisb65" path="res://scripts/player/shilah/shilah.gd" id="2_o1xrn"]
+
+[node name="Shilah" instance=ExtResource("1_t23s5")]
+script = ExtResource("2_o1xrn")
+blank_sprite_texture = null
+fire_sprite = null
+water_sprite = null
+earth_sprite = null
+air_sprite = null

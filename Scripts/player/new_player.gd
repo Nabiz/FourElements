@@ -24,6 +24,9 @@ var jump_velocity = JUMP_VELOCITY
 
 @export var ladder_tile_map: TileMapLayer
 
+@export var state_machine: PlayerStateMachine
+
+var can_move: bool = true
 var can_shoot: bool = true
 var face_direction = Vector2.RIGHT
 
@@ -63,12 +66,22 @@ func change_sprite(element: MaskManager.Element):
 
 
 func play_animation():
-	if !is_on_floor():
-		animation.play("jump")
-	elif abs(velocity.x) > 0.1:
-		animation.play("run")
+	if state_machine.current_state is ClimbingPlayerState:
+		$GFXHandler/ClimbSprite.show()
+		sprite.hide()
+		if abs(velocity.y) > 0.1:
+			$GFXHandler/ClimbSprite.play("climbing")
+		else:
+			$GFXHandler/ClimbSprite.play("climb_idle")
 	else:
-		animation.play("idle")
+		$GFXHandler/ClimbSprite.hide()
+		sprite.show()
+		if !is_on_floor():
+			animation.play("jump")
+		elif abs(velocity.x) > 0.1:
+			animation.play("run")
+		else:
+			animation.play("idle")
 
 func check_dead() -> void:
 	if global_position.y > 1000:
@@ -77,7 +90,7 @@ func check_dead() -> void:
 
 func die_by_water():
 	gfx_handler.hide()
-	$PlayerStateMachine.current_state.emit_signal("finished", $PlayerStateMachine.dying_state)
+	$PlayerStateMachine.change_state(DyingPlayerState)
 	$WaterDie.show()
 	$WaterDie.play("water_splash")
 

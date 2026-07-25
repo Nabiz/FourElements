@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if (body is Player or body is NewPlayer) and is_open:
+	if body is NewPlayer and is_open:
 		var next_level = LevelManagerAutoload.current_level_index+1
 		if next_level > LevelManagerAutoload.unlocked_level:
 			LevelManagerAutoload.save_level(next_level)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://d3on8tgstst14"]
+[gd_scene load_steps=39 format=3 uid="uid://d3on8tgstst14"]
 
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="1_k3hjk"]
 [ext_resource type="Script" uid="uid://dnc0v22ipos5v" path="res://scripts/player/new_player.gd" id="1_p6vqr"]
@@ -17,9 +17,11 @@
 [ext_resource type="Script" uid="uid://g0rhy41tc4e" path="res://scripts/player/state_machine/states/walking_player_state.gd" id="7_5dv50"]
 [ext_resource type="Script" uid="uid://cua1snpigf6sl" path="res://scripts/player/state_machine/states/falling_player_state.gd" id="8_dneq4"]
 [ext_resource type="Script" uid="uid://bttmsuiryhnog" path="res://scripts/player/state_machine/states/jump_player_state.gd" id="9_26kdi"]
+[ext_resource type="Texture2D" uid="uid://dm58sxkew8shy" path="res://assets/player/thomas/thomas_climb.png" id="12_j50t7"]
 [ext_resource type="Script" uid="uid://rploqtrcsujm" path="res://scripts/player/state_machine/states/climbing_player_state.gd" id="18_4bq1a"]
 [ext_resource type="Script" uid="uid://coxpor6itprfb" path="res://scripts/player/state_machine/states/dying_player_state.gd" id="19_mw318"]
 [ext_resource type="Script" uid="uid://oc4efe1rbxpc" path="res://scripts/player/shoot_ability.gd" id="20_6771u"]
+[ext_resource type="Script" uid="uid://dq42h0ea2ttxb" path="res://scripts/player/state_machine/states/standby_player_state.gd" id="21_sathn"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5dv50"]
 radius = 22.0
@@ -27,6 +29,45 @@ height = 96.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ilib"]
 size = Vector2(64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eqc72"]
+atlas = ExtResource("12_j50t7")
+region = Rect2(0, 0, 256, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3qgkr"]
+atlas = ExtResource("12_j50t7")
+region = Rect2(256, 0, 256, 384)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_012fk"]
+atlas = ExtResource("12_j50t7")
+region = Rect2(512, 0, 256, 384)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wb0hp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eqc72")
+}],
+"loop": true,
+"name": &"climb_idle",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3qgkr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_012fk")
+}],
+"loop": true,
+"name": &"climbing",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_yoq75"]
 length = 0.001
@@ -138,7 +179,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="NewPlayer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "gfx_handler", "sprite", "shoot_ability")]
+[node name="NewPlayer" type="CharacterBody2D" node_paths=PackedStringArray("animation", "gfx_handler", "sprite", "shoot_ability", "state_machine")]
 collision_mask = 129
 script = ExtResource("1_p6vqr")
 animation = NodePath("AnimationPlayer")
@@ -150,6 +191,7 @@ water_sprite = ExtResource("4_4bq1a")
 earth_sprite = ExtResource("5_mw318")
 air_sprite = ExtResource("6_6771u")
 shoot_ability = NodePath("GFXHandler/ShootAbility")
+state_machine = NodePath("PlayerStateMachine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -4)
@@ -182,6 +224,12 @@ position = Vector2(56, -13)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GFXHandler/ShootAbility/EarhtBlockSpace"]
 shape = SubResource("RectangleShape2D_8ilib")
 
+[node name="ClimbSprite" type="AnimatedSprite2D" parent="GFXHandler"]
+visible = false
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_wb0hp")
+animation = &"climb_idle"
+
 [node name="GUI" parent="." instance=ExtResource("2_p6vqr")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -196,7 +244,7 @@ position = Vector2(0, 25)
 sprite_frames = SubResource("SpriteFrames_dneq4")
 animation = &"water_splash"
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player", "label", "idle_state", "walking_state", "jump_state", "falling_state", "climbing_state", "dying_state")]
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player", "label", "idle_state", "walking_state", "jump_state", "falling_state", "climbing_state", "dying_state", "standby_state")]
 script = ExtResource("5_ujxmj")
 current_state = NodePath("Climbing")
 player = NodePath("..")
@@ -207,6 +255,7 @@ jump_state = NodePath("Jump")
 falling_state = NodePath("Falling")
 climbing_state = NodePath("Climbing")
 dying_state = NodePath("Dying")
+standby_state = NodePath("Standby")
 
 [node name="Idle" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_8ilib")
@@ -225,6 +274,9 @@ script = ExtResource("18_4bq1a")
 
 [node name="Dying" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("19_mw318")
+
+[node name="Standby" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("21_sathn")
 
 [node name="Label" type="Label" parent="."]
 offset_left = -45.0

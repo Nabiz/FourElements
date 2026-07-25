@@ -20,5 +20,5 @@ func _on_fire_tree_exited() -> void:
 
 
 func _on_water_area_body_entered(body: Node2D) -> void:
-	if body is Player and fire:
+	if body is NewPlayer and fire:
 		LevelManagerAutoload.restart_level()

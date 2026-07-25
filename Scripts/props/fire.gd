@@ -24,16 +24,12 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player:
-		var player = body as Player
+	if body is NewPlayer:
+		var player = body as NewPlayer
 		player.can_shoot = false
 
 func _on_area_2d_body_exited(body: Node2D) -> void:
-	if body is Player:
-		var player = body as Player
-		MaskManager.use_ammo()
-		player.can_shoot = true
 	if body is NewPlayer:
 		var player = body as NewPlayer
 		MaskManager.use_ammo()
-		#player.can_shoot = true
+		player.can_shoot = true

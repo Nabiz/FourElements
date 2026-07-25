@@ -50,7 +50,7 @@ func push(push_direction):
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body is Player or body is NewPlayer:
+	if body is NewPlayer:
 		LevelManagerAutoload.restart_level()
 
 

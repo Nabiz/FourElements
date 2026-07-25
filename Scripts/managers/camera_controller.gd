@@ -35,19 +35,13 @@ func _process(delta: float) -> void:
 
 func follow_player():
 	free_camera = false
-	if Player.instance:
-		reparent(Player.instance)
 	if NewPlayer.instance:
 		reparent(NewPlayer.instance)
 	position = Vector2.ZERO
-	#Player.instance.can_move = true
 
 func freecam():
-	#Player.instance.can_move = false
-	if Player.instance:
-		reparent(Player.instance.get_parent())
 	if NewPlayer.instance:
-		reparent(Player.instance.get_parent())
+		reparent(NewPlayer.instance.get_parent())
 	free_camera = true
 
 func set_camera_limits() -> void:

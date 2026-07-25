@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bkebn6jtk2a8l"]
+[gd_scene load_steps=16 format=4 uid="uid://bkebn6jtk2a8l"]
 
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_kv5fy"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_jeepb"]
@@ -12,8 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="11_ej1bv"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="12_cxxvu"]
 [ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://assets/enemy/enemy.png" id="13_a5le3"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="14_8hjdj"]
+[ext_resource type="PackedScene" uid="uid://23p6uspcn64v" path="res://scenes/player/thomas/thomas.tscn" id="14_8hjdj"]
 [ext_resource type="TileSet" uid="uid://dc1egyes4liho" path="res://resources/tilesets/ladder_tileset.tres" id="15_0vv12"]
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="15_o5yuq"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -80,8 +81,12 @@ position = Vector2(0, 16)
 tile_map_data = PackedByteArray("AAAEAAkAAAAHAAEAAAAEAAgAAAAHAAEAAAAEAAcAAAAHAAEAAAAEAAYAAAAHAAEAAAAEAAUAAAAHAAEAAAAEAAQAAAAHAAEAAAAEAAMAAAAHAAEAAAALAAgAAAAHAAEAAAALAAcAAAAHAAEAAAALAAYAAAAHAAEAAAALAAUAAAAHAAEAAAALAAQAAAAHAAEAAAALAAMAAAAHAAEAAAA=")
 tile_set = ExtResource("15_0vv12")
 
-[node name="NewPlayer" parent="." node_paths=PackedStringArray("ladder_tile_map") instance=ExtResource("14_8hjdj")]
-position = Vector2(148, 583)
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("15_o5yuq")
+tile_map = NodePath("../TileMapLayer")
+
+[node name="Thomas" parent="." node_paths=PackedStringArray("ladder_tile_map") instance=ExtResource("14_8hjdj")]
+position = Vector2(165.502, 583.818)
 ladder_tile_map = NodePath("../LadderTileMapLayer")
 
 [editable path="DialogueArea2"]

@@ -14,7 +14,7 @@ signal dialogue_ended
 func _input(event: InputEvent) -> void:
 	if visible:
 		if event.is_action_pressed("ui_up"):
-			pass#end_dialogue()
+			end_dialogue()
 		elif event.is_action_released("ui_select"):
 			next_statement()
 
@@ -22,14 +22,14 @@ func _input(event: InputEvent) -> void:
 func start_dialogue(new_cahracter_array, new_sentence_array):
 	character_array = new_cahracter_array
 	sentence_array = new_sentence_array
-	Player.instance.can_move = false
+	NewPlayer.instance.state_machine.change_state(StandbyPlayerState)
 	current_statement_index = 0
 	update_statement()
 	show()
 
 
 func next_statement():
-	Player.instance.can_move = false
+	NewPlayer.instance.state_machine.change_state(StandbyPlayerState)
 	current_statement_index += 1
 	if current_statement_index >= sentence_array.size():
 		end_dialogue()
@@ -44,7 +44,7 @@ func update_statement():
 
 func end_dialogue():
 	hide()
-	Player.instance.can_move = true
+	NewPlayer.instance.state_machine.change_state(IdlePlayerState)
 	emit_signal("dialogue_ended")
 
 
