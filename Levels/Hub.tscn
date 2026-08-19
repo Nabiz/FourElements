@@ -8,8 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="8_1ku3c"]
 [ext_resource type="Texture2D" uid="uid://dxyohwfduk0tb" path="res://assets/cartograph/cartograph_v2.png" id="8_82mvp"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="11_82ey0"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="11_fiilc"]
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="12_ep8va"]
+[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="12_h36jq"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="12_r78kj"]
 [ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://assets/enemy/enemy.png" id="13_x5bvp"]
 
@@ -105,12 +105,12 @@ element = 3
 [node name="MaskPickup4" parent="." instance=ExtResource("7_021d7")]
 position = Vector2(-2677, 104)
 
-[node name="NewPlayer" parent="." instance=ExtResource("11_fiilc")]
-position = Vector2(-515.641, 274.715)
-
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("12_r78kj")
 tile_map = NodePath("../TileMapLayer")
+
+[node name="Shilah" parent="." instance=ExtResource("12_h36jq")]
+position = Vector2(-508.301, 275.862)
 
 [editable path="DialogueArea2"]
 [editable path="DialogueArea3"]

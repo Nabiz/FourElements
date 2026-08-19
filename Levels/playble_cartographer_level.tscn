@@ -1,0 +1,69 @@
+[gd_scene load_steps=12 format=4 uid="uid://bho6711qcbhj3"]
+
+[ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="1_62b70"]
+[ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="2_laif1"]
+[ext_resource type="PackedScene" uid="uid://d2tgpxhdjihoc" path="res://scenes/player/level_objective.tscn" id="3_73ut6"]
+[ext_resource type="TileSet" uid="uid://lqi2h7vfgbei" path="res://resources/tilesets/tileset.tres" id="4_6dgmj"]
+[ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="5_vyvrf"]
+[ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="10_ep5km"]
+[ext_resource type="PackedScene" uid="uid://23p6uspcn64v" path="res://scenes/player/thomas/thomas.tscn" id="10_n3a0u"]
+[ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="11_7qe4x"]
+[ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="11_n3a0u"]
+[ext_resource type="TileSet" uid="uid://dc1egyes4liho" path="res://resources/tilesets/ladder_tileset.tres" id="13_ltldl"]
+[ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="14_yrk4v"]
+
+[node name="TestLevel" type="Node2D"]
+
+[node name="FinishArea" parent="." node_paths=PackedStringArray("end_level_popup") instance=ExtResource("1_62b70")]
+position = Vector2(1622, 521)
+end_level_popup = NodePath("../EndLevelPopup")
+
+[node name="EndLevelPopup" parent="." instance=ExtResource("2_laif1")]
+
+[node name="LevelObjective" parent="." node_paths=PackedStringArray("finish_area") instance=ExtResource("3_73ut6")]
+keys = 2
+finish_area = NodePath("../FinishArea")
+
+[node name="TileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAAAAAgAAQABAAEAAAAAAAoAAQABAAEAAAABAAoAAQAAAAEAAAACAAoAAQAAAAEAAAADAAoAAQAAAAEAAAAAAAQAAQABAAEAAAAAAAUAAQABAAEAAAAAAAYAAQABAAEAAAAAAAcAAQABAAEAAAAEAAoAAQAAAAEAAAAFAAoAAQAAAAEAAAAGAAoAAQABAAEAAAAHAAoAAQABAAEAAAAIAAoAAQABAAEAAAAJAAoAAQABAAEAAAAKAAoAAQABAAEAAAALAAoAAQABAAEAAAASAAoAAQABAAEAAAATAAoAAQABAAEAAAAUAAoAAQABAAEAAAAVAAoAAQABAAEAAAAWAAoAAQABAAEAAAAXAAoAAQABAAEAAAAYAAoAAQABAAEAAAAGAAkAAQAAAAEAAAAHAAkAAQAAAAEAAAAZAAoAAQABAAEAAAAaAAoAAQABAAEAAAAbAAoAAQABAAEAAAALAAkAAQAAAAEAAAAIAAkAAQAAAAEAAAAJAAkAAQAAAAEAAAAKAAkAAQAAAAEAAAARAAoAAQABAAEAAAARAAkAAQAAAAEAAAASAAkAAQAAAAEAAAAbAAkAAQABAAEAAAAaAAkAAQAAAAEAAAAZAAkAAQAAAAEAAAAYAAkAAQAAAAEAAAAXAAkAAQAAAAEAAAAWAAkAAQAAAAEAAAAVAAkAAQAAAAEAAAAUAAkAAQABAAEAAAATAAkAAQABAAEAAAAbAAgAAQABAAEAAAAbAAcAAQABAAEAAAAbAAYAAQABAAEAAAAbAAUAAQABAAEAAAAbAAQAAQABAAEAAAAbAAMAAQABAAEAAAAbAAIAAQABAAEAAAAbAAEAAQABAAEAAAAbAAAAAQABAAEAAAAbAP//AQABAAEAAAAAAAMAAQABAAEAAAAAAAIAAQABAAEAAAAAAAEAAQABAAEAAAAAAAAAAQABAAEAAAAAAP//AQABAAEAAAAAAP7/AQABAAEAAAAAAP3/AQABAAEAAAAXAAgAAQAAAAEAAAAXAAcAAQAAAAEAAAADAAMAAQACAAAAAAAEAAMAAQACAAAAAAAFAAMAAQACAAAAAAAGAAMAAQACAAAAAAAHAAMAAQACAAAAAAD//woAAQAAAAEAAAD+/woAAQAAAAEAAAD9/woAAQAAAAEAAAD8/woAAQAAAAEAAAD7/woAAQAAAAEAAAD6/woAAQAAAAEAAAD5/woAAQAAAAEAAAD4/woAAQAAAAEAAAD3/woAAQAAAAEAAAD2/woAAQAAAAEAAAD1/woAAQAAAAEAAAD0/woAAQAAAAEAAAD0/wkAAQAAAAEAAAD0/wgAAQAAAAEAAAD0/wcAAQAAAAEAAAD0/wYAAQAAAAEAAAD0/wUAAQAAAAEAAAD//wgAAQAAAAEAAAD+/wgAAQAAAAEAAAD9/wgAAQAAAAEAAAD8/wgAAQAAAAEAAAD7/wgAAQAAAAEAAAD6/wgAAQAAAAEAAAD5/wgAAQAAAAEAAAD4/wgAAQAAAAEAAAAXAAYAAQAAAAEAAAA=")
+tile_set = ExtResource("4_6dgmj")
+
+[node name="WaterPath" parent="." instance=ExtResource("5_vyvrf")]
+position = Vector2(928, 687)
+scale = Vector2(1.085, 1)
+
+[node name="Key" parent="WaterPath" instance=ExtResource("11_n3a0u")]
+position = Vector2(-534.79, -553.758)
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="DialogueCanvas" parent="." instance=ExtResource("10_ep5km")]
+visible = false
+
+[node name="LadderTileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAAEAAkAAAAHAAEAAAAEAAgAAAAHAAEAAAAEAAcAAAAHAAEAAAAEAAYAAAAHAAEAAAAEAAUAAAAHAAEAAAAEAAQAAAAHAAEAAAAEAAMAAAAHAAEAAAAOAAgAAAAHAAEAAAAOAAcAAAAHAAEAAAAOAAYAAAAHAAEAAAAOAAUAAAAHAAEAAAAOAAQAAAAHAAEAAAAOAAMAAAAHAAEAAAAOAP3/AAAHAAEAAAAOAP7/AAAHAAEAAAAOAP//AAAHAAEAAAAOAAAAAAAHAAEAAAAOAAEAAAAHAAEAAAAOAAIAAAAHAAEAAAATAAQAAAAHAAEAAAATAAMAAAAHAAEAAAATAAIAAAAHAAEAAAATAAEAAAAHAAEAAAATAAAAAAAHAAEAAAATAP//AAAHAAEAAAATAP7/AAAHAAEAAAATAP3/AAAHAAEAAAA=")
+tile_set = ExtResource("13_ltldl")
+
+[node name="Thomas" parent="." node_paths=PackedStringArray("ladder_tile_map") instance=ExtResource("10_n3a0u")]
+position = Vector2(1195.3, 517.581)
+ladder_tile_map = NodePath("../LadderTileMapLayer")
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
+script = ExtResource("14_yrk4v")
+tile_map = NodePath("../TileMapLayer")
+
+[node name="Key" parent="." instance=ExtResource("11_n3a0u")]
+position = Vector2(-326.198, 455.817)
+
+[node name="DialogueArea" parent="." node_paths=PackedStringArray("dialogue_canvas") instance=ExtResource("11_7qe4x")]
+position = Vector2(599, 535)
+dialogue_canvas = NodePath("../DialogueCanvas")
+character_array = ["Thomas"]
+sentence_array = ["I am Thomas. I am missionary and the new playable character! You are me now! :D"]
+
+[node name="Label" parent="DialogueArea" index="2"]
+text = "Press \"E\" to talk!"
+
+[editable path="DialogueArea"]

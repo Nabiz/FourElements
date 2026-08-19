@@ -1,11 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://23p6uspcn64v"]
+[gd_scene load_steps=10 format=3 uid="uid://23p6uspcn64v"]
 
 [ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="1_wfxg3"]
 [ext_resource type="Script" uid="uid://cplrvy50vlaor" path="res://scripts/player/thomas/thomas.gd" id="2_5dfg7"]
 [ext_resource type="Texture2D" uid="uid://b1fhtniausbdj" path="res://assets/player/thomas/thomas.png" id="3_c8gde"]
+[ext_resource type="Script" uid="uid://g1ymxqy87a2v" path="res://scripts/player/state_machine/states/thomas_states/crawling_state.gd" id="4_cdp4r"]
+[ext_resource type="Script" uid="uid://cfm8u8ls6kbbj" path="res://scripts/player/state_machine/states/thomas_states/thomas_state_machine.gd" id="4_mh6dy"]
+[ext_resource type="Script" uid="uid://blr66ndsckbp8" path="res://scripts/player/state_machine/states/thomas_states/idle_thomas_state.gd" id="5_1npkg"]
+[ext_resource type="Script" uid="uid://be26li0onvxdi" path="res://scripts/player/state_machine/states/thomas_states/walking_thomas_state.gd" id="6_ojak1"]
 
-[node name="Thomas" instance=ExtResource("1_wfxg3")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ojak1"]
+size = Vector2(108, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c8gde"]
+size = Vector2(112, 48)
+
+[node name="Thomas" node_paths=PackedStringArray("default_colision", "crawling_colision", "crawling_sprite", "stand_up_area") instance=ExtResource("1_wfxg3")]
 script = ExtResource("2_5dfg7")
+default_colision = NodePath("CollisionShape2D")
+crawling_colision = NodePath("CrawlingCollisionShape2d")
+crawling_sprite = NodePath("GFXHandler/CrawlingSprite")
+stand_up_area = NodePath("GFXHandler/StandUpArea")
 blank_sprite_texture = null
 fire_sprite = null
 water_sprite = null
@@ -14,3 +28,37 @@ air_sprite = null
 
 [node name="Sprite" parent="GFXHandler" index="0"]
 texture = ExtResource("3_c8gde")
+
+[node name="CrawlingSprite" type="Sprite2D" parent="GFXHandler" index="1"]
+visible = false
+position = Vector2(0, 34)
+rotation = 1.57214
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("3_c8gde")
+hframes = 3
+vframes = 2
+
+[node name="StandUpArea" type="Area2D" parent="GFXHandler" index="4"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GFXHandler/StandUpArea" index="0"]
+position = Vector2(0, -19)
+shape = SubResource("RectangleShape2D_ojak1")
+
+[node name="PlayerStateMachine" parent="." index="5" node_paths=PackedStringArray("crawling_state", "current_state")]
+script = ExtResource("4_mh6dy")
+crawling_state = NodePath("Crawling")
+current_state = NodePath("Falling")
+
+[node name="Idle" parent="PlayerStateMachine" index="0"]
+script = ExtResource("5_1npkg")
+
+[node name="Walking" parent="PlayerStateMachine" index="1"]
+script = ExtResource("6_ojak1")
+
+[node name="Crawling" type="Node" parent="PlayerStateMachine" index="7"]
+script = ExtResource("4_cdp4r")
+
+[node name="CrawlingCollisionShape2d" type="CollisionShape2D" parent="." index="7"]
+position = Vector2(0, 20)
+shape = SubResource("RectangleShape2D_c8gde")
+disabled = true

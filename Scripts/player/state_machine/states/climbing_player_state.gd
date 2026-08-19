@@ -9,7 +9,7 @@ func handle_input(event: InputEvent) -> void:
 		emit_signal("finished", player_state_machine.jump_state)
 
 
-func process(delta) -> void:
+func process(_delta) -> void:
 	var vertical_input = Input.get_axis("ui_up", "ui_down")
 	
 	if player.is_on_floor() and not vertical_input:

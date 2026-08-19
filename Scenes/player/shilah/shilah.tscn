@@ -5,8 +5,3 @@
 
 [node name="Shilah" instance=ExtResource("1_t23s5")]
 script = ExtResource("2_o1xrn")
-blank_sprite_texture = null
-fire_sprite = null
-water_sprite = null
-earth_sprite = null
-air_sprite = null

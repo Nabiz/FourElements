@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_dsr4j"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="8_tckme"]
 [ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="9_mrv01"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="10_lv11g"]
+[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="10_lv11g"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="10_ru5dn"]
 
 [node name="FireLevel" type="Node2D"]
@@ -74,5 +74,5 @@ element = 2
 script = ExtResource("10_ru5dn")
 tile_map = NodePath("../TileMapLayer")
 
-[node name="NewPlayer" parent="." instance=ExtResource("10_lv11g")]
-position = Vector2(171, 595)
+[node name="Shilah" parent="." instance=ExtResource("10_lv11g")]
+position = Vector2(158, 601.1)

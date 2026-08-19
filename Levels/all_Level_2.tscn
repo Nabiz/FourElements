@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_i3aej"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="9_0va4v"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="10_03gse"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="10_fgftr"]
+[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="10_fgftr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0va4v"]
 size = Vector2(285.769, 20)
@@ -111,7 +111,7 @@ move_duration = 2.0
 script = ExtResource("10_03gse")
 tile_map = NodePath("../TileMapLayer")
 
-[node name="NewPlayer" parent="." instance=ExtResource("10_fgftr")]
-position = Vector2(565.767, 532.287)
+[node name="Shilah" parent="." instance=ExtResource("10_fgftr")]
+position = Vector2(553, 540)
 
 [editable path="WaterPath"]

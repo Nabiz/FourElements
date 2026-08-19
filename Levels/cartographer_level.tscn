@@ -17,7 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://dwkde8i2sh1ce" path="res://scenes/props/dialogue_area.tscn" id="16_3l2mx"]
 [ext_resource type="PackedScene" uid="uid://dpvdhpekec6yg" path="res://scenes/gui/dialogue_canvas.tscn" id="17_rvum4"]
 [ext_resource type="Texture2D" uid="uid://csgd6qmb47yrd" path="res://assets/particles/bubble.png" id="18_shu37"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="19_2ih8c"]
+[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="19_2ih8c"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="19_rdxbt"]
 
 [sub_resource type="Animation" id="Animation_ha5n6"]
@@ -318,7 +318,6 @@ position = Vector2(1090, 601)
 position = Vector2(-21, 0)
 
 [node name="DialogueArea" parent="CartographerEncounter" node_paths=PackedStringArray("dialogue_canvas") instance=ExtResource("16_3l2mx")]
-visible = false
 position = Vector2(1089, 433)
 monitoring = false
 dialogue_canvas = NodePath("../DialogCanvas")
@@ -326,6 +325,9 @@ character_array = ["Thomas", "Shilah", "Thomas", "Shilah"]
 sentence_array = ["Ratunku nie umiem pływać!", "Nie martw się! Już jesteś bezpieczny. Mam na imię Shilah i jestem wodzem Indian. Znany jestem ze swej łaskawości i oddaniu mojemu ludowi. Potrafię również okazać litość obcym zza Wielkiej Wody, dlatego postanowiłem według swojej woli wyciągnąć Cię z płuapki złych szamanów. Potem zaprowadzę Cię do mojej wioski. ", "Dziękuję, ale mógłbyś się pośpieszyć......", "Jak Bladej Twarzy coś nie pasi to może zostać w tym kotle!"]
 
 [node name="Cartograph" parent="CartographerEncounter/DialogueArea" index="1"]
+visible = false
+
+[node name="Label" parent="CartographerEncounter/DialogueArea" index="2"]
 visible = false
 
 [node name="DialogCanvas" parent="CartographerEncounter" instance=ExtResource("17_rvum4")]
@@ -368,8 +370,8 @@ shape = SubResource("RectangleShape2D_rdxbt")
 script = ExtResource("19_rdxbt")
 tile_map = NodePath("../TileMapLayer")
 
-[node name="NewPlayer" parent="." instance=ExtResource("19_2ih8c")]
-position = Vector2(375.1, 596.9)
+[node name="Shilah" parent="." instance=ExtResource("19_2ih8c")]
+position = Vector2(366.3, 590.3)
 
 [connection signal="area_entered" from="CartographerEncounter/Rope" to="CartographerEncounter/Rope" method="_on_area_entered"]
 [connection signal="tree_exited" from="CartographerEncounter/Fire" to="CartographerEncounter" method="_on_fire_tree_exited"]

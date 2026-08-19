@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_54ec6"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="8_qrakl"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="9_rg4bx"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="9_vn2ha"]
+[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="9_vn2ha"]
 
 [node name="EarthLevel1" type="Node2D"]
 
@@ -69,5 +69,5 @@ position = Vector2(1666, 481)
 script = ExtResource("9_rg4bx")
 tile_map = NodePath("../TileMapLayer")
 
-[node name="NewPlayer" parent="." instance=ExtResource("9_vn2ha")]
-position = Vector2(150, 527)
+[node name="Shilah" parent="." instance=ExtResource("9_vn2ha")]
+position = Vector2(156, 532)

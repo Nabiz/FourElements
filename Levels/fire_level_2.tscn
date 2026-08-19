@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_euo5e"]
 [ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="8_x1xt4"]
 [ext_resource type="PackedScene" uid="uid://cduv0gbami34p" path="res://scenes/props/water_path.tscn" id="9_2u64h"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="10_36j3p"]
+[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="10_36j3p"]
 
 [node name="FireLevel2" type="Node2D"]
 
@@ -96,5 +96,5 @@ position = Vector2(1643, 341)
 position = Vector2(1250, 692)
 scale = Vector2(1.1, 1.25)
 
-[node name="NewPlayer" parent="." instance=ExtResource("10_36j3p")]
-position = Vector2(843.95, 340.29)
+[node name="Shilah" parent="." instance=ExtResource("10_36j3p")]
+position = Vector2(814.91, 335.45)

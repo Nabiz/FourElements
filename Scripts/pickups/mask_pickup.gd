@@ -54,11 +54,11 @@ func disable_mask():
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is NewPlayer:
+	if body is Shilah:
 		MaskManager.on_mask_picked(self)
 		audio_player.play()
 
 
 func _on_body_exited(body: Node2D) -> void:
-	if body is NewPlayer:
+	if body is Shilah:
 		disable_mask()

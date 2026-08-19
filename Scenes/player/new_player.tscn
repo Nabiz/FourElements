@@ -217,6 +217,7 @@ water_wave_scene = ExtResource("5_v4juy")
 earth_block_space = NodePath("EarhtBlockSpace")
 
 [node name="Marker2D" type="Marker2D" parent="GFXHandler/ShootAbility"]
+position = Vector2(56, -13)
 
 [node name="EarhtBlockSpace" type="Area2D" parent="GFXHandler/ShootAbility"]
 position = Vector2(56, -13)

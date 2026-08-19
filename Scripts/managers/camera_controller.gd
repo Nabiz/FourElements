@@ -9,7 +9,7 @@ func _ready() -> void:
 	set_camera_limits()
 	call_deferred("follow_player")
 
-func _input(event: InputEvent) -> void:
+func _input(_event: InputEvent) -> void:
 	pass
 	#if event.is_action_pressed("ui_home"):
 		#if free_camera:

@@ -4,7 +4,7 @@ extends CharacterBody2D
 static var instance: NewPlayer
 
 const SPEED = 250.0
-const JUMP_VELOCITY = -420.0
+var JUMP_VELOCITY = -420.0
 const BOOSTED_JUMP_VELOCITY = -510.0
 var jump_velocity = JUMP_VELOCITY
 

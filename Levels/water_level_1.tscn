@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bbp66xbtvbism" path="res://scenes/pickups/mask_pickup.tscn" id="7_vasab"]
 [ext_resource type="PackedScene" uid="uid://cwdtgtgv530co" path="res://scenes/pickups/key.tscn" id="8_kt8ba"]
 [ext_resource type="PackedScene" uid="uid://b657y1ssc83x3" path="res://scenes/props/fire.tscn" id="8_ku3fi"]
-[ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="9_ku3fi"]
+[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="9_ku3fi"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="10_xdyu3"]
 
 [node name="WaterLevel" type="Node2D"]
@@ -82,5 +82,5 @@ position = Vector2(153, 517)
 script = ExtResource("10_xdyu3")
 tile_map = NodePath("../TileMapLayer")
 
-[node name="NewPlayer" parent="." instance=ExtResource("9_ku3fi")]
-position = Vector2(153, 517)
+[node name="Shilah" parent="." instance=ExtResource("9_ku3fi")]
+position = Vector2(186.57, 516.321)
