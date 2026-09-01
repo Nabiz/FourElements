@@ -1,7 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://dli0h83ockmbc"]
+[gd_scene load_steps=14 format=3 uid="uid://dli0h83ockmbc"]
 
 [ext_resource type="PackedScene" uid="uid://d3on8tgstst14" path="res://scenes/player/new_player.tscn" id="1_t23s5"]
 [ext_resource type="Script" uid="uid://cfx73j6hisb65" path="res://scripts/player/shilah/shilah.gd" id="2_o1xrn"]
+[ext_resource type="Script" uid="uid://oc4efe1rbxpc" path="res://scripts/player/shoot_ability.gd" id="3_0e2rw"]
+[ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="3_grb2h"]
+[ext_resource type="PackedScene" uid="uid://xa78ghncf2hi" path="res://scenes/player/fire_bullet.tscn" id="4_lcs24"]
+[ext_resource type="Texture2D" uid="uid://d1j8dv7fbpf0b" path="res://assets/player/player_fire.png" id="4_qw5v0"]
+[ext_resource type="Texture2D" uid="uid://bwannb5fs8gts" path="res://assets/player/player_water.png" id="5_kagwy"]
+[ext_resource type="PackedScene" uid="uid://bcr3dtq4rb71j" path="res://scenes/player/air_bullet.tscn" id="5_v1v1b"]
+[ext_resource type="Texture2D" uid="uid://yr6yhtuxr4ht" path="res://assets/player/player_earth.png" id="6_vm4pq"]
+[ext_resource type="PackedScene" uid="uid://cy55rh68t6vhq" path="res://scenes/player/earth_block.tscn" id="6_x3yoq"]
+[ext_resource type="PackedScene" uid="uid://jwg0a6288amj" path="res://scenes/player/water_wave.tscn" id="7_capyg"]
+[ext_resource type="Texture2D" uid="uid://bsmdmypxvbyrf" path="res://assets/player/player_air.png" id="7_k7tbr"]
 
-[node name="Shilah" instance=ExtResource("1_t23s5")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_grb2h"]
+size = Vector2(64, 64)
+
+[node name="Shilah" node_paths=PackedStringArray("shoot_ability") instance=ExtResource("1_t23s5")]
 script = ExtResource("2_o1xrn")
+shoot_ability = NodePath("GFXHandler/ShootAbility")
+blank_sprite_texture = ExtResource("3_grb2h")
+fire_sprite = ExtResource("4_qw5v0")
+water_sprite = ExtResource("5_kagwy")
+earth_sprite = ExtResource("6_vm4pq")
+air_sprite = ExtResource("7_k7tbr")
+
+[node name="ShootAbility" type="Node2D" parent="GFXHandler" index="2" node_paths=PackedStringArray("player", "marker_point", "earth_block_space")]
+script = ExtResource("3_0e2rw")
+player = NodePath("../..")
+marker_point = NodePath("Marker2D")
+fire_bullet_scene = ExtResource("4_lcs24")
+air_bullet_scene = ExtResource("5_v1v1b")
+earth_block_scene = ExtResource("6_x3yoq")
+water_wave_scene = ExtResource("7_capyg")
+earth_block_space = NodePath("EarhtBlockSpace")
+
+[node name="Marker2D" type="Marker2D" parent="GFXHandler/ShootAbility" index="0"]
+position = Vector2(56, -13)
+
+[node name="EarhtBlockSpace" type="Area2D" parent="GFXHandler/ShootAbility" index="1"]
+position = Vector2(56, -13)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GFXHandler/ShootAbility/EarhtBlockSpace" index="0"]
+shape = SubResource("RectangleShape2D_grb2h")

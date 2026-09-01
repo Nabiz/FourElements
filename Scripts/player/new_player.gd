@@ -13,14 +13,6 @@ var jump_velocity = JUMP_VELOCITY
 
 @export_category("Sprites")
 @export var sprite: Sprite2D
-@export_subgroup("Textures")
-@export var blank_sprite_texture: Texture
-@export var fire_sprite: Texture
-@export var water_sprite: Texture
-@export var earth_sprite: Texture
-@export var air_sprite: Texture
-
-@export var shoot_ability: ShootAbility
 
 @export var ladder_tile_map: TileMapLayer
 
@@ -33,37 +25,10 @@ var face_direction = Vector2.RIGHT
 func _enter_tree() -> void:
 	instance = self
 
-
 func _process(_delta: float) -> void:
 	play_animation()
 	check_dead()
 	set_face_direction(velocity.x)
-	if Input.is_action_just_pressed("ui_fire"):
-		shoot_ability.spawn_water()
-		shoot_ability.spawn_fire_bullet()
-		shoot_ability.spawn_earth_block()
-		shoot_ability.spawn_air_bullet()
-		
-
-func change_element(element: MaskManager.Element) -> void:
-	change_sprite(element)
-
-
-func change_sprite(element: MaskManager.Element):
-	match element:
-		MaskManager.Element.BLANK:
-			sprite.texture = blank_sprite_texture
-		MaskManager.Element.FIRE:
-			sprite.texture = fire_sprite
-		MaskManager.Element.WATER:
-			sprite.texture = water_sprite
-		MaskManager.Element.EARTH:
-			sprite.texture = earth_sprite
-		MaskManager.Element.AIR:
-			sprite.texture = air_sprite
-		_:
-			sprite.show()
-
 
 func play_animation():
 	if state_machine.current_state is ClimbingPlayerState:

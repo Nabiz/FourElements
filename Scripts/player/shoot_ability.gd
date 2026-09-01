@@ -1,7 +1,7 @@
 class_name ShootAbility
 extends Node2D
 
-@export var player: NewPlayer
+@export var player: Shilah
 
 @export_category("Elements Objects")
 @export var marker_point: Marker2D
