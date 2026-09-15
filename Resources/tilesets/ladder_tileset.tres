@@ -33,9 +33,19 @@ texture_region_size = Vector2i(64, 64)
 11:5/0/custom_data_0 = true
 11:6/0 = 0
 11:6/0/custom_data_0 = true
+12:6/0 = 0
+12:6/0/custom_data_1 = true
+13:6/0 = 0
+13:6/0/custom_data_1 = true
+14:6/0 = 0
+14:6/0/custom_data_1 = true
+15:6/0 = 0
+15:6/0/custom_data_1 = true
 
 [resource]
 tile_size = Vector2i(64, 64)
-custom_data_layer_0/name = "is_ladder"
+custom_data_layer_0/name = "vertical_climb"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = "horizontal_climb"
+custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_o5yuq")

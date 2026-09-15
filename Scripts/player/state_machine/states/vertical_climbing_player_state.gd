@@ -1,4 +1,4 @@
-class_name ClimbingPlayerState
+class_name VerticalClimbingPlayerState
 extends PlayerState
 
 func enter():
@@ -7,6 +7,9 @@ func enter():
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_jump") and Input.get_axis("ui_left", "ui_right"):
 		emit_signal("finished", player_state_machine.jump_state)
+	elif event.is_action_pressed("ui_left", true) or event.is_action_pressed("ui_right", true):
+		if player.is_on_horizontal_climb():
+			emit_signal("finished", player_state_machine.horizontal_climbing_state)
 
 
 func process(_delta) -> void:

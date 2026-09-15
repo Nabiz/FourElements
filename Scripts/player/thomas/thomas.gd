@@ -12,7 +12,7 @@ func _ready() -> void:
 	JUMP_VELOCITY = -550.0
 
 func play_animation():
-	if state_machine.current_state is ClimbingPlayerState:
+	if state_machine.current_state is VerticalClimbingPlayerState:
 		$GFXHandler/ClimbSprite.show()
 		sprite.hide()
 		if abs(velocity.y) > 0.1:

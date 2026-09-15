@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://d3on8tgstst14"]
+[gd_scene load_steps=30 format=3 uid="uid://d3on8tgstst14"]
 
 [ext_resource type="Texture2D" uid="uid://dwyjasykl3d2e" path="res://assets/player/player_blank.png" id="1_k3hjk"]
 [ext_resource type="Script" uid="uid://dnc0v22ipos5v" path="res://scripts/player/new_player.gd" id="1_p6vqr"]
@@ -10,7 +10,8 @@
 [ext_resource type="Script" uid="uid://cua1snpigf6sl" path="res://scripts/player/state_machine/states/falling_player_state.gd" id="8_dneq4"]
 [ext_resource type="Script" uid="uid://bttmsuiryhnog" path="res://scripts/player/state_machine/states/jump_player_state.gd" id="9_26kdi"]
 [ext_resource type="Texture2D" uid="uid://dm58sxkew8shy" path="res://assets/player/thomas/thomas_climb.png" id="12_j50t7"]
-[ext_resource type="Script" uid="uid://rploqtrcsujm" path="res://scripts/player/state_machine/states/climbing_player_state.gd" id="18_4bq1a"]
+[ext_resource type="Script" uid="uid://dkselmq0g3vvv" path="res://scripts/player/state_machine/states/horizontal_climbing_player_state.gd" id="12_y5yk8"]
+[ext_resource type="Script" uid="uid://rploqtrcsujm" path="res://scripts/player/state_machine/states/vertical_climbing_player_state.gd" id="18_4bq1a"]
 [ext_resource type="Script" uid="uid://coxpor6itprfb" path="res://scripts/player/state_machine/states/dying_player_state.gd" id="19_mw318"]
 [ext_resource type="Script" uid="uid://dq42h0ea2ttxb" path="res://scripts/player/state_machine/states/standby_player_state.gd" id="21_sathn"]
 
@@ -208,16 +209,17 @@ position = Vector2(0, 25)
 sprite_frames = SubResource("SpriteFrames_dneq4")
 animation = &"water_splash"
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player", "label", "idle_state", "walking_state", "jump_state", "falling_state", "climbing_state", "dying_state", "standby_state")]
+[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("current_state", "player", "label", "idle_state", "walking_state", "jump_state", "falling_state", "vertical_climbing_state", "horizontal_climbing_state", "dying_state", "standby_state")]
 script = ExtResource("5_ujxmj")
-current_state = NodePath("Climbing")
+current_state = NodePath("HorizontalClimbing")
 player = NodePath("..")
 label = NodePath("../Label")
 idle_state = NodePath("Idle")
 walking_state = NodePath("Walking")
 jump_state = NodePath("Jump")
 falling_state = NodePath("Falling")
-climbing_state = NodePath("Climbing")
+vertical_climbing_state = NodePath("VerticalClimbing")
+horizontal_climbing_state = NodePath("HorizontalClimbing")
 dying_state = NodePath("Dying")
 standby_state = NodePath("Standby")
 
@@ -233,8 +235,11 @@ script = ExtResource("8_dneq4")
 [node name="Jump" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_26kdi")
 
-[node name="Climbing" type="Node" parent="PlayerStateMachine"]
+[node name="VerticalClimbing" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("18_4bq1a")
+
+[node name="HorizontalClimbing" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("12_y5yk8")
 
 [node name="Dying" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("19_mw318")

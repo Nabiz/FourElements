@@ -2,13 +2,17 @@ class_name FallingPlayerState
 extends PlayerState
 
 func handle_input(event: InputEvent) -> void:
+	#prints(Input.is_action_pressed("ui_catch"), player.is_on_horizontal_climb())
 	if event.is_action_pressed("ui_jump") and MaskManager.current_element == MaskManager.Element.AIR:
 		MaskManager.use_ammo()
 		player.jump_velocity = player.BOOSTED_JUMP_VELOCITY
 		emit_signal("finished", player_state_machine.jump_state)
 	
 	elif Input.get_axis("ui_up", "ui_down") and player.is_on_climb():
-		emit_signal("finished", player_state_machine.climbing_state)
+		emit_signal("finished", player_state_machine.vertical_climbing_state)
+	
+	elif Input.is_action_pressed("ui_catch") and player.is_on_horizontal_climb():
+		emit_signal("finished", player_state_machine.horizontal_climbing_state)
 
 func physics_process(delta: float) -> void:
 	var horizontal_input: float = Input.get_axis("ui_left", "ui_right")

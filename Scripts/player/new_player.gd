@@ -15,6 +15,7 @@ var jump_velocity = JUMP_VELOCITY
 @export var sprite: Sprite2D
 
 @export var ladder_tile_map: TileMapLayer
+@export var horizontal_climb_tile_map: TileMapLayer
 
 @export var state_machine: PlayerStateMachine
 
@@ -29,9 +30,10 @@ func _process(_delta: float) -> void:
 	play_animation()
 	check_dead()
 	set_face_direction(velocity.x)
+	is_on_horizontal_climb()
 
 func play_animation():
-	if state_machine.current_state is ClimbingPlayerState:
+	if state_machine.current_state is VerticalClimbingPlayerState:
 		$GFXHandler/ClimbSprite.show()
 		sprite.hide()
 		if abs(velocity.y) > 0.1:
@@ -78,7 +80,17 @@ func is_on_climb() -> bool:
 		var map_pos = ladder_tile_map.local_to_map(global_position+Vector2(0,16))
 		var tile_data = ladder_tile_map.get_cell_tile_data(map_pos)
 		if tile_data:
-			return tile_data.get_custom_data("is_ladder")
+			return tile_data.get_custom_data("vertical_climb")
+		else:
+			return false
+	return false
+
+func is_on_horizontal_climb() -> bool:
+	if horizontal_climb_tile_map:
+		var map_pos = horizontal_climb_tile_map.local_to_map(global_position-Vector2(0,32))
+		var tile_data = horizontal_climb_tile_map.get_cell_tile_data(map_pos)
+		if tile_data:
+			return tile_data.get_custom_data("horizontal_climb")
 		else:
 			return false
 	return false

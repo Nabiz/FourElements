@@ -9,7 +9,7 @@ func handle_input(_event: InputEvent) -> void:
 		var vertical_input = Input.get_axis("ui_down", "ui_up")
 		if vertical_input and player.is_on_climb():
 			if !player.is_on_floor() or vertical_input > 0.01:
-				emit_signal("finished", player_state_machine.climbing_state)
+				emit_signal("finished", player_state_machine.vertical_climbing_state)
 
 func physics_process(_delta: float) -> void:
 	if not player.is_on_floor():

@@ -10,7 +10,8 @@ extends Node
 @export var walking_state: WalkingPlayerState
 @export var jump_state: JumpPlayerState
 @export var falling_state: FallingPlayerState
-@export var climbing_state: ClimbingPlayerState
+@export var vertical_climbing_state: VerticalClimbingPlayerState
+@export var horizontal_climbing_state: HorizontalClimbingPlayerState
 @export var dying_state: DyingPlayerState
 @export var standby_state: StandbyPlayerState
 

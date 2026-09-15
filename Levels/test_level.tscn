@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://40yqcidnv18n" path="res://assets/enemy/enemy.png" id="13_a5le3"]
 [ext_resource type="TileSet" uid="uid://dc1egyes4liho" path="res://resources/tilesets/ladder_tileset.tres" id="15_0vv12"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="15_o5yuq"]
-[ext_resource type="PackedScene" uid="uid://dli0h83ockmbc" path="res://scenes/player/shilah/shilah.tscn" id="15_wjuib"]
+[ext_resource type="PackedScene" uid="uid://23p6uspcn64v" path="res://scenes/player/thomas/thomas.tscn" id="15_wjuib"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -81,12 +81,18 @@ position = Vector2(0, 16)
 tile_map_data = PackedByteArray("AAAEAAkAAAAHAAEAAAAEAAgAAAAHAAEAAAAEAAcAAAAHAAEAAAAEAAYAAAAHAAEAAAAEAAUAAAAHAAEAAAAEAAQAAAAHAAEAAAAEAAMAAAAHAAEAAAALAAgAAAAHAAEAAAALAAcAAAAHAAEAAAALAAYAAAAHAAEAAAALAAUAAAAHAAEAAAALAAQAAAAHAAEAAAALAAMAAAAHAAEAAAA=")
 tile_set = ExtResource("15_0vv12")
 
+[node name="HorizontalClimbTileMapLayer" type="TileMapLayer" parent="."]
+position = Vector2(0, 16)
+tile_map_data = PackedByteArray("AAAMAAUAAAANAAYAAAALAAUAAAANAAYAAAAKAAUAAAANAAYAAAANAAUAAAANAAYAAAAOAAUAAAANAAYAAAAEAAAAAAANAAYAAAAFAAAAAAANAAYAAAAGAAAAAAANAAYAAAAHAAAAAAANAAYAAAAIAAAAAAANAAYAAAAJAAAAAAANAAYAAAAKAAAAAAANAAYAAAALAAAAAAANAAYAAAAMAAAAAAANAAYAAAANAAAAAAANAAYAAAA=")
+tile_set = ExtResource("15_0vv12")
+
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("tile_map")]
 script = ExtResource("15_o5yuq")
 tile_map = NodePath("../TileMapLayer")
 
-[node name="Shilah" parent="." node_paths=PackedStringArray("ladder_tile_map") instance=ExtResource("15_wjuib")]
-position = Vector2(191.381, 549.66)
+[node name="Thomas" parent="." node_paths=PackedStringArray("ladder_tile_map", "horizontal_climb_tile_map") instance=ExtResource("15_wjuib")]
+position = Vector2(170.781, 537.456)
 ladder_tile_map = NodePath("../LadderTileMapLayer")
+horizontal_climb_tile_map = NodePath("../HorizontalClimbTileMapLayer")
 
 [editable path="DialogueArea2"]
