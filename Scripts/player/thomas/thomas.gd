@@ -7,9 +7,17 @@ class_name Thomas
 @export var crawling_sprite: Sprite2D
 @export var stand_up_area: Area2D
 
+@export var sleeping_dart_scene: PackedScene
 
 func _ready() -> void:
 	JUMP_VELOCITY = -550.0
+
+func shoot():
+	if can_shoot:
+		var dart: SleepingDart = sleeping_dart_scene.instantiate()
+		dart.direction = face_direction
+		dart.position = position + Vector2(0, -16)
+		get_parent().add_child(dart)
 
 func play_animation():
 	if state_machine.current_state is VerticalClimbingPlayerState:

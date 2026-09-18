@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bkebn6jtk2a8l"]
+[gd_scene load_steps=17 format=4 uid="uid://bkebn6jtk2a8l"]
 
 [ext_resource type="PackedScene" uid="uid://dl5it1ko4a2hf" path="res://scenes/props/finish_area.tscn" id="2_kv5fy"]
 [ext_resource type="PackedScene" uid="uid://cl5y8s2tdfs5i" path="res://scenes/gui/end_level_popup.tscn" id="3_jeepb"]
@@ -15,6 +15,7 @@
 [ext_resource type="TileSet" uid="uid://dc1egyes4liho" path="res://resources/tilesets/ladder_tileset.tres" id="15_0vv12"]
 [ext_resource type="Script" uid="uid://bqdfn8kuyclmm" path="res://scripts/managers/camera_controller.gd" id="15_o5yuq"]
 [ext_resource type="PackedScene" uid="uid://23p6uspcn64v" path="res://scenes/player/thomas/thomas.tscn" id="15_wjuib"]
+[ext_resource type="PackedScene" uid="uid://dk1i41y4p0goh" path="res://scenes/enemies/enemy.tscn" id="16_o5yuq"]
 
 [node name="TestLevel" type="Node2D"]
 
@@ -94,5 +95,8 @@ tile_map = NodePath("../TileMapLayer")
 position = Vector2(170.781, 537.456)
 ladder_tile_map = NodePath("../LadderTileMapLayer")
 horizontal_climb_tile_map = NodePath("../HorizontalClimbTileMapLayer")
+
+[node name="Enemy" parent="Thomas" instance=ExtResource("16_o5yuq")]
+position = Vector2(543.219, -16.456)
 
 [editable path="DialogueArea2"]

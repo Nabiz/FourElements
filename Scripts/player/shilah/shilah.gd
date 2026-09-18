@@ -10,16 +10,11 @@ class_name Shilah
 @export var earth_sprite: Texture
 @export var air_sprite: Texture
 
-func _process(delta: float) -> void:
-	super(delta)
-	check_shot()
-
-func check_shot():
-	if Input.is_action_just_pressed("ui_fire"):
-		shoot_ability.spawn_water()
-		shoot_ability.spawn_fire_bullet()
-		shoot_ability.spawn_earth_block()
-		shoot_ability.spawn_air_bullet()
+func shoot():
+	shoot_ability.spawn_water()
+	shoot_ability.spawn_fire_bullet()
+	shoot_ability.spawn_earth_block()
+	shoot_ability.spawn_air_bullet()
 
 func change_element(element: MaskManager.Element) -> void:
 	change_sprite(element)

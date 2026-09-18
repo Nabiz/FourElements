@@ -30,7 +30,11 @@ func _process(_delta: float) -> void:
 	play_animation()
 	check_dead()
 	set_face_direction(velocity.x)
-	is_on_horizontal_climb()
+	if Input.is_action_just_pressed("ui_fire"):
+		shoot()
+
+func shoot() -> void:
+	pass
 
 func play_animation():
 	if state_machine.current_state is VerticalClimbingPlayerState:
